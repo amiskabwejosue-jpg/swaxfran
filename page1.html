@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usajili - Hatua ya 1</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      background: #f4f6f9;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #007BFF;
+      font-size: 26px;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    input, select {
+      width: 290px; /* largeur réduite */
+      padding: 8px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 14px;
+      background: #fff; /* blanc par défaut */
+      color: #2c3e50;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Couleur après saisie */
+    input.filled, select.filled {
+      background: #eaf7ea;   /* vert naturel doux */
+      border-color: #a3c293;
+    }
+
+    .inline-group {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* espace entre select et bouton */
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 2px 2px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 26px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .error { color: #e74c3c; }
+    .success { color: #27ae60; }
+  </style>
+</head>
+<body>
+  <h2>Usajili - Hatua ya 1</h2>
+
+  <form id="form1">
+    <label>Jina (Nom)</label>
+    <input type="text" id="nom" placeholder="Ingiza jina lako" required>
+
+    <label>Jina la Kwanza (Prénom)</label>
+    <input type="text" id="prenom" placeholder="Ingiza jina la kwanza" required>
+
+    <label>Tarehe ya Kuzaliwa (Date de naissance)</label>
+    <input type="date" id="naissance" required>
+
+    <label>Uraia (Nationalité)</label>
+    <div class="inline-group">
+      <select id="nationalite" required>
+        <option value="">-- Chagua --</option>
+        <!-- Pays francophones et swahiliphones en ordre alphabétique -->
+        <option>Algérie</option>
+        <option>Belgique</option>
+        <option>Bénin</option>
+        <option>Burundi</option>
+        <option>Cameroun</option>
+        <option>Canada</option>
+        <option>Comores</option>
+        <option>Congo</option>
+        <option>Côte d’Ivoire</option>
+        <option>Djibouti</option>
+        <option>France</option>
+        <option>Gabon</option>
+        <option>Guinée</option>
+        <option>Guinée équatoriale</option>
+        <option>Haïti</option>
+        <option>Kenya</option>
+        <option>Luxembourg</option>
+        <option>Madagascar</option>
+        <option>Mali</option>
+        <option>Maroc</option>
+        <option>Mauritanie</option>
+        <option>Mozambique</option>
+        <option>Niger</option>
+        <option>Nouvelle-Calédonie</option>
+        <option>Ouganda</option>
+        <option>République centrafricaine</option>
+        <option>République démocratique du Congo</option>
+        <option>Rwanda</option>
+        <option>Sénégal</option>
+        <option>Seychelles</option>
+        <option>Suisse</option>
+        <option>Tanzanie</option>
+        <option>Tchad</option>
+        <option>Togo</option>
+        <option>Tunisie</option>
+        <option>Zambie</option>
+        <option>Nyingine</option>
+      </select>
+      <!-- Bouton discret avec icône flèche -->
+      <button type="submit">➡️</button>
+    </div>
+  </form>
+
+  <div id="message"></div>
+
+  <script>
+  // Appliquer la couleur verte après saisie
+  document.querySelectorAll("input, select").forEach(el => {
+    el.addEventListener("blur", () => {
+      if (el.value.trim() !== "") {
+        el.classList.add("filled");
+      } else {
+        el.classList.remove("filled");
+      }
+    });
+  });
+
+  document.getElementById("form1").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+      nom: document.getElementById("nom").value.trim(),
+      prenom: document.getElementById("prenom").value.trim(),
+      naissance: document.getElementById("naissance").value,
+      nationalite: document.getElementById("nationalite").value
+    };
+
+    const msg = document.getElementById("message");
+
+    if (!data.nom || !data.prenom || !data.naissance || !data.nationalite) {
+      msg.textContent = "❌ Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";
+      msg.className = "error";
+      return;
+    }
+
+    localStorage.setItem("nom", data.nom);
+    localStorage.setItem("prenom", data.prenom);
+    localStorage.setItem("naissance", data.naissance);
+    localStorage.setItem("nationalite", data.nationalite);
+
+    msg.textContent = "✅ Données enregistrées, redirection vers Page2...";
+    msg.className = "success";
+
+    setTimeout(() => {
+      window.location.href = "page2.html";
+    }, 1000);
+  });
+  </script>
+</body>
+</html>

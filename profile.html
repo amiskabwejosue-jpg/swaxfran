@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Swaxfran - Profil / Wasifu</title>
+
+  <!-- Icônes Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Police professionnelle Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 10px;
+    }
+.photo-menu {
+  display: none;
+  margin-top: 15px;
+  gap: 10px;
+  justify-content: center;
+}
+.photo-menu button {
+  background: #0077b6;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.photo-menu button:hover {
+  background: #00c853;
+}
+    .profile-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 600px; /* limite sur grands écrans */
+    }
+
+    h2 {
+      text-align: center;
+      color: #0077b6;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .profile-pic {
+      display: block;
+      margin: 0 auto 20px auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #0077b6;
+    }
+
+    .profile-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 20px;
+      margin-bottom: 25px;
+    }
+
+    .profile-info p {
+      margin: 0;
+      font-size: 0.95em;
+      color: #444;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .profile-info strong {
+      color: #0077b6;
+      font-weight: 500;
+    }
+
+    /* Couleurs des icônes */
+    .profile-info i.fa-envelope { color: #0077b6; }
+    .profile-info i.fa-phone { color: #28a745; }
+    .profile-info i.fa-calendar { color: #ff9800; }
+    .profile-info i.fa-flag { color: #9c27b0; }
+    .profile-info i.fa-house { color: #795548; }
+    .profile-info i.fa-graduation-cap { color: #3f51b5; }
+    .profile-info i.fa-heart { color: #e91e63; }
+    .profile-info i.fa-language { color: #009688; }
+    .profile-info i.fa-lock { color: #d32f2f; }
+    .profile-info i.fa-globe { color: #00bcd4; }
+    .profile-info i.fa-id-card,
+    .profile-info i.fa-id-badge { color: #607d8b; }
+
+    /* Boutons */
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: 140px;
+      background: #0077b6;
+      color: white;
+      font-size: 1em;
+      font-weight: 500;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background: #00c853;
+      transform: scale(1.05);
+    }
+
+    .btn-danger {
+      background: #d32f2f;
+    }
+    .btn-danger:hover {
+      background: #b71c1c;
+    }
+
+    .btn-secondary {
+      background: #555;
+    }
+    .btn-secondary:hover {
+      background: #333;
+    }
+
+    /* Responsive mobile */
+    @media (max-width: 480px) {
+      .profile-info {
+        grid-template-columns: 1fr; /* une seule colonne */
+      }
+      .actions {
+        flex-direction: column; /* boutons en colonne */
+      }
+      .btn {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-box">
+    <h2><i class="fa-solid fa-user"></i> Mon Profil / Wasifu Wangu</h2>
+    <img id="profilePic" class="profile-pic" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Photo de profil">
+<div id="photoMenu" class="photo-menu">
+  <button onclick="changeImage()"><i class="fa-solid fa-image"></i> Changer</button>
+  <button onclick="downloadImage()"><i class="fa-solid fa-download"></i> Télécharger</button>
+  <button onclick="deleteImage()"><i class="fa-solid fa-trash"></i> Supprimer</button>
+</div>
+<input type="file" id="fileInput" accept="image/*" style="display:none">
+    <div class="profile-info">
+      <p><i class="fa-solid fa-id-card"></i> <strong>Nom / Jina :</strong> <span id="nom"></span></p>
+      <p><i class="fa-solid fa-id-badge"></i> <strong>Prénom / Jina la kwanza :</strong> <span id="prenom"></span></p>
+      <p><i class="fa-solid fa-envelope"></i> <strong>Email :</strong> <span id="email"></span></p>
+      <p><i class="fa-solid fa-phone"></i> <strong>Téléphone / Simu :</strong> <span id="telephone"></span></p>
+      <p><i class="fa-solid fa-calendar"></i> <strong>Date de naissance / Tarehe ya kuzaliwa :</strong> <span id="naissance"></span></p>
+      <p><i class="fa-solid fa-flag"></i> <strong>Nationalité / Uraia :</strong> <span id="nationalite"></span></p>
+      <p><i class="fa-solid fa-house"></i> <strong>Résidence / Makazi :</strong> <span id="residence"></span></p>
+      <p><i class="fa-solid fa-graduation-cap"></i> <strong>Niveau d’études / Kiwango cha masomo :</strong> <span id="etudes"></span></p>
+      <p><i class="fa-solid fa-heart"></i> <strong>État matrimonial / Hali ya ndoa :</strong> <span id="matrimonial"></span></p>
+      <p><i class="fa-solid fa-language"></i> <strong>Niveau d’anglais / Kiwango cha Kiingereza :</strong> <span id="anglais"></span></p>
+      <p><i class="fa-solid fa-lock"></i> <strong>Mot de passe / Nenosiri :</strong> <span id="password"></span></p>
+      <p><i class="fa-solid fa-globe"></i> <strong>Langue choisie / Lugha iliyochaguliwa :</strong> <span id="langue"></span></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn" onclick="updateProfile()"><i class="fa-solid fa-pen"></i> Mettre à jour / Sasisha</button>
+      <button class="btn-secondary" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Déconnecter / Toka</button>
+      <button class="btn btn-danger" onclick="deleteAccount()"><i class="fa-solid fa-trash"></i> Supprimer / Futa</button>
+      <button class="btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Retour / Rudi</button>
+    </div>
+  </div>
+
+  <script>
+    const profilePic = document.getElementById("profilePic");
+const photoMenu = document.getElementById("photoMenu");
+const fileInput = document.getElementById("fileInput");
+
+// Afficher / cacher le menu quand on clique sur la photo
+profilePic.addEventListener("click", () => {
+  photoMenu.style.display = (photoMenu.style.display === "flex") ? "none" : "flex";
+});
+
+function changeImage() {
+  fileInput.click();
+  fileInput.onchange = () => {
+    const file = fileInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        profilePic.src = e.target.result;
+        localStorage.setItem("profilePic", e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+}
+
+function downloadImage() {
+  const link = document.createElement("a");
+  link.href = profilePic.src;
+  link.download = "photo_profil.png";
+  link.click();
+}
+
+function deleteImage() {
+  profilePic.src = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+  localStorage.removeItem("profilePic");
+  alert("Image supprimée / Picha imefutwa.");
+}
+
+// Charger l'image sauvegardée
+const savedPic = localStorage.getItem("profilePic");
+if (savedPic) {
+  profilePic.src = savedPic;
+}
+    // Charger les infos depuis localStorage
+    document.getElementById("nom").textContent = localStorage.getItem("nom") || "";
+    document.getElementById("prenom").textContent = localStorage.getItem("prenom") || "";
+    document.getElementById("email").textContent = localStorage.getItem("email") || "";
+    document.getElementById("telephone").textContent = localStorage.getItem("telephone") || "";
+    document.getElementById("naissance").textContent = localStorage.getItem("naissance") || "";
+    document.getElementById("nationalite").textContent = localStorage.getItem("nationalite") || "";
+    document.getElementById("residence").textContent = localStorage.getItem("residence") || "";
+    document.getElementById("etudes").textContent = localStorage.getItem("etudes") || "";
+    document.getElementById("matrimonial").textContent = localStorage.getItem("matrimonial") || "";
+    document
+    function deleteAccount() {
+      if (confirm("Voulez-vous vraiment supprimer votre compte ? / Je, unataka kufuta akaunti yako?")) {
+        localStorage.clear();
+        alert("Compte supprimé / Akaunti imefutwa.");
+        window.location.href = "enregistrement.html";
+      }
+    }
+
+    function goBack() {
+      const langue = localStorage.getItem("langue");
+      if (langue === "fr") {
+        window.location.href = "dashboard_fr.html";
+      } else if (langue === "sw") {
+        window.location.href = "dashboard_sw.html";
+      } else {
+        window.location.href = "choix_de_langue.html";
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Swaxfran - Connexion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fdfbfb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .app-header {
+      background-color: #fdfdfd;
+      padding: 10px;
+      border-bottom: 2px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .menu-btn {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 7px 20px;
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .logo { height: 40px; }
+    .title { font-size: 18px; font-weight: bold; color: #0077b6; }
+    .menu { display: none; position: absolute; top: 50px; left: 10px; background-color: #ffffff;
+      border: 1px solid #ddd; border-radius: 4px; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+    .menu a { display: block; padding: 10px; text-decoration: none; color: #333; }
+    .menu a:hover { background-color: #007bff; color: white; }
+    .hero-image { width: 100%; max-height: 350px; object-fit: cover; display: block; }
+    .welcome { text-align: center; padding: 40px 20px; }
+    .login-box { max-width: 400px; margin: 0 auto 30px auto; background: white; padding: 25px;
+      border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-align: center; }
+    .login-box h2 { color: #0077b6; margin-bottom: 15px; }
+    .login-box input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 1em; }
+    .login-box button { width: 95%; padding: 12px; background: #00c853; color: white; border: none; border-radius: 8px;
+      font-size: 1.1em; font-weight: bold; cursor: pointer; transition: background 0.3s ease; }
+    .login-box button:hover { background: #76ff03; }
+    #message { margin-top: 15px; font-size: 0.95em; font-weight: bold; }
+    .app-footer { background-color: #DEB887; padding: 20px; text-align: center; border-top: 2px solid #eee; font-family: 'Segoe UI', sans-serif; }
+    .contact-info p { margin: 5px 0; font-size: 15px; }
+    .contact-info i { margin-right: 8px; font-size: 18px; }
+    .gmail i { color: #D93025; }
+    .whatsapp i { color: #25D366; }
+    .contact-info a { text-decoration: none; color: #333; }
+    .social-icons { margin: 12px 0; }
+    .social-icons a { margin: 0 10px; font-size: 20px; text-decoration: none; }
+    .facebook i { color: #1877f2; }
+    .instagram i { color: #e1306c; }
+    .twitter i { color: #1da1f2; }
+    .tiktok i { color: #000000; }
+    .linkedin i { color: #0077b5; }
+    .youtube i { color: #ff0000; }
+    .social-icons a:hover i { transform: scale(1.2); }
+    .footer-text { font-size: 14px; color: #555; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <div class="title">Swaxfran</div>
+    <img src="logo.png" alt="Logo Swaxfran" class="logo">
+    <div id="menu" class="menu">
+      <a href="apropos.html">À propos</a>
+      <a href="aide.html">Aide</a>
+      <a href="contact.html">Contact</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+  </header>
+
+  <!-- IMAGE SOUS MENU -->
+  <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+       alt="Élèves africains et occidentaux en classe" class="hero-image">
+
+  <!-- BIENVENUE -->
+  <div class="welcome">
+    <h4>Bienvenue sur votre page de connexion</h4>
+    <p>karibu kwenye ukurasa wa kujiungiya</p>
+    <h4>Apprends en jouant, explore nos cours bilingues et échange avec la communauté.</h4>
+    <p>Jifunze kwa kufurahiya, gundua masomo yetu ya lugha mbili, na shiriki nasi katika jamii.</p>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div class="login-box">
+    <h2>Connexion / Ingia</h2>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email / Barua pepe" required>
+      <input type="password" id="loginPassword" placeholder="Mot de passe / Nenosiri" required>
+      <button type="submit">Se connecter / Ingia</button>
+    </form>
+    <p id="message"></p>
+    <p>Pas encore de compte ? / Huna akaunti?<br>
+       <a href="page1.html">Créer un compte / Unda akaunti</a>
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <div class="contact-info">
+      <p class="gmail"><i class="fas fa-envelope"></i> 
+        <a href="mailto:swaxfran@gmail.org">swaxfran@gmail.org</a>
+      </p>
+      <p class="whatsapp"><i class="fab fa-whatsapp"></i> 
+        <a href="https://wa.me/255621848522" target="_blank">+255 621 848 522</a>
+      </p>
+    </div>
+    <div class="social-icons">
+      <a href="https://facebook.com/toncompte" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com/toncompte" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com/toncompte" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://tiktok.com/@toncompte" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://linkedin.com/in/toncompte" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://youtube.com/toncompte" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p class="footer-text">© 2026 Swaxfran – Apprendre en joie et en bilingue</p>
+  </footer>
+
+ <script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+  // ⚠️ Mets tes vrais identifiants Supabase ici
+  const supabaseUrl = "https://jtizgclcllouqdbeifrg.supabase.co";
+  const supabaseKey = "sb_publishable_U-jpSc8gPeTkPNxAQYcbuA_FnikXS2H";
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const form = document.getElementById("loginForm");
+  const messageBox = document.getElementById("message");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+
+    // Tentative de connexion avec Supabase
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      messageBox.textContent = "❌ Connexion impossible : vérifiez vos identifiants ou confirmez votre e‑mail.";
+      messageBox.style.color = "red";
+      return;
+    }
+
+    const user = data.user;
+    if (!user) {
+      messageBox.textContent = "❌ Utilisateur introuvable.";
+      messageBox.style.color = "red";
+      return;
+    }
+
+    // Récupérer la langue choisie lors de l'inscription
+    const { data: profil, error: profilError } = await supabase
+      .from("inscriptions")
+      .select("langue_apprentissage")
+      .eq("user_id", user.id)
+      .single();
+
+    let langue = "français"; // valeur par défaut
+
+    if (profilError || !profil) {
+      messageBox.textContent = "⚠️ Profil introuvable, redirection par défaut.";
+      messageBox.style.color = "orange";
+    } else {
+      langue = profil.langue_apprentissage;
+    }
+
+    // Stocker les infos utiles dans localStorage
+    localStorage.setItem("userId", user.id);
+    localStorage.setItem("email", email);
+    localStorage.setItem("langue", langue);
+
+    messageBox.textContent = "✅ Connexion réussie ! Redirection...";
+    messageBox.style.color = "green";
+
+    // Redirection selon la langue choisie
+    setTimeout(() => {
+      if (langue === "français") {
+        window.location.href = "dashboard_fr.html";
+      } else if (langue === "swahili") {
+        window.location.href = "dashboard_sw.html";
+      } else {
+        window.location.href = "dashboard_fr.html"; // valeur par défaut
+      }
+    }, 1000);
+  });
+</script>
+
+  <!-- SCRIPT MENU FLOTTANT -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+  </script>
+
+</body>
+</html>

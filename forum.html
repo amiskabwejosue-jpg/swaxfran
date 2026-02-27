@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Swaxfran Forum</title>
+  <!-- Police Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
+    }
+    .forum {
+      width: 100%;
+      min-height: 100vh;
+      padding: 30px;
+      box-sizing: border-box;
+      background: #fffdf5;
+    }
+    h2 { color: #0077b6; margin-bottom: 10px; }
+    textarea, input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-family: 'Roboto', sans-serif;
+    }
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn-icon, .btn-return, .btn-dashboard {
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.9em;
+      transition: background 0.3s;
+    }
+    .btn-icon { background: none; color: #0077b6; font-size: 1.2em; }
+    .btn-icon:hover { color: #023e8a; transform: scale(1.1); }
+    .btn-return { background: #0077b6; color: white; }
+    .btn-return:hover { background: #023e8a; }
+    .btn-dashboard { background: #2b9348; color: white; }
+    .btn-dashboard:hover { background: #007f5f; }
+    .post {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 15px;
+      background: #fafafa;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .post-header img {
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .comment {
+      margin-left: 40px;
+      margin-top: 8px;
+      padding: 8px;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+    .counter { font-size: 0.9em; color: #444; margin-left: 5px; }
+    .testimonials {
+      margin-top: 40px;
+      padding: 20px;
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .testimonial {
+      margin-bottom: 15px;
+      padding: 10px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .testimonial strong {
+      color: #0077b6;
+    }
+  </style>
+</head>
+<body>
+  <div class="forum">
+    <h2>Forum Swaxfran</h2>
+    <textarea id="postContent" placeholder="Écrire une publication..."></textarea>
+    <input type="file" id="postImage" accept="image/*">
+    <div class="form-actions">
+      <button class="btn-dashboard" onclick="goToDashboard()">
+        <i class="fa-solid fa-house"></i> Retour Dashboard
+      </button>
+      <button class="btn-icon" onclick="publishPost()">
+        <i class="fa-solid fa-paper-plane"></i> Publier
+      </button>
+    </div>
+
+    <div id="posts"></div>
+
+    <!-- Témoignages -->
+    <div class="testimonials">
+      <h3>Témoignages</h3>
+      <div class="testimonial">
+        <strong>Marie :</strong> « Ce forum m’a permis de partager mes idées facilement. »
+      </div>
+      <div class="testimonial">
+        <strong>Jean :</strong> « J’aime la simplicité et la clarté de l’interface. »
+      </div>
+      <div class="testimonial">
+        <strong>Amina :</strong> « Les boutons retour rendent la navigation super intuitive. »
+      </div>
+    </div>
+  </div>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabaseUrl = "https://jtizgclcllouqdbeifrg.supabase.co";
+const supabaseKey = "sb_publishable_U-jpSc8gPeTkPNxAQYcbuA_FnikXS2H";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Retour Dashboard
+function goToDashboard() {
+  window.location.href = "https://ton-site.com/dashboard";
+}
+
+// Publier un post
+async function publishPost() {
+  const content = document.getElementById("postContent").value.trim();
+  const fileInput = document.getElementById("postImage");
+  let imageUrl = null;
+
+  if (fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    const { data, error } = await supabase.storage
+      .from("images")
+      .upload(`posts/${Date.now()}-${file.name}`, file);
+    if (!error) {
+      const { data: publicUrl } = supabase.storage
+        .from("images")
+        .getPublicUrl(data.path);
+      imageUrl = publicUrl.publicUrl;
+    }
+  }
+
+  if (!content && !imageUrl) return;
+
+  await supabase.from("posts").insert([{ 
+    user_id: "ID_UTILISATEUR", 
+    content, 
+    image_url: imageUrl, 
+    likes: 0, 
+    comment_count: 0 
+  }]);
+
+  document.getElementById("postContent").value = "";
+  fileInput.value = "";
+  displayPosts();
+}
+
+// Afficher les posts
+async function displayPosts() {
+  const { data: posts } = await supabase
+    .from("posts")
+    .select("id, content, image_url, likes, comment_count, created_at, users(name, avatar_url)")
+    .order("created_at",{ascending:false});
+
+  const container = document.getElementById("posts");
+  container.innerHTML = "";
+  for (const post of posts) {
+    const div = document.createElement("div");
+    div.className = "post";
+    div.id = "post-" + post.id;
+    div.innerHTML = `
+      <div class="post-header">
+        <img src="${post.users?.avatar_url || 'default.png'}" width="40" height="40">
+        <strong>${post.users?.name || "Anonyme"}</strong>
+      </div>
+      <p>${post.content}</p>
+      ${post.image_url ? `<img src="${post.image_url}" style="max-width:100%;border-radius:10px;margin-top:10px;">` : ""}
+      <button class="btn-icon" onclick="likePost(${post.id})"><i class="fa-solid fa-thumbs-up"></i><span class="counter">${post.likes || 0}</span></button>
+      <button class="btn-icon" onclick="toggleComments(${post.id})"><i class="fa-solid fa-comments"></i><span class="counter">${post.comment_count || 0}</span></button>
+      <div id="comments-${post.id}" style="display:none;"></div>
+      <textarea id="newComment-${post.id}" placeholder="Écrire un commentaire..."></textarea>
+      <button class="btn-icon" onclick="publishComment(${post.id})"><i class="fa-solid fa-comment-dots"></i></button>
+    `;
+    container.appendChild(div);
+  }
+}
+
+// Like
+async function likePost(postId) {
+  const { data: post } = await supabase.from("posts").select("likes").eq("id",postId).single();
+  const newLikes = (post.likes || 0) + 1;
+  await supabase.from("posts").update({likes:newLikes}).eq("id",postId);
+  displayPosts();
+}
+
+// Publier un commentaire
+async function publishComment(postId) {
+  const content = document.getElementById("newComment-"+postId).value.trim();
+  if (!content) return;
+  await supabase.from("comments").insert([{ 
+    post_id: postId, 
+    user_id: "ID_UTILISATEUR", 
+    content, 
+    parent_id: null, 
+    reply_count: 0 
+  }]);
+
+  const { data: post } = await supabase
+    .from("posts")
+    .select("comment_count")
+    .eq("id", postId)
+    .single();
+
+  const newCount = (post.comment_count || 0) + 1;
+  await supabase.from("posts").update({ comment_count: newCount }).eq("id", postId);
+
+  displayPosts();
+}
+
+// Afficher les commentaires
+async function toggleComments(postId) {
+  const section = document.getElementById("comments-" + postId);
+  if (section.style.display === "none") {
+    section.style.display = "block";
+    const { data: comments } = await supabase
+      .from("comments")
+      .select("id, content, reply_count, users(name, avatar_url)")
+      .eq("post_id", postId)
+      .is("parent_id", null);
+
+    section.innerHTML = "";
+    comments.forEach(c => {
+      const commentDiv = document.createElement("div");
+      commentDiv.className = "comment";
+      commentDiv.id = "comment-" + c.id;
+      commentDiv.innerHTML = `
+        <div class="post-header">
+          <img src="${c.users?.avatar_url || 'default.png'}" width="30" height="30">
+          <strong>${c.users?.name || "Anonyme"}</strong>
+        </div>
+        <p>${c.content}</p>
+        <button class="btn-return" onclick="backToPost(${postId})">
+          <i class="fa-solid fa-arrow-left"></i> Retour Post
+        </button>
+        <button class="btn-icon" onclick="replyToComment(${c.id}, ${postId})">
+          <i class="fa-solid fa-reply"></i>
+          <span class="counter">${c.reply_count || 0}</span>
+        </button>
+        <div id="replies-${c.id}"></div>
+        <button class="btn-return" onclick="backToComment(${c.id})">
+          <i class="fa-solid fa-arrow-left"></i> Retour Commentaire
+        </button>
+      `;
+      section.appendChild(commentDiv);
+      displayReplies(c.id);
+    });
+  } else {
+    section.style.display = "none";
+  }
+}
+
+// Publier une réponse
+async function replyToComment(commentId, postId) {
+  const reply = prompt("Écrire une réponse...");
+  if (!reply) return;
+  await supabase.from("comments").insert([{ 
+    post_id: postId, 
+    user_id: "ID_UTILISATEUR", 
+    parent_id: commentId, 
+    content: reply, 
+    reply_count: 0 
+  }]);
+
+  const { data: parent } = await supabase
+    .from("comments")
+    .select("reply_count")
+    .eq("id", commentId)
+    .single();
+
+  const newCount = (parent.reply_count || 0) + 1;
+  await supabase.from("comments").update({ reply_count: newCount }).eq("id", commentId);
+
+  displayPosts();
+}
+
+// Afficher les réponses
+async function displayReplies(commentId) {
+  const { data: replies } = await supabase
+    .from("comments")
+    .select("id, content, users(name, avatar_url)")
+    .eq("parent_id", commentId);
+
+  const container = document.getElementById("replies-" + commentId);
+  container.innerHTML = "";
+  replies.forEach(r => {
+    const replyDiv = document.createElement("div");
+    replyDiv.className = "comment";
+    replyDiv.style.marginLeft = "20px";
+    replyDiv.id = "reply-" + r.id;
+    replyDiv.innerHTML = `
+      <div class="post-header">
+        <img src="${r.users?.avatar_url || 'default.png'}" width="25" height="25">
+        <strong>${r.users?.name || "Anonyme"}</strong>
+      </div>
+      <p>${r.content}</p>
+      <button class="btn-return" onclick="backToComment(${commentId})">
+        <i class="fa-solid fa-arrow-left"></i> Retour Commentaire
+      </button>
+    `;
+    container.appendChild(replyDiv);
+  });
+}
+
+// Fonctions de retour
+function backToPost(postId) {
+  document.getElementById("comments-" + postId).style.display = "none";
+  window.scrollTo({ top: document.getElementById("post-" + postId).offsetTop, behavior: "smooth" });
+}
+
+function backToComment(commentId) {
+  document.getElementById("replies-" + commentId).style.display = "none";
+  window.scrollTo({ top: document.getElementById("comment-" + commentId).offsetTop, behavior: "smooth" });
+}
+
+// Charger les posts au démarrage
+window.onload = () => { displayPosts(); };
+</script>
+</body>
+</html>

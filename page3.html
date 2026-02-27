@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Usajili - Page 3</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      background: #f4f6f9;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #007BFF; /* cohérent avec les autres pages */
+      font-size: 26px;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .inline-group {
+      display: flex;
+      align-items: center;
+      gap: 20px; /* espace entre les champs et le bouton */
+      margin-top: 10px;
+    }
+
+    select, input {
+      width: 105px; /* largeur réduite */
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 14px;
+      background: #fff; /* blanc par défaut */
+      color: #2c3e50;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    select.filled, input.filled {
+      background: #eaf7ea;   /* vert naturel doux */
+      border-color: #a3c293;
+    }
+
+    button {
+      padding: 2px 2px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 26px;
+      transition: background 0.3s ease;
+      width: auto; /* bouton compact */
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .error { color: #e74c3c; }
+    .success { color: #27ae60; }
+  </style>
+  <!-- Import libphonenumber-js -->
+  <script src="https://unpkg.com/libphonenumber-js@1.11.7/bundle/libphonenumber-js.min.js"></script>
+</head>
+<body>
+  <h2>Usajili - Hatua ya 3</h2>
+
+  <form id="form3">
+    <label>Numéro de téléphone</label>
+    <div class="inline-group">
+      <select id="codeTel" required>
+        <option value="">Indicatif</option>
+        <!-- Pays francophones et swahiliphones (ordre alphabétique) -->
+        <option value="DZ">Algérie (+213)</option>
+        <option value="BE">Belgique (+32)</option>
+        <option value="BJ">Bénin (+229)</option>
+        <option value="BF">Burkina Faso (+226)</option>
+        <option value="BI">Burundi (+257)</option>
+        <option value="CM">Cameroun (+237)</option>
+        <option value="CA">Canada (+1)</option>
+        <option value="KM">Comores (+269)</option>
+        <option value="CG">Congo (+242)</option>
+        <option value="CI">Côte d’Ivoire (+225)</option>
+        <option value="DJ">Djibouti (+253)</option>
+        <option value="FR">France (+33)</option>
+        <option value="GA">Gabon (+241)</option>
+        <option value="GN">Guinée (+224)</option>
+        <option value="GQ">Guinée équatoriale (+240)</option>
+        <option value="HT">Haïti (+509)</option>
+        <option value="KE">Kenya (+254)</option>
+        <option value="LU">Luxembourg (+352)</option>
+        <option value="MG">Madagascar (+261)</option>
+        <option value="ML">Mali (+223)</option>
+        <option value="MA">Maroc (+212)</option>
+        <option value="MR">Mauritanie (+222)</option>
+        <option value="MZ">Mozambique (+258)</option>
+        <option value="NE">Niger (+227)</option>
+        <option value="NC">Nouvelle-Calédonie (+687)</option>
+        <option value="UG">Ouganda (+256)</option>
+        <option value="CF">République centrafricaine (+236)</option>
+        <option value="CD">République démocratique du Congo (+243)</option>
+        <option value="RW">Rwanda (+250)</option>
+        <option value="SN">Sénégal (+221)</option>
+        <option value="SC">Seychelles (+248)</option>
+        <option value="CH">Suisse (+41)</option>
+        <option value="TZ">Tanzanie (+255)</option>
+        <option value="TD">Tchad (+235)</option>
+        <option value="TG">Togo (+228)</option>
+        <option value="TN">Tunisie (+216)</option>
+        <option value="ZM">Zambie (+260)</option>
+      </select>
+
+      <input type="text" id="telephone" required placeholder="Votre numéro" inputmode="numeric">
+      <!-- Bouton discret avec icône flèche -->
+      <button type="submit">➡️</button>
+    </div>
+  </form>
+
+  <div id="message"></div>
+
+  <script>
+  const telInput = document.getElementById("telephone");
+  const codeSelect = document.getElementById("codeTel");
+  const msg = document.getElementById("message");
+
+  // Appliquer la couleur verte après saisie
+  document.querySelectorAll("input, select").forEach(el => {
+    el.addEventListener("blur", () => {
+      if (el.value.trim() !== "") {
+        el.classList.add("filled");
+      } else {
+        el.classList.remove("filled");
+      }
+    });
+  });
+
+  // Formatage quand on quitte le champ
+  telInput.addEventListener("blur", () => {
+    const countryCode = codeSelect.value;
+    const rawNumber = telInput.value.trim();
+    if (!countryCode || !rawNumber) return;
+
+    try {
+      const phoneNumber = libphonenumber.parsePhoneNumberFromString(rawNumber, countryCode);
+      if (phoneNumber && phoneNumber.isValid()) {
+        telInput.value = phoneNumber.formatNational();
+      }
+    } catch (err) {
+      // rien
+    }
+  });
+
+  // Soumission du formulaire
+  document.getElementById("form3").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const countryCode = codeSelect.value;
+    const rawNumber = telInput.value.trim();
+
+    if (!countryCode || !rawNumber) {
+      msg.textContent = "❌ Choisis l’indicatif et entre ton numéro";
+      msg.className = "error";
+      return;
+    }
+
+    try {
+      const phoneNumber = libphonenumber.parsePhoneNumberFromString(rawNumber, countryCode);
+      if (!phoneNumber || !phoneNumber.isValid()) {
+        msg.textContent = "❌ Numéro invalide pour ce pays";
+        msg.className = "error";
+        return;
+      }
+
+      const numeroFormate = phoneNumber.formatInternational();
+      localStorage.setItem("indicatif", phoneNumber.countryCallingCode);
+      localStorage.setItem("telephone", numeroFormate);
+
+      msg.textContent = `✅ Numéro enregistré : ${numeroFormate} → redirection...`;
+      msg.className = "success";
+
+      setTimeout(() => {
+        window.location.href = "page4.html";
+      }, 1000);
+    } catch (err) {
+      msg.textContent = "❌ Erreur de validation du numéro";
+      msg.className = "error";
+    }
+  });
+  </script>
+</body>
+</html>

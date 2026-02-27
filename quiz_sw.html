@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <title>Swaxfran - Quiz Somo 0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive;
+      margin: 0;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: #0077b6;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      text-shadow: 2px 2px #333;
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      max-width: 800px;
+      margin: 30px auto;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #0077b6;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .question {
+      margin-bottom: 25px;
+    }
+
+    .question p {
+      font-size: 1.1em;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .question button {
+      background: #00c853;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      color: white;
+      margin: 5px;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    .question button:hover {
+      transform: scale(1.05);
+      background: #76ff03;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+      color: #0077b6;
+    }
+
+    /* Bouton retour */
+    .back-btn {
+      display: block;
+      margin: 30px auto 0;
+      background: #0077b6;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      text-shadow: 1px 1px #333;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.1);
+      background: #00c853;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    Quiz - Somo 0
+  </div>
+
+  <div class="content">
+    <h2>Jaribu Maarifa Yako</h2>
+
+    <div class="question">
+      <p>1. Kiswahili ni lugha ya:</p>
+      <button onclick="checkAnswer(1, 'A')">A. Kiarabu</button>
+      <button onclick="checkAnswer(1, 'B')">B. Kibantu</button>
+      <button onclick="checkAnswer(1, 'C')">C. Kifaransa</button>
+    </div>
+
+    <div class="question">
+      <p>2. Kiswahili kimeathiriwa zaidi na lugha ipi kutokana na biashara na historia?</p>
+      <button onclick="checkAnswer(2, 'A')">A. Kiarabu</button>
+      <button onclick="checkAnswer(2, 'B')">B. Kihispania</button>
+      <button onclick="checkAnswer(2, 'C')">C. Kijerumani</button>
+    </div>
+
+    <div id="result"></div>
+
+    <!-- Bouton retour -->
+    <button class="back-btn" onclick="window.location.href='lesson_sw.html'">
+      ⬅ Rudi kwenye somo
+    </button>
+  </div>
+
+  <script>
+    // Majibu sahihi
+    const answers = {
+      1: 'B',
+      2: 'A'
+    };
+
+    function checkAnswer(question, choice) {
+      if (answers[question] === choice) {
+        document.getElementById("result").textContent = "✅ Jibu sahihi!";
+      } else {
+        document.getElementById("result").textContent = "❌ Jibu si sahihi, jaribu tena.";
+      }
+    }
+  </script>
+</body>
+</html>

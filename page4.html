@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usajili - Hatua ya 4</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #007BFF;
+      font-size: 26px;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 16px;
+      box-sizing: border-box;
+      background: #fff;
+      color: #2c3e50;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Couleur après saisie */
+    input.filled, select.filled {
+      background: #eaf7ea;
+      border-color: #a3c293;
+    }
+
+    .inline-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 2px 2px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 26px; /* taille icône */
+      transition: background 0.3s ease;
+      width: auto; /* bouton compact */
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .error { color: #e74c3c; }
+    .success { color: #27ae60; }
+    .info { color: #007BFF; }
+  </style>
+</head>
+<body>
+  <h2>Usajili - Hatua ya 4</h2>
+
+  <form id="form4">
+    <label>Barua pepe (E-mail)</label>
+    <input type="email" id="email" required>
+
+    <label>Neno la Siri (Mot de passe)</label>
+    <input type="password" id="password" required>
+
+    <label>Chagua Picha (Choisir une photo depuis la galerie)</label>
+    <input type="file" id="photo" accept="image/*">
+
+    <label>Chagua Lugha ya Kujifunza (Langue d’apprentissage)</label>
+    <div class="inline-group">
+      <select id="langue_apprentissage" required>
+        <option value="">-- Tafadhali chagua --</option>
+        <option value="français">🇫🇷 Français</option>
+        <option value="swahili">🇹🇿 Swahili</option>
+      </select>
+      <!-- Bouton icône compact -->
+      <button type="submit">➡️</button>
+    </div>
+  </form>
+
+  <div id="message"></div>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    // ⚠️ Mets tes vrais identifiants Supabase (clé publique uniquement)
+    const supabaseUrl = "https://jtizgclcllouqdbeifrg.supabase.co";
+    const supabaseKey = "sb_publishable_U-jpSc8gPeTkPNxAQYcbuA_FnikXS2H";
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const form = document.getElementById("form4");
+    const msg = document.getElementById("message");
+
+    // ✅ Appliquer la couleur verte après saisie
+    document.querySelectorAll("input, select").forEach(el => {
+      el.addEventListener("blur", () => {
+        if (el.value.trim() !== "") {
+          el.classList.add("filled");
+        } else {
+          el.classList.remove("filled");
+        }
+      });
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const langue_apprentissage = document.getElementById("langue_apprentissage").value;
+
+      if (!email || !password || !langue_apprentissage) {
+        msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";
+        msg.className = "error";
+        return;
+      }
+
+      form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const langue_apprentissage = document.getElementById("langue_apprentissage").value;
+
+  if (!email || !password || !langue_apprentissage) {
+    msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";
+    msg.className = "error";
+    return;
+  }
+
+  // ✅ Vérification stricte du mot de passe
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+  if (!passwordRegex.test(password)) {
+    msg.textContent = "🚫 Le mot de passe doit contenir au moins 8 caractères, avec majuscule, minuscule, chiffre et symbole.";
+    msg.className = "error";
+    return;
+  }
+
+  form.querySelector("button").disabled = true;
+  msg.textContent = "⏳ Veuillez patienter, nous traitons votre inscription...";
+  msg.className = "info";
+
+  // ... reste du code (Supabase signUp etc.)
+});
+
+      const { data, error } = await supabase.auth.signUp({ email, password });
+
+      if (error) {
+        msg.textContent = "❌ Erreur lors de la création du compte : " + error.message;
+        msg.className = "error";
+        form.querySelector("button").disabled = false;
+        return;
+      }
+
+      if (!data.user) {
+        msg.textContent = "✅ Compte créé, veuillez confirmer votre email avant de continuer.";
+        msg.className = "info";
+        return;
+      }
+
+      const user_id = data.user.id;
+
+      const userData = {
+        user_id,
+        nom: localStorage.getItem("nom"),
+        prenom: localStorage.getItem("prenom"),
+        naissance: localStorage.getItem("naissance"),
+        nationalite: localStorage.getItem("nationalite"),
+        residence: localStorage.getItem("residence"),
+        etat: localStorage.getItem("etat"),
+        etudes: localStorage.getItem("etudes"),
+        anglais: localStorage.getItem("anglais"),
+        telephone: localStorage.getItem("telephone"),
+        langue_apprentissage
+      };
+
+      const photoFile = document.getElementById("photo").files[0];
+      if (photoFile) {
+        const filePath = `users/${user_id}_${crypto.randomUUID()}_${photoFile.name}`;
+        const { error: uploadError } = await supabase.storage.from("photos").upload(filePath, photoFile);
+
+        if (uploadError) {
+          msg.textContent = "❌ Erreur lors de l'upload de la photo : " + uploadError.message;
+          msg.className = "error";
+          form.querySelector("button").disabled = false;
+          return;
+        }
+
+        const { data: publicUrlData } = supabase.storage.from("photos").getPublicUrl(filePath);
+        userData.photo_url = publicUrlData.publicUrl;
+      }
+
+      const { error: insertError } = await supabase.from("inscriptions").insert([userData]);
+
+      if (insertError) {
+        msg.textContent = "❌ Erreur lors de l'envoi des données : " + insertError.message;
+        msg.className = "error";
+        form.querySelector("button").disabled = false;
+      } else {
+        msg.textContent = "✅ Usajili umekamilika (Inscription réussie)";
+        msg.className = "success";
+
+        ["nom","prenom","naissance","nationalite","residence","etat","etudes","anglais","telephone"]
+          .forEach(k => localStorage.removeItem(k));
+
+        setTimeout(() => {
+          if (langue_apprentissage === "français") {
+            window.location.href = "dashboard_fr.html";
+          } else if (langue_apprentissage === "swahili") {
+            window.location.href = "dashboard_sw.html";
+          } else {
+            window.location.href = "dashboard_fr.html";
+          }
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>
