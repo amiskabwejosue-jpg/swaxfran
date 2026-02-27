@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Swaxfran - À propos / Kuhusu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive;
+      margin: 0;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .header {
+      background: #0077b6;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      text-shadow: 2px 2px #333;
+    }
+    .content {
+      flex: 1;
+      padding: 30px;
+      max-width: 900px;
+      margin: 30px auto;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    h2 {
+      color: #0077b6;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p {
+      font-size: 1.1em;
+      color: #444;
+      line-height: 1.6em;
+      margin-bottom: 20px;
+    }
+    .back-btn {
+      display: block;
+      margin: 20px auto;
+      background: #0077b6;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      text-shadow: 1px 1px #333;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    .back-btn:hover { transform: scale(1.1); background: #00c853; }
+    .navbar {
+      background: #ffffff;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px;
+      border-top: 2px solid #ddd;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    }
+    .navbar a {
+      text-decoration: none;
+      color: #333;
+      font-size: 0.9em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+    .navbar a i { font-size: 22px; margin-bottom: 5px; }
+    .navbar a.lessons i { color: #0077b6; }
+    .navbar a.forum i { color: #ff9800; }
+    .navbar a.profile i { color: #00c853; }
+    .navbar a.about i { color: #e63946; }
+    .navbar a:hover { color: #0077b6; }
+  </style>
+</head>
+<body>
+  <div class="header">À propos / Kuhusu</div>
+
+  <div class="content">
+    <h2>Notre mission / Dhamira yetu</h2>
+    <p>
+      🇫🇷 Swaxfran est une plateforme éducative bilingue (Français / Swahili) conçue pour rapprocher les cultures et faciliter l’apprentissage des langues. 
+      Notre mission est de rendre l’éducation accessible, joyeuse et professionnelle, en respectant les racines culturelles de chaque apprenant.
+    </p>
+    <p>
+      🇹🇿 Swaxfran ni jukwaa la kielimu lenye lugha mbili (Kifaransa / Kiswahili) lililoundwa kuunganisha tamaduni na kurahisisha kujifunza lugha. 
+      Dhamira yetu ni kufanya elimu iwe rahisi kufikiwa, yenye furaha na ya kitaalamu, huku tukiheshimu mizizi ya kitamaduni ya kila mwanafunzi.
+    </p>
+
+    <h2>Nos valeurs / Thamani zetu</h2>
+    <p>
+      🇫🇷 Accessibilité, communauté, créativité et respect des cultures sont au cœur de Swaxfran. Nous croyons que chaque apprenant mérite un espace chaleureux et harmonieux pour progresser.  
+    </p>
+    <p>
+      🇹🇿 Upatikanaji, jamii, ubunifu na heshima kwa tamaduni ndizo msingi wa Swaxfran. Tunaamini kila mwanafunzi anastahili nafasi yenye joto na maelewano ili aendelee.
+    </p>
+
+    <h2>Notre vision / Maono yetu</h2>
+    <p>
+      🇫🇷 Construire une communauté durable où les apprenants, enseignants et partenaires collaborent pour partager la richesse des langues et des cultures.  
+    </p>
+    <p>
+      🇹🇿 Kujenga jamii endelevu ambapo wanafunzi, walimu na washirika wanashirikiana kushiriki utajiri wa lugha na tamaduni.  
+    </p>
+
+    <button class="back-btn" onclick="goBack()">⬅ Retour / Rudi</button>
+  </div>
+
+  <!-- Barre de navigation -->
+  <div class="navbar">
+    <a href="lessons_fr.html" class="lessons">
+      <i class="fas fa-book-open"></i>
+      Leçons / Masomo
+    </a>
+    <a href="forum.html" class="forum">
+      <i class="fas fa-comments"></i>
+      Forum / Jukwaa
+    </a>
+    <a href="profile.html" class="profile">
+      <i class="fas fa-user-circle"></i>
+      Profil / Wasifu
+    </a>
+    <a href="about.html" class="about">
+      <i class="fas fa-info-circle"></i>
+      À propos / Kuhusu
+    </a>
+  </div>
+
+  <script>
+    // Bouton retour dynamique selon la langue choisie
+    function goBack() {
+      const lang = localStorage.getItem("language");
+      if (lang === "fr") {
+        window.location.href = "dashboard_fr.html";
+      } else if (lang === "sw") {
+        window.location.href = "dashboard_sw.html";
+      } else {
+        window.location.href = "choix_langue.html"; // si aucune langue enregistrée
+      }
+    }
+  </script>
+</body>
+</html>

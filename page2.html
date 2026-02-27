@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usajili - Hatua ya 2</title>
+  <style>body {
+  font-family: 'Roboto', sans-serif;
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  background: #f9f9f9;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  color: #007BFF;
+  font-size: 26px;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+select {
+  width: 100%;            /* largeur pleine */
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3p]x;
+  font-size: 16px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #2c3e50;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Couleur après saisie */
+select.filled {
+  background: #eaf7ea;    /* vert naturel doux */
+  border-color: #a3c293;
+}
+
+.inline-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;              /* espace entre le select et le bouton */
+  margin-top: 10px;
+}
+
+button {
+  padding: 12px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+#message {
+  margin-top: 15px;
+  font-weight: 500;
+  text-align: center;
+  font-size: 15px;
+}
+
+.error { color: #e74c3c; }
+.success { color: #27ae60; }
+.info { color: #007BFF; }
+  </style>
+</head>
+<body>
+  <h2>Usajili - Hatua ya 2</h2>
+
+  <form id="form2">
+    <label>Nchi ya Makazi (Pays de résidence)</label>
+    <select id="residence" required>
+      <option value="">-- Chagua --</option>
+      <!-- Pays francophones et swahiliphones en ordre alphabétique -->
+      <option>Algérie</option>
+      <option>Belgique</option>
+      <option>Bénin</option>
+      <option>Burundi</option>
+      <option>Cameroun</option>
+      <option>Canada</option>
+      <option>Comores</option>
+      <option>Congo</option>
+      <option>Côte d’Ivoire</option>
+      <option>Djibouti</option>
+      <option>France</option>
+      <option>Gabon</option>
+      <option>Guinée</option>
+      <option>Guinée équatoriale</option>
+      <option>Haïti</option>
+      <option>Kenya</option>
+      <option>Luxembourg</option>
+      <option>Madagascar</option>
+      <option>Mali</option>
+      <option>Maroc</option>
+      <option>Mauritanie</option>
+      <option>Mozambique</option>
+      <option>Niger</option>
+      <option>Nouvelle-Calédonie</option>
+      <option>Ouganda</option>
+      <option>République centrafricaine</option>
+      <option>République démocratique du Congo</option>
+      <option>Rwanda</option>
+      <option>Sénégal</option>
+      <option>Seychelles</option>
+      <option>Suisse</option>
+      <option>Tanzanie</option>
+      <option>Tchad</option>
+      <option>Togo</option>
+      <option>Tunisie</option>
+      <option>Zambie</option>
+      <option>Nyingine</option>
+    </select>
+
+    <label>Hali ya Ndoa (État matrimonial)</label>
+    <select id="etat" required>
+      <option value="">-- Chagua --</option>
+      <option>Célibataire</option>
+      <option>Divorcé</option>
+      <option>Marié</option>
+    </select>
+
+    <label>Kiwango cha Masomo (Niveau d’études)</label>
+    <select id="etudes" required>
+      <option value="">-- Chagua --</option>
+      <option>Diplôme d’État</option>
+      <option>Baccalauréat</option>
+      <option>Licence</option>
+      <option>Master</option>
+      <option>Doctorat</option>
+    </select>
+
+    <label>Kiwango cha Kiingereza (Niveau d’anglais)</label>
+    <div class="inline-group">
+      <select id="anglais" required>
+        <option value="">-- Chagua --</option>
+        <option>A1</option><option>A2</option><option>B1</option>
+        <option>B2</option><option>C1</option><option>C2</option>
+      </select>
+      <!-- Bouton discret avec icône flèche -->
+      <button type="submit">➡️</button>
+    </div>
+  </form>
+
+  <div id="message"></div>
+
+<script>
+  // Vérification au chargement : s'assurer que l'utilisateur vient bien de la page1
+  window.addEventListener("DOMContentLoaded", () => {
+    const nom = localStorage.getItem("nom");
+    const prenom = localStorage.getItem("prenom");
+
+    if (!nom || !prenom) {
+      const msg = document.getElementById("message");
+      msg.textContent = "⚠️ Veuillez commencer par la page1 (création du compte).";
+      msg.className = "error";
+
+      setTimeout(() => {
+        window.location.href = "page1.html";
+      }, 1500);
+    }
+  });
+
+  // Appliquer la couleur verte après saisie
+  document.querySelectorAll("select").forEach(el => {
+    el.addEventListener("blur", () => {
+      if (el.value.trim() !== "") {
+        el.classList.add("filled");
+      } else {
+        el.classList.remove("filled");
+      }
+    });
+  });
+
+  // Gestion du formulaire de la page2
+  document.getElementById("form2").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const residence = document.getElementById("residence").value;
+    const etat = document.getElementById("etat").value;
+    const etudes = document.getElementById("etudes").value;
+    const anglais = document.getElementById("anglais").value;
+
+    const msg = document.getElementById("message");
+
+    if (!residence || !etat || !etudes || !anglais) {
+      msg.textContent = "❌ Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";
+      msg.className = "error";
+      return;
+    }
+
+    localStorage.setItem("residence", residence);
+    localStorage.setItem("etat", etat);
+    localStorage.setItem("etudes", etudes);
+    localStorage.setItem("anglais", anglais);
+
+    msg.textContent = "✅ Données enregistrées, redirection vers Page3...";
+    msg.className = "success";
+
+    setTimeout(() => {
+      window.location.href = "page3.html";
+    }, 1000);
+  });
+</script>
+</body>
+</html>
