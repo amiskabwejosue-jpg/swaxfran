@@ -43,7 +43,6 @@
       transition: background 0.3s ease, border-color 0.3s ease;
     }
 
-    /* Couleur après saisie */
     input.filled, select.filled {
       background: #eaf7ea;
       border-color: #a3c293;
@@ -63,9 +62,9 @@
       border: none;
       border-radius: 3px;
       cursor: pointer;
-      font-size: 26px; /* taille icône */
+      font-size: 26px;
       transition: background 0.3s ease;
-      width: auto; /* bouton compact */
+      width: auto;
     }
 
     button:hover {
@@ -82,6 +81,23 @@
     .error { color: #e74c3c; }
     .success { color: #27ae60; }
     .info { color: #007BFF; }
+
+    /* Loader */
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #007BFF;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -104,35 +120,38 @@
         <option value="français">🇫🇷 Français</option>
         <option value="swahili">🇹🇿 Swahili</option>
       </select>
-      <!-- Bouton icône compact -->
       <button type="submit">➡️</button>
     </div>
   </form>
 
   <div id="message"></div>
+  <div class="loader" id="loader"></div>
 
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    // ⚠️ Mets tes vrais identifiants Supabase (clé publique uniquement)
     const supabaseUrl = "https://jtizgclcllouqdbeifrg.supabase.co";
     const supabaseKey = "sb_publishable_U-jpSc8gPeTkPNxAQYcbuA_FnikXS2H";
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const form = document.getElementById("form4");
     const msg = document.getElementById("message");
+    const loader = document.getElementById("loader");
+    const passwordInput = document.getElementById("password");
 
-    // ✅ Appliquer la couleur verte après saisie
-    document.querySelectorAll("input, select").forEach(el => {
-      el.addEventListener("blur", () => {
-        if (el.value.trim() !== "") {
-          el.classList.add("filled");
-        } else {
-          el.classList.remove("filled");
-        }
-      });
+    // ✅ Vérification en direct du mot de passe (≥ 6 caractères)
+    passwordInput.addEventListener("input", () => {
+      const password = passwordInput.value.trim();
+      if (password.length < 6) {
+        msg.textContent = "🚫 Votre mot de passe doit contenir au moins 6 caractères.";
+        msg.className = "error";
+      } else {
+        msg.textContent = "✅ Mot de passe valide.";
+        msg.className = "success";
+      }
     });
 
+    // ✅ Soumission du formulaire
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -141,50 +160,32 @@
       const langue_apprentissage = document.getElementById("langue_apprentissage").value;
 
       if (!email || !password || !langue_apprentissage) {
-        msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";
+        msg.textContent = "🚫 Veuillez remplir tous les champs.";
         msg.className = "error";
         return;
       }
 
-      form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+      if (password.length < 6) {
+        msg.textContent = "🚫 Le mot de passe doit contenir au moins 6 caractères.";
+        msg.className = "error";
+        return;
+      }
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const langue_apprentissage = document.getElementById("langue_apprentissage").value;
-
-  if (!email || !password || !langue_apprentissage) {
-    msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";
-    msg.className = "error";
-    return;
-  }
-
-  // ✅ Vérification stricte du mot de passe
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
-  if (!passwordRegex.test(password)) {
-    msg.textContent = "🚫 Le mot de passe doit contenir au moins 8 caractères, avec majuscule, minuscule, chiffre et symbole.";
-    msg.className = "error";
-    return;
-  }
-
-  form.querySelector("button").disabled = true;
-  msg.textContent = "⏳ Veuillez patienter, nous traitons votre inscription...";
-  msg.className = "info";
-
-  // ... reste du code (Supabase signUp etc.)
-});
+      form.querySelector("button").disabled = true;
+      msg.textContent = "⏳ Inscription en cours...";
+      msg.className = "info";
 
       const { data, error } = await supabase.auth.signUp({ email, password });
 
       if (error) {
-        msg.textContent = "❌ Erreur lors de la création du compte : " + error.message;
+        msg.textContent = "❌ Erreur : " + error.message;
         msg.className = "error";
         form.querySelector("button").disabled = false;
         return;
       }
 
       if (!data.user) {
-        msg.textContent = "✅ Compte créé, veuillez confirmer votre email avant de continuer.";
+        msg.textContent = "✅ Compte créé, confirmez votre email.";
         msg.className = "info";
         return;
       }
@@ -211,7 +212,7 @@
         const { error: uploadError } = await supabase.storage.from("photos").upload(filePath, photoFile);
 
         if (uploadError) {
-          msg.textContent = "❌ Erreur lors de l'upload de la photo : " + uploadError.message;
+          msg.textContent = "❌ Erreur upload photo : " + uploadError.message;
           msg.className = "error";
           form.querySelector("button").disabled = false;
           return;
@@ -224,16 +225,18 @@
       const { error: insertError } = await supabase.from("inscriptions").insert([userData]);
 
       if (insertError) {
-        msg.textContent = "❌ Erreur lors de l'envoi des données : " + insertError.message;
+        msg.textContent = "❌ Erreur insertion : " + insertError.message;
         msg.className = "error";
         form.querySelector("button").disabled = false;
       } else {
-        msg.textContent = "✅ Usajili umekamilika (Inscription réussie)";
-        msg.className = "success";
+        msg.textContent = "⏳ Le processus continue... Veuillez patienter, nous préparons votre interface d’études.";
+        msg.className = "info";
+        loader.style.display = "block"; // ✅ Afficher le loader
 
         ["nom","prenom","naissance","nationalite","residence","etat","etudes","anglais","telephone"]
           .forEach(k => localStorage.removeItem(k));
 
+        // ✅ Redirection après un délai avec loader actif
         setTimeout(() => {
           if (langue_apprentissage === "français") {
             window.location.href = "dashboard_fr.html";
