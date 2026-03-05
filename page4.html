@@ -14,74 +14,29 @@
       background: #f9f9f9;
       color: #333;
     }
-
-    h2 {
-      text-align: center;
-      color: #007BFF;
-      font-size: 26px;
-      margin-bottom: 25px;
-      font-weight: 700;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: 600;
-      color: #2c3e50;
-    }
-
+    h2 { text-align: center; color: #007BFF; font-size: 26px; margin-bottom: 25px; font-weight: 700; }
+    label { display: block; margin-top: 15px; font-weight: 600; color: #2c3e50; }
     input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 8px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      font-size: 16px;
-      box-sizing: border-box;
-      background: #fff;
-      color: #2c3e50;
-      transition: background 0.3s ease, border-color 0.3s ease;
+      width: 100%; padding: 8px; margin-top: 8px;
+      border: 1px solid #ccc; border-radius: 3px;
+      font-size: 16px; box-sizing: border-box;
+      background: #fff; color: #2c3e50;
     }
-
-    /* Couleur après saisie */
-    input.filled, select.filled {
-      background: #eaf7ea;
-      border-color: #a3c293;
-    }
-
-    .inline-group {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-top: 10px;
-    }
-
+    .inline-group { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
     button {
-      padding: 2px 2px;
-      background: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 26px; /* taille icône */
-      transition: background 0.3s ease;
-      width: auto; /* bouton compact */
+      padding: 2px 2px; background: #007BFF; color: white;
+      border: none; border-radius: 3px; cursor: pointer;
+      font-size: 26px; transition: background 0.3s ease; width: auto;
     }
-
-    button:hover {
-      background: #0056b3;
+    button:hover { background: #0056b3; }
+    #message { margin-top: 20px; font-weight: bold; text-align: center; font-size: 15px; }
+    .error { color: #e74c3c; } .success { color: #27ae60; } .info { color: #007BFF; }
+    .loader {
+      border: 6px solid #f3f3f3; border-top: 6px solid #007BFF;
+      border-radius: 50%; width: 40px; height: 40px;
+      animation: spin 1s linear infinite; margin: 20px auto; display: none;
     }
-
-    #message {
-      margin-top: 20px;
-      font-weight: bold;
-      text-align: center;
-      font-size: 15px;
-    }
-
-    .error { color: #e74c3c; }
-    .success { color: #27ae60; }
-    .info { color: #007BFF; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -104,35 +59,38 @@
         <option value="français">🇫🇷 Français</option>
         <option value="swahili">🇹🇿 Swahili</option>
       </select>
-      <!-- Bouton icône compact -->
       <button type="submit">➡️</button>
     </div>
   </form>
 
   <div id="message"></div>
+  <div class="loader" id="loader"></div>
 
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    // ⚠️ Mets tes vrais identifiants Supabase (clé publique uniquement)
     const supabaseUrl = "https://jtizgclcllouqdbeifrg.supabase.co";
     const supabaseKey = "sb_publishable_U-jpSc8gPeTkPNxAQYcbuA_FnikXS2H";
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const form = document.getElementById("form4");
     const msg = document.getElementById("message");
+    const loader = document.getElementById("loader");
+    const passwordInput = document.getElementById("password");
 
-    // ✅ Appliquer la couleur verte après saisie
-    document.querySelectorAll("input, select").forEach(el => {
-      el.addEventListener("blur", () => {
-        if (el.value.trim() !== "") {
-          el.classList.add("filled");
-        } else {
-          el.classList.remove("filled");
-        }
-      });
+    // ✅ Vérification en direct du mot de passe
+    passwordInput.addEventListener("input", () => {
+      const password = passwordInput.value.trim();
+      if (password.length < 6) {
+        msg.textContent = "🚫 Votre mot de passe doit contenir au moins 6 caractères.";
+        msg.className = "error";
+      } else {
+        msg.textContent = "✅ Mot de passe valide.";
+        msg.className = "success";
+      }
     });
 
+    // ✅ Soumission du formulaire
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -141,57 +99,38 @@
       const langue_apprentissage = document.getElementById("langue_apprentissage").value;
 
       if (!email || !password || !langue_apprentissage) {
-        msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";
+        msg.textContent = "🚫 Veuillez remplir tous les champs.";
+        msg.className = "error";
+        return;
+      }
+      if (password.length < 6) {
+        msg.textContent = "🚫 Le mot de passe doit contenir au moins 6 caractères.";
         msg.className = "error";
         return;
       }
 
-      form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+      form.querySelector("button").disabled = true;
+      msg.textContent = "⏳ Inscription en cours...";
+      msg.className = "info";
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const langue_apprentissage = document.getElementById("langue_apprentissage").value;
-
-  if (!email || !password || !langue_apprentissage) {
-    msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";
-    msg.className = "error";
-    return;
-  }
-
-  // ✅ Vérification stricte du mot de passe
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
-  if (!passwordRegex.test(password)) {
-    msg.textContent = "🚫 Le mot de passe doit contenir au moins 8 caractères, avec majuscule, minuscule, chiffre et symbole.";
-    msg.className = "error";
-    return;
-  }
-
-  form.querySelector("button").disabled = true;
-  msg.textContent = "⏳ Veuillez patienter, nous traitons votre inscription...";
-  msg.className = "info";
-
-  // ... reste du code (Supabase signUp etc.)
-});
-
+      // 1️⃣ Création du compte
       const { data, error } = await supabase.auth.signUp({ email, password });
-
       if (error) {
-        msg.textContent = "❌ Erreur lors de la création du compte : " + error.message;
+        msg.textContent = "❌ Erreur : " + error.message;
         msg.className = "error";
         form.querySelector("button").disabled = false;
         return;
       }
-
       if (!data.user) {
-        msg.textContent = "✅ Compte créé, veuillez confirmer votre email avant de continuer.";
+        msg.textContent = "✅ Compte créé, confirmez votre email.";
         msg.className = "info";
         return;
       }
 
       const user_id = data.user.id;
 
-      const userData = {
+      // 2️⃣ Préparer données profil
+      const profilData = {
         user_id,
         nom: localStorage.getItem("nom"),
         prenom: localStorage.getItem("prenom"),
@@ -201,49 +140,65 @@
         etat: localStorage.getItem("etat"),
         etudes: localStorage.getItem("etudes"),
         anglais: localStorage.getItem("anglais"),
-        telephone: localStorage.getItem("telephone"),
-        langue_apprentissage
+        telephone: localStorage.getItem("telephone")
       };
 
+      // 3️⃣ Upload photo si présente
       const photoFile = document.getElementById("photo").files[0];
       if (photoFile) {
         const filePath = `users/${user_id}_${crypto.randomUUID()}_${photoFile.name}`;
         const { error: uploadError } = await supabase.storage.from("photos").upload(filePath, photoFile);
-
         if (uploadError) {
-          msg.textContent = "❌ Erreur lors de l'upload de la photo : " + uploadError.message;
+          msg.textContent = "❌ Erreur upload photo : " + uploadError.message;
           msg.className = "error";
           form.querySelector("button").disabled = false;
           return;
         }
-
         const { data: publicUrlData } = supabase.storage.from("photos").getPublicUrl(filePath);
-        userData.photo_url = publicUrlData.publicUrl;
+        profilData.photo_url = publicUrlData.publicUrl;
       }
 
-      const { error: insertError } = await supabase.from("inscriptions").insert([userData]);
-
-      if (insertError) {
-        msg.textContent = "❌ Erreur lors de l'envoi des données : " + insertError.message;
+      // 4️⃣ Insérer profil
+      const { error: profilError } = await supabase.from("profils").insert([profilData]);
+      if (profilError) {
+        msg.textContent = "❌ Erreur insertion profil : " + profilError.message;
         msg.className = "error";
         form.querySelector("button").disabled = false;
-      } else {
-        msg.textContent = "✅ Usajili umekamilika (Inscription réussie)";
-        msg.className = "success";
-
-        ["nom","prenom","naissance","nationalite","residence","etat","etudes","anglais","telephone"]
-          .forEach(k => localStorage.removeItem(k));
-
-        setTimeout(() => {
-          if (langue_apprentissage === "français") {
-            window.location.href = "dashboard_fr.html";
-          } else if (langue_apprentissage === "swahili") {
-            window.location.href = "dashboard_sw.html";
-          } else {
-            window.location.href = "dashboard_fr.html";
-          }
-        }, 2000);
+        return;
       }
+
+      // 5️⃣ Inscrire au cours choisi
+      const cours_id = (langue_apprentissage === "français") ? 1 : 2;
+      const { error: inscriptionError } = await supabase.from("inscriptions").insert([{
+        user_id,
+        cours_id,
+        date_inscription: new Date()
+      }]);
+      if (inscriptionError) {
+        msg.textContent = "❌ Erreur inscription cours : " + inscriptionError.message;
+        msg.className = "error";
+        form.querySelector("button").disabled = false;
+        return;
+      }
+// 6️⃣ Nettoyage et redirection
+      msg.textContent = "⏳ Le processus continue... Préparation de votre interface d’études.";
+      msg.className = "info";
+      loader.style.display = "block";
+
+      // Nettoyer le localStorage
+      ["nom","prenom","naissance","nationalite","residence","etat","etudes","anglais","telephone"]
+        .forEach(k => localStorage.removeItem(k));
+
+      // Redirection après 2 secondes
+      setTimeout(() => {
+        if (langue_apprentissage === "français") {
+          window.location.href = "dashboard_fr.html";
+        } else if (langue_apprentissage === "swahili") {
+          window.location.href = "dashboard_sw.html";
+        } else {
+          window.location.href = "dashboard_fr.html";
+        }
+      }, 2000);
     });
   </script>
 </body>

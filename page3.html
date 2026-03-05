@@ -1,66 +1,66 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="sw">
 <head>
   <meta charset="UTF-8">
-  <title>Usajili - Page 3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usajili - Hatua ya 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      max-width: 600px;
-      margin: auto;
-      padding: 30px;
-      background: #f4f6f9;
+      font-family: 'Roboto', sans-serif;
+      width: 100%;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
       color: #333;
     }
 
     h2 {
       text-align: center;
-      color: #007BFF; /* cohérent avec les autres pages */
-      font-size: 26px;
+      color: #007BFF;
+      font-size: 2em;
       margin-bottom: 25px;
       font-weight: 700;
     }
 
     label {
       display: block;
-      margin-top: 20px;
+      margin-top: 15px;
       font-weight: 600;
       color: #2c3e50;
-    }
-
-    .inline-group {
-      display: flex;
-      align-items: center;
-      gap: 20px; /* espace entre les champs et le bouton */
-      margin-top: 10px;
+      font-size: 1em;
     }
 
     select, input {
-      width: 105px; /* largeur réduite */
-      padding: 8px;
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
       border: 1px solid #ccc;
-      border-radius: 3px;
-      font-size: 14px;
-      background: #fff; /* blanc par défaut */
+      border-radius: 5px;
+      font-size: 1em;
+      box-sizing: border-box;
+      background: #fff;
       color: #2c3e50;
       transition: background 0.3s ease, border-color 0.3s ease;
     }
 
-    select.filled, input.filled {
-      background: #eaf7ea;   /* vert naturel doux */
+    input.filled, select.filled {
+      background: #eaf7ea;
       border-color: #a3c293;
     }
 
     button {
-      padding: 2px 2px;
+      padding: 14px;
       background: #007BFF;
       color: white;
       border: none;
-      border-radius: 3px;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 26px;
+      font-size: 1.2em;
+      font-weight: 600;
       transition: background 0.3s ease;
-      width: auto; /* bouton compact */
+      margin-top: 25px;
+      width: 100%;
     }
 
     button:hover {
@@ -71,138 +71,221 @@
       margin-top: 20px;
       font-weight: bold;
       text-align: center;
-      font-size: 15px;
+      font-size: 1em;
     }
 
     .error { color: #e74c3c; }
     .success { color: #27ae60; }
+    .info { color: #007BFF; }
+
+    small {
+      display: block;
+      margin-top: 5px;
+      color: #555;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 15px; }
+      h2 { font-size: 1.8em; }
+      label, select, input, button, #message { font-size: 1.1em; }
+      button { padding: 16px; font-size: 1.3em; }
+    }
   </style>
-  <!-- Import libphonenumber-js -->
-  <script src="https://unpkg.com/libphonenumber-js@1.11.7/bundle/libphonenumber-js.min.js"></script>
 </head>
 <body>
   <h2>Usajili - Hatua ya 3</h2>
 
   <form id="form3">
-    <label>Numéro de téléphone</label>
-    <div class="inline-group">
-      <select id="codeTel" required>
-        <option value="">Indicatif</option>
-        <!-- Pays francophones et swahiliphones (ordre alphabétique) -->
-        <option value="DZ">Algérie (+213)</option>
-        <option value="BE">Belgique (+32)</option>
-        <option value="BJ">Bénin (+229)</option>
-        <option value="BF">Burkina Faso (+226)</option>
-        <option value="BI">Burundi (+257)</option>
-        <option value="CM">Cameroun (+237)</option>
-        <option value="CA">Canada (+1)</option>
-        <option value="KM">Comores (+269)</option>
-        <option value="CG">Congo (+242)</option>
-        <option value="CI">Côte d’Ivoire (+225)</option>
-        <option value="DJ">Djibouti (+253)</option>
-        <option value="FR">France (+33)</option>
-        <option value="GA">Gabon (+241)</option>
-        <option value="GN">Guinée (+224)</option>
-        <option value="GQ">Guinée équatoriale (+240)</option>
-        <option value="HT">Haïti (+509)</option>
-        <option value="KE">Kenya (+254)</option>
-        <option value="LU">Luxembourg (+352)</option>
-        <option value="MG">Madagascar (+261)</option>
-        <option value="ML">Mali (+223)</option>
-        <option value="MA">Maroc (+212)</option>
-        <option value="MR">Mauritanie (+222)</option>
-        <option value="MZ">Mozambique (+258)</option>
-        <option value="NE">Niger (+227)</option>
-        <option value="NC">Nouvelle-Calédonie (+687)</option>
-        <option value="UG">Ouganda (+256)</option>
-        <option value="CF">République centrafricaine (+236)</option>
-        <option value="CD">République démocratique du Congo (+243)</option>
-        <option value="RW">Rwanda (+250)</option>
-        <option value="SN">Sénégal (+221)</option>
-        <option value="SC">Seychelles (+248)</option>
-        <option value="CH">Suisse (+41)</option>
-        <option value="TZ">Tanzanie (+255)</option>
-        <option value="TD">Tchad (+235)</option>
-        <option value="TG">Togo (+228)</option>
-        <option value="TN">Tunisie (+216)</option>
-        <option value="ZM">Zambie (+260)</option>
+    <label>Namba ya Simu (Téléphone)</label>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <select id="indicatif" required style="flex:1;">
+        <option value="">-- Chagua Nchi --</option>
+        <option value="+213">Algérie (+213)</option>
+        <option value="+229">Bénin (+229)</option>
+        <option value="+32">Belgique (+32)</option>
+        <option value="+226">Burkina Faso (+226)</option>
+        <option value="+257">Burundi (+257)</option>
+        <option value="+237">Cameroun (+237)</option>
+        <option value="+1">Canada (+1)</option>
+        <option value="+269">Comores (+269)</option>
+        <option value="+242">Congo Brazzaville (+242)</option>
+        <option value="+243">Congo Kinshasa (+243)</option>
+        <option value="+225">Côte d’Ivoire (+225)</option>
+        <option value="+253">Djibouti (+253)</option>
+        <option value="+33">France (+33)</option>
+        <option value="+241">Gabon (+241)</option>
+        <option value="+224">Guinée (+224)</option>
+        <option value="+240">Guinée équatoriale (+240)</option>
+        <option value="+245">Guinée-Bissau (+245)</option>
+        <option value="+509">Haïti (+509)</option>
+        <option value="+254">Kenya (+254)</option>
+        <option value="+352">Luxembourg (+352)</option>
+        <option value="+265">Malawi (+265)</option>
+        <option value="+223">Mali (+223)</option>
+        <option value="+212">Maroc (+212)</option>
+        <option value="+222">Mauritanie (+222)</option>
+        <option value="+377">Monaco (+377)</option>
+        <option value="+258">Mozambique (+258)</option>
+        <option value="+227">Niger (+227)</option>
+        <option value="+256">Ouganda (+256)</option>
+        <option value="+250">Rwanda (+250)</option>
+        <option value="+221">Sénégal (+221)</option>
+        <option value="+248">Seychelles (+248)</option>
+        <option value="+252">Somalie (+252)</option>
+        <option value="+41">Suisse (+41)</option>
+        <option value="+255">Tanzanie (+255)</option>
+        <option value="+235">Tchad (+235)</option>
+        <option value="+228">Togo (+228)</option>
+        <option value="+216">Tunisie (+216)</option>
+        <option value="+260">Zambie (+260)</option>
       </select>
 
-      <input type="text" id="telephone" required placeholder="Votre numéro" inputmode="numeric">
-      <!-- Bouton discret avec icône flèche -->
-      <button type="submit">➡️</button>
+      <input type="tel" id="telephone"
+             placeholder="712345678"
+             required style="flex:2;">
     </div>
+    <small>Format international (E.164) : +255712345678</small>
+
+    <label>Kiwango cha Lugha ya Kiingereza (Niveau d’anglais)</label>
+    <select id="anglais" required>
+      <option value="">-- Tafadhali chagua --</option>
+      <option value="A1">A1 (Débutant)</option>
+      <option value="A2">A2 (Élémentaire)</option>
+      <option value="B1">B1 (Intermédiaire)</option>
+      <option value="B2">B2 (Intermédiaire avancé)</option>
+      <option value="C1">C1 (Avancé)</option>
+      <option value="C2">C2 (Maîtrise)</option>
+    </select>
+
+    <button type="submit">➡️ Endelea</button>
   </form>
 
   <div id="message"></div>
 
   <script>
-  const telInput = document.getElementById("telephone");
-  const codeSelect = document.getElementById("codeTel");
+  const form = document.getElementById("form3");
   const msg = document.getElementById("message");
+  const indicatifSelect = document.getElementById("indicatif");
+  const telInput = document.getElementById("telephone");
 
-  // Appliquer la couleur verte après saisie
-  document.querySelectorAll("input, select").forEach(el => {
-    el.addEventListener("blur", () => {
-      if (el.value.trim() !== "") {
-        el.classList.add("filled");
-      } else {
-        el.classList.remove("filled");
+  // Règles de validation + formatage par pays
+  const rules = {
+    "+255": { regex: /^[67][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Tanzanie
+    "+243": { regex: /^8[0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // RDC
+    "+254": { regex: /^7[0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Kenya
+    "+256": { regex: /^7[0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Ouganda
+    "+250": { regex: /^7[0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Rwanda
+    "+257": { regex: /^7[0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Burundi
+    "+33":  { regex: /^[67][0-9]{0,8}$/, format: num => num.replace(/(\d{1})(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4 $5") }, // France
+    "+1":   { regex: /^[2-9][0-9]{0,9}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,4})/, "($1) $2-$3") }, // Canada
+    // ✅ Ajout francophones Afrique (règle générique : 8 chiffres, commence par 2, 6 ou 7)
+    "+221": { regex: /^[267][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Sénégal
+    "+225": { regex: /^[0-9]{0,8}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Côte d’Ivoire
+    "+223": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Mali
+    "+227": { regex: /^[9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Niger
+    "+228": { regex: /^[9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Togo
+    "+216": { regex: /^[2-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Tunisie
+    "+212": { regex: /^[6-7][0-9]{0,8}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Maroc
+    "+222": { regex: /^[2-4][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Mauritanie
+    "+241": { regex: /^[0-9]{0,8}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Gabon
+    "+226": { regex: /^[6-7][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Burkina Faso
+    "+229": { regex: /^[9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Bénin
+    "+237": { regex: /^[6][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Cameroun
+    "+269": { regex: /^[3][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Comores
+    "+253": { regex: /^[7][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Djibouti
+    "+352": { regex: /^[0-9]{0,9}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Luxembourg
+    "+41":  { regex: /^[7][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Suisse
+    "+260": { regex: /^[9][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Zambie
+    "+265": { regex: /^[9][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Malawi
+    "+258": { regex: /^[8][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Mozambique
+    "+252": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Somalie
+    "+235": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Tchad
+    "+240": { regex: /^[222][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Guinée équatoriale
+    "+224": { regex: /^[6][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Guinée
+    "+245": { regex: /^[9][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Guinée-Bissau
+    "+509": { regex: /^[3-4][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Haïti
+    "+241": { regex: /^[0-9]{0,8}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Gabon
+    "+226": { regex: /^[6-7][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Burkina Faso
+    "+229": { regex: /^[9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Bénin
+    "+237": { regex: /^[6][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Cameroun
+    "+269": { regex: /^[3][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Comores
+    "+253": { regex: /^[7][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Djibouti
+    "+352": { regex: /^[0-9]{0,9}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Luxembourg
+    "+41":  { regex: /^[7][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Suisse
+    "+260": { regex: /^[9][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Zambie
+    "+265": { regex: /^[9][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Malawi
+    "+258": { regex: /^[8][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Mozambique
+    "+252": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Somalie
+    "+235": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Tchad
+    "+240": { regex: /^[2][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Guinée équatoriale
+    "+224": { regex: /^[6][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Guinée
+    "+245": { regex: /^[9][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Guinée-Bissau
+    "+509": { regex: /^[3-4][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Haïti
+  };
+
+  // ✅ Formatage en direct lors de la saisie
+  telInput.addEventListener("input", () => {
+    let indicatif = indicatifSelect.value;
+    let raw = telInput.value.replace(/\D/g, ""); // garder uniquement chiffres
+
+    if (!raw) {
+      telInput.value = "";
+      return;
+    }
+
+    if (rules[indicatif]) {
+      const { regex, format } = rules[indicatif];
+      // Intercepter saisie incorrecte
+      if (!regex.test(raw)) {
+        msg.textContent = "🚫 Numéro invalide pour " + indicatif;
+        msg.className = "error";
+        return;
       }
-    });
-  });
-
-  // Formatage quand on quitte le champ
-  telInput.addEventListener("blur", () => {
-    const countryCode = codeSelect.value;
-    const rawNumber = telInput.value.trim();
-    if (!countryCode || !rawNumber) return;
-
-    try {
-      const phoneNumber = libphonenumber.parsePhoneNumberFromString(rawNumber, countryCode);
-      if (phoneNumber && phoneNumber.isValid()) {
-        telInput.value = phoneNumber.formatNational();
-      }
-    } catch (err) {
-      // rien
+      telInput.value = format(raw);
+    } else {
+      // format générique : regrouper par 3
+      telInput.value = raw.replace(/(\d{3})(?=\d)/g, "$1 ").trim();
     }
   });
 
-  // Soumission du formulaire
-  document.getElementById("form3").addEventListener("submit", function(e) {
+  // ✅ Soumission avec validation finale
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const countryCode = codeSelect.value;
-    const rawNumber = telInput.value.trim();
 
-    if (!countryCode || !rawNumber) {
-      msg.textContent = "❌ Choisis l’indicatif et entre ton numéro";
+    const indicatif = indicatifSelect.value;
+    let telephone = telInput.value.replace(/\D/g, ""); // numéro brut
+    const anglais = document.getElementById("anglais").value;
+
+    if (!indicatif || !telephone || !anglais) {
+      msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";
       msg.className = "error";
       return;
     }
 
-    try {
-      const phoneNumber = libphonenumber.parsePhoneNumberFromString(rawNumber, countryCode);
-      if (!phoneNumber || !phoneNumber.isValid()) {
-        msg.textContent = "❌ Numéro invalide pour ce pays";
+    if (rules[indicatif]) {
+      const { regex } = rules[indicatif];
+      if (!regex.test(telephone)) {
+        msg.textContent = "🚫 Numéro invalide pour " + indicatif;
         msg.className = "error";
         return;
       }
-
-      const numeroFormate = phoneNumber.formatInternational();
-      localStorage.setItem("indicatif", phoneNumber.countryCallingCode);
-      localStorage.setItem("telephone", numeroFormate);
-
-      msg.textContent = `✅ Numéro enregistré : ${numeroFormate} → redirection...`;
-      msg.className = "success";
-
-      setTimeout(() => {
-        window.location.href = "page4.html";
-      }, 1000);
-    } catch (err) {
-      msg.textContent = "❌ Erreur de validation du numéro";
+    } else if (telephone.length < 6) {
+      msg.textContent = "🚫 Numéro trop court.";
       msg.className = "error";
+      return;
     }
+
+    const fullNumber = indicatif + " " + telInput.value;
+
+    localStorage.setItem("telephone", fullNumber);
+    localStorage.setItem("anglais", anglais);
+
+    msg.textContent = "✅ Hatua ya 3 imekamilika (Étape 3 réussie)";
+    msg.className = "success";
+
+    window.location.href = "page4.html";
   });
-  </script>
+</script>
 </body>
 </html>

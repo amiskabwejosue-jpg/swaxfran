@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Leçon 1 : Le Nom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive;
+      margin: 0;
+      padding: 20px;
+      background: #fdfdfd;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    body.dark {
+      background: #121212;
+      color: #eee;
+    }
+    h1 { color:#0077b6; text-align:center; }
+    h2 { color:#0077b6; margin-top:20px; }
+    p, ul { font-size:1.1em; line-height:1.6em; text-align:justify; }
+    .exemple {
+      background:#e3f2fd; padding:10px; border-left:4px solid #0077b6; margin:10px 0;
+    }
+    .exercice {
+      background:#fff3e0; padding:10px; border-left:4px solid #ff9800; margin:10px 0;
+    }
+    .btn {
+      display:inline-block; margin-top:30px; padding:12px 20px;
+      background:#0077b6; color:white; border:none; border-radius:8px;
+      font-weight:bold; cursor:pointer;
+    }
+    .btn:hover { background:#005f87; }
+    .toggle-theme {
+      position: fixed; top: 20px; right: 20px;
+      background: #0077b6; color: white;
+      border: none; padding: 10px 15px;
+      border-radius: 8px; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Bouton jour/nuit -->
+  <button class="toggle-theme" id="toggleTheme">🌙 Mode sombre</button>
+
+  <h1>Leçon 1 : Le Nom</h1>
+
+  <h2>Définition</h2>
+  <p>
+    Le <strong>nom</strong> est un mot qui sert à désigner des êtres, des objets, des lieux ou des notions abstraites.
+    Il est au cœur de la phrase et peut être accompagné d’un déterminant et d’adjectifs.
+  </p>
+
+  <h2>Catégories de noms</h2>
+  <ul>
+    <li><strong>Nom commun</strong> : élève, ville</li>
+    <li><strong>Nom propre</strong> : Marie, Paris</li>
+    <li><strong>Nom concret</strong> : table, parfum</li>
+    <li><strong>Nom abstrait</strong> : justice, liberté</li>
+    <li><strong>Nom collectif</strong> : troupeau, foule</li>
+    <li><strong>Nom composé</strong> : arc-en-ciel, pomme de terre</li>
+  </ul>
+
+  <h2>Genre et nombre</h2>
+  <p>
+    Les noms sont <strong>masculins</strong> ou <strong>féminins</strong>, <strong>singuliers</strong> ou <strong>pluriels</strong>.
+    Le genre et le nombre influencent l’accord avec les déterminants et adjectifs.
+  </p>
+  <div class="exemple">
+    Exemples : <br>
+    - un <strong>livre</strong> / des <strong>livres</strong><br>
+    - une <strong>maison</strong> / des <strong>maisons</strong>
+  </div>
+
+  <h2>Accord</h2>
+  <p>
+    Le nom s’accorde avec son déterminant et son adjectif.
+  </p>
+  <div class="exemple">
+    Exemples : <br>
+    - <strong>Les maisons</strong> sont grandes.<br>
+    - Une <strong>belle maison</strong>.
+  </div>
+
+  <h2>Fonctions du nom dans la phrase</h2>
+  <ul>
+    <li>Sujet : <em>Le chat dort.</em></li>
+    <li>Complément d’objet : <em>Je regarde le chat.</em></li>
+    <li>Apposition : <em>Paris, capitale de la France, est magnifique.</em></li>
+    <li>Complément du nom : <em>Le livre de Paul.</em></li>
+  </ul>
+
+  <h2>Exercices</h2>
+  <div class="exercice">
+    <strong>Exercice 1 :</strong> Soulignez les noms dans la phrase : <br>
+    <em>La liberté est une valeur essentielle pour l’homme.</em><br><br>
+
+    <strong>Exercice 2 :</strong> Classez les noms suivants : <em>fleur, Afrique, justice, troupeau, pomme de terre</em>.<br><br>
+
+    <strong>Exercice 3 :</strong> Transformez ces noms du singulier au pluriel : <em>un enfant, une table, un animal</em>.<br><br>
+
+    <strong>Exercice 4 :</strong> Donnez le genre des noms suivants : <em>soleil, lune, livre, voiture</em>.
+  </div>
+
+  <!-- Bouton retour -->
+  <button id="retourBtn" class="btn">⬅ Retour au plan du cours</button>
+
+  <script>
+    // Bouton jour/nuit
+    const toggleThemeBtn = document.getElementById("toggleTheme");
+    toggleThemeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      toggleThemeBtn.textContent = document.body.classList.contains("dark")
+        ? "☀️ Mode clair"
+        : "🌙 Mode sombre";
+    });
+
+    // Bouton retour (Option 2)
+    document.getElementById("retourBtn").addEventListener("click", () => {
+      // ⚠️ Vérifie que le fichier "lecon_fr.html" existe bien dans ton projet
+      window.location.href = "lessons_fr.html";
+    });
+  </script>
+</body>
+</html>

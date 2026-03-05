@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Swaxfran - À propos / Kuhusu</title>
+  <title>Swaxfran - À propos & Aide</title>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Fredoka+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -14,7 +14,10 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
     }
+    body.dark { background: #121212; color: #eee; }
+
     .header {
       background: #0077b6;
       color: white;
@@ -26,38 +29,18 @@
     .content {
       flex: 1;
       padding: 30px;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 30px auto;
       background: #ffffff;
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
-    h2 {
-      color: #0077b6;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    p {
-      font-size: 1.1em;
-      color: #444;
-      line-height: 1.6em;
-      margin-bottom: 20px;
-    }
-    .back-btn {
-      display: block;
-      margin: 20px auto;
-      background: #0077b6;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      text-shadow: 1px 1px #333;
-      transition: transform 0.2s ease, background 0.3s ease;
-    }
-    .back-btn:hover { transform: scale(1.1); background: #00c853; }
+    h2 { color: #0077b6; margin-bottom: 20px; text-align: center; }
+    p { font-size: 1.1em; line-height: 1.6em; margin-bottom: 20px; }
+    .fr { font-weight: bold; color: #004080; }
+    .sw { color: #FF5722; } /* Swahili orange vif attirant */
+
+    /* Navbar minimaliste */
     .navbar {
       background: #ffffff;
       display: flex;
@@ -66,88 +49,142 @@
       border-top: 2px solid #ddd;
       box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
     }
-    .navbar a {
-      text-decoration: none;
-      color: #333;
-      font-size: 0.9em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: color 0.3s ease;
-    }
-    .navbar a i { font-size: 22px; margin-bottom: 5px; }
+    body.dark .navbar { background: #1e1e1e; border-top: 2px solid #333; }
+    .navbar a { text-decoration: none; color: #333; display: flex; align-items: center; justify-content: center; }
+    body.dark .navbar a { color: #eee; }
+    .navbar a i { font-size: 26px; }
     .navbar a.lessons i { color: #0077b6; }
     .navbar a.forum i { color: #ff9800; }
     .navbar a.profile i { color: #00c853; }
     .navbar a.about i { color: #e63946; }
-    .navbar a:hover { color: #0077b6; }
+    .navbar a:hover i { transform: scale(1.2); }
+
+    /* Bouton jour/nuit */
+    .toggle-theme {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #0077b6;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    body.dark .toggle-theme { background: #4fc3f7; color: #121212; }
+
+    /* Contact */
+    .contact { margin-top: 30px; text-align: center; }
+    .contact h2 { margin-bottom: 15px; }
+    .contact p { margin: 10px 0; }
+    .contact a { margin: 10px; font-size: 1.5em; text-decoration: none; transition: color 0.3s ease; }
+    .contact a:hover { opacity: 0.7; }
+    .contact a.whatsapp { color: #25D366; }
+    .contact a.facebook { color: #1877F2; }
+    .contact a.twitter { color: #1DA1F2; }
+    .contact a.instagram { color: #E1306C; }
+    .contact a.linkedin { color: #0A66C2; }
   </style>
 </head>
 <body>
-  <div class="header">À propos / Kuhusu</div>
+  <div class="header">À propos & Aide</div>
 
   <div class="content">
     <h2>Notre mission / Dhamira yetu</h2>
-    <p>
-      🇫🇷 Swaxfran est une plateforme éducative bilingue (Français / Swahili) conçue pour rapprocher les cultures et faciliter l’apprentissage des langues. 
-      Notre mission est de rendre l’éducation accessible, joyeuse et professionnelle, en respectant les racines culturelles de chaque apprenant.
-    </p>
-    <p>
-      🇹🇿 Swaxfran ni jukwaa la kielimu lenye lugha mbili (Kifaransa / Kiswahili) lililoundwa kuunganisha tamaduni na kurahisisha kujifunza lugha. 
-      Dhamira yetu ni kufanya elimu iwe rahisi kufikiwa, yenye furaha na ya kitaalamu, huku tukiheshimu mizizi ya kitamaduni ya kila mwanafunzi.
-    </p>
+    <p><span class="fr">Swaxfran est une plateforme éducative bilingue qui cherche à unir les cultures et à rendre l’apprentissage des langues accessible à tous.</span><br>
+       <span class="sw">Swaxfran ni jukwaa la kielimu lenye lugha mbili linalolenga kuunganisha tamaduni na kufanya kujifunza lugha kupatikane kwa wote.</span></p>
 
     <h2>Nos valeurs / Thamani zetu</h2>
-    <p>
-      🇫🇷 Accessibilité, communauté, créativité et respect des cultures sont au cœur de Swaxfran. Nous croyons que chaque apprenant mérite un espace chaleureux et harmonieux pour progresser.  
-    </p>
-    <p>
-      🇹🇿 Upatikanaji, jamii, ubunifu na heshima kwa tamaduni ndizo msingi wa Swaxfran. Tunaamini kila mwanafunzi anastahili nafasi yenye joto na maelewano ili aendelee.
-    </p>
+    <p><span class="fr">Nous croyons en l’accessibilité, la communauté, la créativité et le respect des cultures.</span><br>
+       <span class="sw">Tunaamini katika upatikanaji, jamii, ubunifu na heshima kwa tamaduni.</span></p>
 
     <h2>Notre vision / Maono yetu</h2>
-    <p>
-      🇫🇷 Construire une communauté durable où les apprenants, enseignants et partenaires collaborent pour partager la richesse des langues et des cultures.  
-    </p>
-    <p>
-      🇹🇿 Kujenga jamii endelevu ambapo wanafunzi, walimu na washirika wanashirikiana kushiriki utajiri wa lugha na tamaduni.  
-    </p>
+    <p><span class="fr">Nous aspirons à construire une communauté durable où apprenants, enseignants et partenaires collaborent.</span><br>
+       <span class="sw">Tunakusudia kujenga jamii endelevu ambapo wanafunzi, walimu na washirika wanashirikiana.</span></p>
 
-    <button class="back-btn" onclick="goBack()">⬅ Retour / Rudi</button>
+    <h2>Notre histoire / Historia yetu</h2>
+    <p><span class="fr">Swaxfran est né du désir de créer un pont entre le monde francophone et swahilophone.</span><br>
+       <span class="sw">Swaxfran ilizaliwa kutokana na hamu ya kuunda daraja kati ya ulimwengu wa Kifaransa na Kiswahili.</span></p>
+
+    <h2>Nos services / Huduma zetu</h2>
+    <p><span class="fr">Leçons interactives, forum communautaire, profil personnalisé et aide complète.</span><br>
+       <span class="sw">Masomo shirikishi, jukwaa la jamii, wasifu binafsi na msaada kamili.</span></p>
+
+    <h2>Guide d’utilisation / Mwongozo wa matumizi</h2>
+    <p><i class="fas fa-language" style="color:#0077b6;"></i> <span class="fr">Choisissez votre langue préférée sur l’écran d’accueil.</span><br>
+       <span class="sw">Chagua lugha unayopendelea kwenye ukurasa wa mwanzo.</span></p>
+    <p><i class="fas fa-book-open" style="color:#0077b6;"></i> <span class="fr">Accédez aux leçons via l’icône 📘 en bas.</span><br>
+       <span class="sw">Fikia masomo kupitia ikoni 📘 chini.</span></p>
+    <p><i class="fas fa-comments" style="color:#ff9800;"></i> <span class="fr">Participez au forum pour échanger avec la communauté.</span><br>
+       <span class="sw">Shiriki kwenye jukwaa ili kuwasiliana na jamii.</span></p>
+    <p><i class="fas fa-user-circle" style="color:#00c853;"></i> <span class="fr">Consultez votre profil pour suivre vos progrès.</span><br>
+       <span class="sw">Angalia wasifu wako ili kufuatilia maendeleo yako.</span></p>
+    <p><i class="fas fa-moon" style="color:#4fc3f7;"></i> <span class="fr">Activez le mode sombre avec le bouton 🌙 en haut à droite.</span><br>
+       <span class="sw">Weka hali ya giza kwa kubonyeza kitufe 🌙 juu kulia.</span></p>
+
+    <h2>FAQ / Maswali ya mara kwa mara</h2>
+    <p><span class="fr">Comment débloquer les leçons ?</span><br>
+       <span class="sw">Jinsi ya kufungua masomo?</span></p>
+    <p><span class="fr">Les leçons se débloquent automatiquement après avoir terminé la précédente.</span><br>
+       <span class="sw">Masomo hufunguka moja kwa moja baada ya kukamilisha somo lililotangulia.</span></p>
+
+    <p><span class="fr">Comment changer de langue ?</span><br>
+       <span class="sw">Jinsi ya kubadilisha lugha?</span></p>
+    <p><span class="fr">Vous pouvez choisir la langue depuis la page d’accueil.</span><br>
+       <span class="sw">Unaweza kuchagua lugha kutoka ukurasa wa mwanzo.</span></p>
+
+    <p><span class="fr">Comment activer le mode sombre ?</span><br>
+       <span class="sw">Jinsi ya kuwezesha hali ya giza?</span></p>
+    <p><span class="fr">Cliquez sur le bouton 🌙 en haut à droite.</span><br>
+       <span class="sw">Bonyeza kitufe 🌙 juu kulia.</span></p>
+
+    <h2>Conseils pratiques / Ushauri wa vitendo</h2>
+    <p><span class="fr">Fixez-vous des objectifs quotidiens simples pour progresser régulièrement.</span><br>
+       <span class="sw">Weka malengo rahisi ya kila siku ili kuendelea mara kwa mara.</span></p>
+    <p><span class="fr">Utilisez le forum pour poser vos questions et partager vos expériences.</span><br>
+       <span class="sw">Tumia jukwaa kuuliza maswali yako na kushiriki uzoefu wako.</span></p>
+    <p><span class="fr">Alternez entre le français et le swahili pour renforcer votre compréhension.</span><br>
+       <span class="sw">Badilisha kati ya Kifaransa na Kiswahili ili kuimarisha uelewa wako.</span></p>
+
+    <!-- Contact -->
+    <div class="contact">
+      <h2>Contact / Mawasiliano</h2>
+      <p><span class="fr">Vous pouvez nous joindre directement :</span><br>
+         <span class="sw">Unaweza kuwasiliana nasi moja kwa moja:</span></p>
+
+      <p><i class="fab fa-whatsapp" style="color:#25D366;"></i> +255 621 848 522</p>
+      <p><i class="fas fa-envelope" style="color:#D44638;"></i> supportswaxfran@gmail.org</p>
+
+      <div>
+        <a href="https://wa.me/255621848522" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://facebook.com/votrepage" target="_blank" class="facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/votrecompte" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com/votrecompte" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com/in/votrecompte" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
   </div>
 
   <!-- Barre de navigation -->
   <div class="navbar">
-    <a href="lessons_fr.html" class="lessons">
-      <i class="fas fa-book-open"></i>
-      Leçons / Masomo
-    </a>
-    <a href="forum.html" class="forum">
-      <i class="fas fa-comments"></i>
-      Forum / Jukwaa
-    </a>
-    <a href="profile.html" class="profile">
-      <i class="fas fa-user-circle"></i>
-      Profil / Wasifu
-    </a>
-    <a href="about.html" class="about">
-      <i class="fas fa-info-circle"></i>
-      À propos / Kuhusu
-    </a>
+    <a href="lessons_fr.html" class="lessons" title="Leçons / Masomo"><i class="fas fa-book-open"></i></a>
+    <a href="forum.html" class="forum" title="Forum / Jukwaa"><i class="fas fa-comments"></i></a>
+    <a href="profile.html" class="profile" title="Profil / Wasifu"><i class="fas fa-user-circle"></i></a>
+    <a href="about.html" class="about" title="À propos & Aide / Kuhusu & Msaada"><i class="fas fa-info-circle"></i></a>
   </div>
 
+  <!-- Bouton jour/nuit -->
+  <button class="toggle-theme" id="toggleTheme">🌙 Mode sombre</button>
+
   <script>
-    // Bouton retour dynamique selon la langue choisie
-    function goBack() {
-      const lang = localStorage.getItem("language");
-      if (lang === "fr") {
-        window.location.href = "dashboard_fr.html";
-      } else if (lang === "sw") {
-        window.location.href = "dashboard_sw.html";
-      } else {
-        window.location.href = "choix_langue.html"; // si aucune langue enregistrée
-      }
-    }
+    // Mode sombre / clair
+    const toggleThemeBtn = document.getElementById("toggleTheme");
+    toggleThemeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      toggleThemeBtn.textContent = document.body.classList.contains("dark")
+        ? "☀️ Mode clair"
+        : "🌙 Mode sombre";
+    });
   </script>
 </body>
 </html>
