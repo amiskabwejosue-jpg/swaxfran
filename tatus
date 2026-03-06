@@ -1,0 +1,2204 @@
+[33mcommit 0da87fc49b3569d7936474398bda788d12b74b95[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: amiskabwejosue-jpg <amiskabwejosue@gmail.com>
+Date:   Thu Mar 5 20:47:05 2026 +0300
+
+    mise à jour depuis Acode
+
+[1mdiff --git a/about.html b/about.html[m
+[1mindex 6dcc9b8..a909cf3 100644[m
+[1m--- a/about.html[m
+[1m+++ b/about.html[m
+[36m@@ -2,7 +2,7 @@[m
+ <html lang="fr">[m
+ <head>[m
+   <meta charset="UTF-8">[m
+[31m-  <title>Swaxfran - À propos / Kuhusu</title>[m
+[32m+[m[32m  <title>Swaxfran - À propos & Aide</title>[m
+   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Fredoka+One&display=swap" rel="stylesheet">[m
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">[m
+ [m
+[36m@@ -14,7 +14,10 @@[m
+       display: flex;[m
+       flex-direction: column;[m
+       min-height: 100vh;[m
+[32m+[m[32m      transition: background 0.3s ease, color 0.3s ease;[m
+     }[m
+[32m+[m[32m    body.dark { background: #121212; color: #eee; }[m
+[32m+[m
+     .header {[m
+       background: #0077b6;[m
+       color: white;[m
+[36m@@ -26,38 +29,18 @@[m
+     .content {[m
+       flex: 1;[m
+       padding: 30px;[m
+[31m-      max-width: 900px;[m
+[32m+[m[32m      max-width: 1000px;[m
+       margin: 30px auto;[m
+       background: #ffffff;[m
+       border-radius: 20px;[m
+       box-shadow: 0 8px 20px rgba(0,0,0,0.2);[m
+     }[m
+[31m-    h2 {[m
+[31m-      color: #0077b6;[m
+[31m-      margin-bottom: 20px;[m
+[31m-      text-align: center;[m
+[31m-    }[m
+[31m-    p {[m
+[31m-      font-size: 1.1em;[m
+[31m-      color: #444;[m
+[31m-      line-height: 1.6em;[m
+[31m-      margin-bottom: 20px;[m
+[31m-    }[m
+[31m-    .back-btn {[m
+[31m-      display: block;[m
+[31m-      margin: 20px auto;[m
+[31m-      background: #0077b6;[m
+[31m-      color: white;[m
+[31m-      border: none;[m
+[31m-      padding: 12px 20px;[m
+[31m-      border-radius: 10px;[m
+[31m-      font-weight: bold;[m
+[31m-      font-size: 1em;[m
+[31m-      cursor: pointer;[m
+[31m-      text-shadow: 1px 1px #333;[m
+[31m-      transition: transform 0.2s ease, background 0.3s ease;[m
+[31m-    }[m
+[31m-    .back-btn:hover { transform: scale(1.1); background: #00c853; }[m
+[32m+[m[32m    h2 { color: #0077b6; margin-bottom: 20px; text-align: center; }[m
+[32m+[m[32m    p { font-size: 1.1em; line-height: 1.6em; margin-bottom: 20px; }[m
+[32m+[m[32m    .fr { font-weight: bold; color: #004080; }[m
+[32m+[m[32m    .sw { color: #FF5722; } /* Swahili orange vif attirant */[m
+[32m+[m
+[32m+[m[32m    /* Navbar minimaliste */[m
+     .navbar {[m
+       background: #ffffff;[m
+       display: flex;[m
+[36m@@ -66,88 +49,142 @@[m
+       border-top: 2px solid #ddd;[m
+       box-shadow: 0 -2px 8px rgba(0,0,0,0.1);[m
+     }[m
+[31m-    .navbar a {[m
+[31m-      text-decoration: none;[m
+[31m-      color: #333;[m
+[31m-      font-size: 0.9em;[m
+[31m-      display: flex;[m
+[31m-      flex-direction: column;[m
+[31m-      align-items: center;[m
+[31m-      transition: color 0.3s ease;[m
+[31m-    }[m
+[31m-    .navbar a i { font-size: 22px; margin-bottom: 5px; }[m
+[32m+[m[32m    body.dark .navbar { background: #1e1e1e; border-top: 2px solid #333; }[m
+[32m+[m[32m    .navbar a { text-decoration: none; color: #333; display: flex; align-items: center; justify-content: center; }[m
+[32m+[m[32m    body.dark .navbar a { color: #eee; }[m
+[32m+[m[32m    .navbar a i { font-size: 26px; }[m
+     .navbar a.lessons i { color: #0077b6; }[m
+     .navbar a.forum i { color: #ff9800; }[m
+     .navbar a.profile i { color: #00c853; }[m
+     .navbar a.about i { color: #e63946; }[m
+[31m-    .navbar a:hover { color: #0077b6; }[m
+[32m+[m[32m    .navbar a:hover i { transform: scale(1.2); }[m
+[32m+[m
+[32m+[m[32m    /* Bouton jour/nuit */[m
+[32m+[m[32m    .toggle-theme {[m
+[32m+[m[32m      position: fixed;[m
+[32m+[m[32m      top: 20px;[m
+[32m+[m[32m      right: 20px;[m
+[32m+[m[32m      background: #0077b6;[m
+[32m+[m[32m      color: white;[m
+[32m+[m[32m      border: none;[m
+[32m+[m[32m      padding: 10px 15px;[m
+[32m+[m[32m      border-radius: 8px;[m
+[32m+[m[32m      cursor: pointer;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    body.dark .toggle-theme { background: #4fc3f7; color: #121212; }[m
+[32m+[m
+[32m+[m[32m    /* Contact */[m
+[32m+[m[32m    .contact { margin-top: 30px; text-align: center; }[m
+[32m+[m[32m    .contact h2 { margin-bottom: 15px; }[m
+[32m+[m[32m    .contact p { margin: 10px 0; }[m
+[32m+[m[32m    .contact a { margin: 10px; font-size: 1.5em; text-decoration: none; transition: color 0.3s ease; }[m
+[32m+[m[32m    .contact a:hover { opacity: 0.7; }[m
+[32m+[m[32m    .contact a.whatsapp { color: #25D366; }[m
+[32m+[m[32m    .contact a.facebook { color: #1877F2; }[m
+[32m+[m[32m    .contact a.twitter { color: #1DA1F2; }[m
+[32m+[m[32m    .contact a.instagram { color: #E1306C; }[m
+[32m+[m[32m    .contact a.linkedin { color: #0A66C2; }[m
+   </style>[m
+ </head>[m
+ <body>[m
+[31m-  <div class="header">À propos / Kuhusu</div>[m
+[32m+[m[32m  <div class="header">À propos & Aide</div>[m
+ [m
+   <div class="content">[m
+     <h2>Notre mission / Dhamira yetu</h2>[m
+[31m-    <p>[m
+[31m-      🇫🇷 Swaxfran est une plateforme éducative bilingue (Français / Swahili) conçue pour rapprocher les cultures et faciliter l’apprentissage des langues. [m
+[31m-      Notre mission est de rendre l’éducation accessible, joyeuse et professionnelle, en respectant les racines culturelles de chaque apprenant.[m
+[31m-    </p>[m
+[31m-    <p>[m
+[31m-      🇹🇿 Swaxfran ni jukwaa la kielimu lenye lugha mbili (Kifaransa / Kiswahili) lililoundwa kuunganisha tamaduni na kurahisisha kujifunza lugha. [m
+[31m-      Dhamira yetu ni kufanya elimu iwe rahisi kufikiwa, yenye furaha na ya kitaalamu, huku tukiheshimu mizizi ya kitamaduni ya kila mwanafunzi.[m
+[31m-    </p>[m
+[32m+[m[32m    <p><span class="fr">Swaxfran est une plateforme éducative bilingue qui cherche à unir les cultures et à rendre l’apprentissage des langues accessible à tous.</span><br>[m
+[32m+[m[32m       <span class="sw">Swaxfran ni jukwaa la kielimu lenye lugha mbili linalolenga kuunganisha tamaduni na kufanya kujifunza lugha kupatikane kwa wote.</span></p>[m
+ [m
+     <h2>Nos valeurs / Thamani zetu</h2>[m
+[31m-    <p>[m
+[31m-      🇫🇷 Accessibilité, communauté, créativité et respect des cultures sont au cœur de Swaxfran. Nous croyons que chaque apprenant mérite un espace chaleureux et harmonieux pour progresser.  [m
+[31m-    </p>[m
+[31m-    <p>[m
+[31m-      🇹🇿 Upatikanaji, jamii, ubunifu na heshima kwa tamaduni ndizo msingi wa Swaxfran. Tunaamini kila mwanafunzi anastahili nafasi yenye joto na maelewano ili aendelee.[m
+[31m-    </p>[m
+[32m+[m[32m    <p><span class="fr">Nous croyons en l’accessibilité, la communauté, la créativité et le respect des cultures.</span><br>[m
+[32m+[m[32m       <span class="sw">Tunaamini katika upatikanaji, jamii, ubunifu na heshima kwa tamaduni.</span></p>[m
+ [m
+     <h2>Notre vision / Maono yetu</h2>[m
+[31m-    <p>[m
+[31m-      🇫🇷 Construire une communauté durable où les apprenants, enseignants et partenaires collaborent pour partager la richesse des langues et des cultures.  [m
+[31m-    </p>[m
+[31m-    <p>[m
+[31m-      🇹🇿 Kujenga jamii endelevu ambapo wanafunzi, walimu na washirika wanashirikiana kushiriki utajiri wa lugha na tamaduni.  [m
+[31m-    </p>[m
+[31m-[m
+[31m-    <button class="back-btn" onclick="goBack()">⬅ Retour / Rudi</button>[m
+[32m+[m[32m    <p><span class="fr">Nous aspirons à construire une communauté durable où apprenants, enseignants et partenaires collaborent.</span><br>[m
+[32m+[m[32m       <span class="sw">Tunakusudia kujenga jamii endelevu ambapo wanafunzi, walimu na washirika wanashirikiana.</span></p>[m
+[32m+[m
+[32m+[m[32m    <h2>Notre histoire / Historia yetu</h2>[m
+[32m+[m[32m    <p><span class="fr">Swaxfran est né du désir de créer un pont entre le monde francophone et swahilophone.</span><br>[m
+[32m+[m[32m       <span class="sw">Swaxfran ilizaliwa kutokana na hamu ya kuunda daraja kati ya ulimwengu wa Kifaransa na Kiswahili.</span></p>[m
+[32m+[m
+[32m+[m[32m    <h2>Nos services / Huduma zetu</h2>[m
+[32m+[m[32m    <p><span class="fr">Leçons interactives, forum communautaire, profil personnalisé et aide complète.</span><br>[m
+[32m+[m[32m       <span class="sw">Masomo shirikishi, jukwaa la jamii, wasifu binafsi na msaada kamili.</span></p>[m
+[32m+[m
+[32m+[m[32m    <h2>Guide d’utilisation / Mwongozo wa matumizi</h2>[m
+[32m+[m[32m    <p><i class="fas fa-language" style="color:#0077b6;"></i> <span class="fr">Choisissez votre langue préférée sur l’écran d’accueil.</span><br>[m
+[32m+[m[32m       <span class="sw">Chagua lugha unayopendelea kwenye ukurasa wa mwanzo.</span></p>[m
+[32m+[m[32m    <p><i class="fas fa-book-open" style="color:#0077b6;"></i> <span class="fr">Accédez aux leçons via l’icône 📘 en bas.</span><br>[m
+[32m+[m[32m       <span class="sw">Fikia masomo kupitia ikoni 📘 chini.</span></p>[m
+[32m+[m[32m    <p><i class="fas fa-comments" style="color:#ff9800;"></i> <span class="fr">Participez au forum pour échanger avec la communauté.</span><br>[m
+[32m+[m[32m       <span class="sw">Shiriki kwenye jukwaa ili kuwasiliana na jamii.</span></p>[m
+[32m+[m[32m    <p><i class="fas fa-user-circle" style="color:#00c853;"></i> <span class="fr">Consultez votre profil pour suivre vos progrès.</span><br>[m
+[32m+[m[32m       <span class="sw">Angalia wasifu wako ili kufuatilia maendeleo yako.</span></p>[m
+[32m+[m[32m    <p><i class="fas fa-moon" style="color:#4fc3f7;"></i> <span class="fr">Activez le mode sombre avec le bouton 🌙 en haut à droite.</span><br>[m
+[32m+[m[32m       <span class="sw">Weka hali ya giza kwa kubonyeza kitufe 🌙 juu kulia.</span></p>[m
+[32m+[m
+[32m+[m[32m    <h2>FAQ / Maswali ya mara kwa mara</h2>[m
+[32m+[m[32m    <p><span class="fr">Comment débloquer les leçons ?</span><br>[m
+[32m+[m[32m       <span class="sw">Jinsi ya kufungua masomo?</span></p>[m
+[32m+[m[32m    <p><span class="fr">Les leçons se débloquent automatiquement après avoir terminé la précédente.</span><br>[m
+[32m+[m[32m       <span class="sw">Masomo hufunguka moja kwa moja baada ya kukamilisha somo lililotangulia.</span></p>[m
+[32m+[m
+[32m+[m[32m    <p><span class="fr">Comment changer de langue ?</span><br>[m
+[32m+[m[32m       <span class="sw">Jinsi ya kubadilisha lugha?</span></p>[m
+[32m+[m[32m    <p><span class="fr">Vous pouvez choisir la langue depuis la page d’accueil.</span><br>[m
+[32m+[m[32m       <span class="sw">Unaweza kuchagua lugha kutoka ukurasa wa mwanzo.</span></p>[m
+[32m+[m
+[32m+[m[32m    <p><span class="fr">Comment activer le mode sombre ?</span><br>[m
+[32m+[m[32m       <span class="sw">Jinsi ya kuwezesha hali ya giza?</span></p>[m
+[32m+[m[32m    <p><span class="fr">Cliquez sur le bouton 🌙 en haut à droite.</span><br>[m
+[32m+[m[32m       <span class="sw">Bonyeza kitufe 🌙 juu kulia.</span></p>[m
+[32m+[m
+[32m+[m[32m    <h2>Conseils pratiques / Ushauri wa vitendo</h2>[m
+[32m+[m[32m    <p><span class="fr">Fixez-vous des objectifs quotidiens simples pour progresser régulièrement.</span><br>[m
+[32m+[m[32m       <span class="sw">Weka malengo rahisi ya kila siku ili kuendelea mara kwa mara.</span></p>[m
+[32m+[m[32m    <p><span class="fr">Utilisez le forum pour poser vos questions et partager vos expériences.</span><br>[m
+[32m+[m[32m       <span class="sw">Tumia jukwaa kuuliza maswali yako na kushiriki uzoefu wako.</span></p>[m
+[32m+[m[32m    <p><span class="fr">Alternez entre le français et le swahili pour renforcer votre compréhension.</span><br>[m
+[32m+[m[32m       <span class="sw">Badilisha kati ya Kifaransa na Kiswahili ili kuimarisha uelewa wako.</span></p>[m
+[32m+[m
+[32m+[m[32m    <!-- Contact -->[m
+[32m+[m[32m    <div class="contact">[m
+[32m+[m[32m      <h2>Contact / Mawasiliano</h2>[m
+[32m+[m[32m      <p><span class="fr">Vous pouvez nous joindre directement :</span><br>[m
+[32m+[m[32m         <span class="sw">Unaweza kuwasiliana nasi moja kwa moja:</span></p>[m
+[32m+[m
+[32m+[m[32m      <p><i class="fab fa-whatsapp" style="color:#25D366;"></i> +255 621 848 522</p>[m
+[32m+[m[32m      <p><i class="fas fa-envelope" style="color:#D44638;"></i> supportswaxfran@gmail.org</p>[m
+[32m+[m
+[32m+[m[32m      <div>[m
+[32m+[m[32m        <a href="https://wa.me/255621848522" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>[m
+[32m+[m[32m        <a href="https://facebook.com/votrepage" target="_blank" class="facebook"><i class="fab fa-facebook"></i></a>[m
+[32m+[m[32m        <a href="https://twitter.com/votrecompte" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>[m
+[32m+[m[32m        <a href="https://instagram.com/votrecompte" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>[m
+[32m+[m[32m        <a href="https://linkedin.com/in/votrecompte" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>[m
+[32m+[m[32m      </div>[m
+[32m+[m[32m    </div>[m
+   </div>[m
+ [m
+   <!-- Barre de navigation -->[m
+   <div class="navbar">[m
+[31m-    <a href="lessons_fr.html" class="lessons">[m
+[31m-      <i class="fas fa-book-open"></i>[m
+[31m-      Leçons / Masomo[m
+[31m-    </a>[m
+[31m-    <a href="forum.html" class="forum">[m
+[31m-      <i class="fas fa-comments"></i>[m
+[31m-      Forum / Jukwaa[m
+[31m-    </a>[m
+[31m-    <a href="profile.html" class="profile">[m
+[31m-      <i class="fas fa-user-circle"></i>[m
+[31m-      Profil / Wasifu[m
+[31m-    </a>[m
+[31m-    <a href="about.html" class="about">[m
+[31m-      <i class="fas fa-info-circle"></i>[m
+[31m-      À propos / Kuhusu[m
+[31m-    </a>[m
+[32m+[m[32m    <a href="lessons_fr.html" class="lessons" title="Leçons / Masomo"><i class="fas fa-book-open"></i></a>[m
+[32m+[m[32m    <a href="forum.html" class="forum" title="Forum / Jukwaa"><i class="fas fa-comments"></i></a>[m
+[32m+[m[32m    <a href="profile.html" class="profile" title="Profil / Wasifu"><i class="fas fa-user-circle"></i></a>[m
+[32m+[m[32m    <a href="about.html" class="about" title="À propos & Aide / Kuhusu & Msaada"><i class="fas fa-info-circle"></i></a>[m
+   </div>[m
+ [m
+[32m+[m[32m  <!-- Bouton jour/nuit -->[m
+[32m+[m[32m  <button class="toggle-theme" id="toggleTheme">🌙 Mode sombre</button>[m
+[32m+[m
+   <script>[m
+[31m-    // Bouton retour dynamique selon la langue choisie[m
+[31m-    function goBack() {[m
+[31m-      const lang = localStorage.getItem("language");[m
+[31m-      if (lang === "fr") {[m
+[31m-        window.location.href = "dashboard_fr.html";[m
+[31m-      } else if (lang === "sw") {[m
+[31m-        window.location.href = "dashboard_sw.html";[m
+[31m-      } else {[m
+[31m-        window.location.href = "choix_langue.html"; // si aucune langue enregistrée[m
+[31m-      }[m
+[31m-    }[m
+[32m+[m[32m    // Mode sombre / clair[m
+[32m+[m[32m    const toggleThemeBtn = document.getElementById("toggleTheme");[m
+[32m+[m[32m    toggleThemeBtn.addEventListener("click", () => {[m
+[32m+[m[32m      document.body.classList.toggle("dark");[m
+[32m+[m[32m      toggleThemeBtn.textContent = document.body.classList.contains("dark")[m
+[32m+[m[32m        ? "☀️ Mode clair"[m
+[32m+[m[32m        : "🌙 Mode sombre";[m
+[32m+[m[32m    });[m
+   </script>[m
+ </body>[m
+ </html>[m
+\ No newline at end of file[m
+[1mdiff --git a/adjectif.html b/adjectif.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/adverbe.html b/adverbe.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/article.html b/article.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/conjonction.html b/conjonction.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/forum.html b/forum.html[m
+[1mindex 098c016..d24252e 100644[m
+[1m--- a/forum.html[m
+[1m+++ b/forum.html[m
+[36m@@ -143,6 +143,14 @@[m [masync function publishPost() {[m
+   const fileInput = document.getElementById("postImage");[m
+   let imageUrl = null;[m
+ [m
+[32m+[m[32m  // Récupérer l'utilisateur connecté[m
+[32m+[m[32m  const { data: { user } } = await supabase.auth.getUser();[m
+[32m+[m[32m  if (!user) {[m
+[32m+[m[32m    alert("❌ Vous devez être connecté pour publier.");[m
+[32m+[m[32m    return;[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  // Upload image si présente[m
+   if (fileInput.files.length > 0) {[m
+     const file = fileInput.files[0];[m
+     const { data, error } = await supabase.storage[m
+[36m@@ -159,7 +167,7 @@[m [masync function publishPost() {[m
+   if (!content && !imageUrl) return;[m
+ [m
+   await supabase.from("posts").insert([{ [m
+[31m-    user_id: "ID_UTILISATEUR", [m
+[32m+[m[32m    user_id: user.id,[m[41m [m
+     content, [m
+     image_url: imageUrl, [m
+     likes: 0, [m
+[1mdiff --git a/index.html b/index.html[m
+[1mindex ede035e..ed29dc3 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -3,6 +3,7 @@[m
+ <head>[m
+   <meta charset="UTF-8">[m
+   <title>Swaxfran - Connexion</title>[m
+[32m+[m[32m  <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">[m
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">[m
+   <style>[m
+[36m@@ -14,198 +15,171 @@[m
+       display: flex;[m
+       flex-direction: column;[m
+     }[m
+[32m+[m
+[32m+[m[32m    /* HEADER */[m
+     .app-header {[m
+       background-color: #fdfdfd;[m
+[31m-      padding: 10px;[m
+[32m+[m[32m      padding: 15px;[m
+       border-bottom: 2px solid #eee;[m
+[31m-      display: flex;[m
+[31m-      align-items: center;[m
+[31m-      justify-content: space-between;[m
+[31m-      position: relative;[m
+[32m+[m[32m      text-align: center;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .title { font-size: 1.8em; font-weight: bold; color: #0077b6; }[m
+[32m+[m
+[32m+[m[32m    /* IMAGE */[m
+[32m+[m[32m    .hero-image { width: 100%; max-height: 400px; object-fit: cover; display: block; }[m
+[32m+[m
+[32m+[m[32m    /* WELCOME */[m
+[32m+[m[32m    .welcome {[m
+[32m+[m[32m      text-align: center;[m
+[32m+[m[32m      padding: 30px;[m
+[32m+[m[32m      background: #ffffff;[m
+     }[m
+[31m-    .menu-btn {[m
+[31m-      background-color: black;[m
+[32m+[m[32m    .welcome h1 { color: #0077b6; font-size: 2em; margin-bottom: 10px; }[m
+[32m+[m[32m    .welcome p { font-size: 1.1em; line-height: 1.6em; }[m
+[32m+[m[32m    .fr { font-weight: bold; color: #004080; }[m
+[32m+[m[32m    .sw { color: #FF5722; }[m
+[32m+[m
+[32m+[m[32m    /* CONTENT */[m
+[32m+[m[32m    .content-section {[m
+[32m+[m[32m      max-width: 900px;[m
+[32m+[m[32m      margin: 20px auto;[m
+[32m+[m[32m      padding: 20px;[m
+[32m+[m[32m      background: #fff;[m
+[32m+[m[32m      border-radius: 12px;[m
+[32m+[m[32m      box-shadow: 0 4px 12px rgba(0,0,0,0.1);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .content-section h2 { color: #0077b6; margin-top: 20px; }[m
+[32m+[m[32m    .content-section p { margin-bottom: 15px; }[m
+[32m+[m
+[32m+[m[32m    /* LOGIN BOX */[m
+[32m+[m[32m    .login-box {[m
+[32m+[m[32m      width: 95%;[m
+[32m+[m[32m      max-width: 500px;[m
+[32m+[m[32m      margin: 20px auto;[m
+[32m+[m[32m      background: white;[m
+[32m+[m[32m      padding: 25px;[m
+[32m+[m[32m      border-radius: 15px;[m
+[32m+[m[32m      box-shadow: 0 5px 15px rgba(0,0,0,0.2);[m
+[32m+[m[32m      text-align: center;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .login-box h2 { color: #0077b6; margin-bottom: 15px; font-size: 1.4em; }[m
+[32m+[m[32m    .login-box input {[m
+[32m+[m[32m      width: 100%;[m
+[32m+[m[32m      padding: 12px;[m
+[32m+[m[32m      margin: 12px 0;[m
+[32m+[m[32m      border: 1px solid #ccc;[m
+[32m+[m[32m      border-radius: 5px;[m
+[32m+[m[32m      font-size: 1em;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .login-box button {[m
+[32m+[m[32m      width: 100%;[m
+[32m+[m[32m      padding: 14px;[m
+[32m+[m[32m      background: #00c853;[m
+       color: white;[m
+       border: none;[m
+[31m-      padding: 7px 20px;[m
+[31m-      font-size: 15px;[m
+[32m+[m[32m      border-radius: 5px;[m
+[32m+[m[32m      font-size: 1.2em;[m
+[32m+[m[32m      font-weight: bold;[m
+       cursor: pointer;[m
+[31m-      border-radius: 4px;[m
+[32m+[m[32m      transition: background 0.3s ease;[m
+     }[m
+[31m-    .logo { height: 40px; }[m
+[31m-    .title { font-size: 18px; font-weight: bold; color: #0077b6; }[m
+[31m-    .menu { display: none; position: absolute; top: 50px; left: 10px; background-color: #ffffff;[m
+[31m-      border: 1px solid #ddd; border-radius: 4px; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }[m
+[31m-    .menu a { display: block; padding: 10px; text-decoration: none; color: #333; }[m
+[31m-    .menu a:hover { background-color: #007bff; color: white; }[m
+[31m-    .hero-image { width: 100%; max-height: 350px; object-fit: cover; display: block; }[m
+[31m-    .welcome { text-align: center; padding: 40px 20px; }[m
+[31m-    .login-box { max-width: 400px; margin: 0 auto 30px auto; background: white; padding: 25px;[m
+[31m-      border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-align: center; }[m
+[31m-    .login-box h2 { color: #0077b6; margin-bottom: 15px; }[m
+[31m-    .login-box input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 1em; }[m
+[31m-    .login-box button { width: 95%; padding: 12px; background: #00c853; color: white; border: none; border-radius: 8px;[m
+[31m-      font-size: 1.1em; font-weight: bold; cursor: pointer; transition: background 0.3s ease; }[m
+     .login-box button:hover { background: #76ff03; }[m
+[31m-    #message { margin-top: 15px; font-size: 0.95em; font-weight: bold; }[m
+[31m-    .app-footer { background-color: #DEB887; padding: 20px; text-align: center; border-top: 2px solid #eee; font-family: 'Segoe UI', sans-serif; }[m
+[31m-    .contact-info p { margin: 5px 0; font-size: 15px; }[m
+[31m-    .contact-info i { margin-right: 8px; font-size: 18px; }[m
+[32m+[m[32m    .login-box p { margin-top: 15px; }[m
+[32m+[m
+[32m+[m[32m    /* FOOTER */[m
+[32m+[m[32m    .app-footer {[m
+[32m+[m[32m      background-color: #DEB887;[m
+[32m+[m[32m      padding: 20px;[m
+[32m+[m[32m      text-align: center;[m
+[32m+[m[32m      border-top: 2px solid #eee;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .contact-info p { margin: 5px 0; font-size: 1em; }[m
+[32m+[m[32m    .contact-info i { margin-right: 8px; font-size: 1.2em; }[m
+     .gmail i { color: #D93025; }[m
+     .whatsapp i { color: #25D366; }[m
+[31m-    .contact-info a { text-decoration: none; color: #333; }[m
+     .social-icons { margin: 12px 0; }[m
+[31m-    .social-icons a { margin: 0 10px; font-size: 20px; text-decoration: none; }[m
+[31m-    .facebook i { color: #1877f2; }[m
+[31m-    .instagram i { color: #e1306c; }[m
+[31m-    .twitter i { color: #1da1f2; }[m
+[31m-    .tiktok i { color: #000000; }[m
+[31m-    .linkedin i { color: #0077b5; }[m
+[31m-    .youtube i { color: #ff0000; }[m
+[31m-    .social-icons a:hover i { transform: scale(1.2); }[m
+[31m-    .footer-text { font-size: 14px; color: #555; margin-top: 10px; }[m
+[32m+[m[32m    .social-icons a { margin: 0 10px; font-size: 1.4em; text-decoration: none; }[m
+[32m+[m[32m    .social-icons a.facebook { color: #1877F2; }[m
+[32m+[m[32m    .social-icons a.twitter { color: #1DA1F2; }[m
+[32m+[m[32m    .social-icons a.instagram { color: #E1306C; }[m
+[32m+[m[32m    .social-icons a.linkedin { color: #0A66C2; }[m
+[32m+[m[32m    .footer-text { font-size: 0.9em; color: #555; margin-top: 10px; }[m
+   </style>[m
+ </head>[m
+ <body>[m
+[31m-[m
+   <!-- HEADER -->[m
+   <header class="app-header">[m
+[31m-    <button class="menu-btn" onclick="toggleMenu()">☰</button>[m
+     <div class="title">Swaxfran</div>[m
+[31m-    <img src="logo.png" alt="Logo Swaxfran" class="logo">[m
+[31m-    <div id="menu" class="menu">[m
+[31m-      <a href="apropos.html">À propos</a>[m
+[31m-      <a href="aide.html">Aide</a>[m
+[31m-      <a href="contact.html">Contact</a>[m
+[31m-      <a href="parametres.html">Paramètres</a>[m
+[31m-      <a href="faq.html">FAQ</a>[m
+[31m-    </div>[m
+   </header>[m
+ [m
+[31m-  <!-- IMAGE SOUS MENU -->[m
+[32m+[m[32m  <!-- IMAGE (photo étudiants africains et européens) -->[m
+   <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" [m
+[31m-       alt="Élèves africains et occidentaux en classe" class="hero-image">[m
+[32m+[m[32m       alt="Étudiants africains et européens" class="hero-image">[m
+ [m
+[31m-  <!-- BIENVENUE -->[m
+[32m+[m[32m  <!-- WELCOME -->[m
+   <div class="welcome">[m
+[31m-    <h4>Bienvenue sur votre page de connexion</h4>[m
+[31m-    <p>karibu kwenye ukurasa wa kujiungiya</p>[m
+[31m-    <h4>Apprends en jouant, explore nos cours bilingues et échange avec la communauté.</h4>[m
+[31m-    <p>Jifunze kwa kufurahiya, gundua masomo yetu ya lugha mbili, na shiriki nasi katika jamii.</p>[m
+[32m+[m[32m    <h1>Bienvenue / Karibu</h1>[m
+[32m+[m[32m    <p><span class="fr">Bienvenue sur Swaxfran, votre passerelle entre le monde francophone et swahilophone.</span><br>[m
+[32m+[m[32m       <span class="sw">Karibu Swaxfran, daraja lako kati ya ulimwengu wa Kifaransa na Kiswahili.</span></p>[m
+[32m+[m[32m    <p><span class="fr">Apprenez, échangez et progressez avec une communauté ouverte et dynamique.</span><br>[m
+[32m+[m[32m       <span class="sw">Jifunze, shiriki na endelea na jamii yenye uwazi na nguvu.</span></p>[m
+[32m+[m[32m  </div>[m
+[32m+[m
+[32m+[m[32m  <!-- CONTENT -->[m
+[32m+[m[32m  <div class="content-section">[m
+[32m+[m[32m    <h2>Notre mission / Dhamira yetu</h2>[m
+[32m+[m[32m    <p><span class="fr">Rendre l’apprentissage des langues accessible à tous.</span><br>[m
+[32m+[m[32m       <span class="sw">Kufanya kujifunza lugha kupatikane kwa wote.</span></p>[m
+[32m+[m
+[32m+[m[32m    <h2>Nos valeurs / Thamani zetu</h2>[m
+[32m+[m[32m    <p><span class="fr">Accessibilité, communauté, créativité et respect des cultures.</span><br>[m
+[32m+[m[32m       <span class="sw">Upatikanaji, jamii, ubunifu na heshima kwa tamaduni.</span></p>[m
+[32m+[m
+[32m+[m[32m    <h2>Guide d’utilisation / Mwongozo wa matumizi</h2>[m
+[32m+[m[32m    <p><i class="fas fa-language" style="color:#0077b6;"></i> <span class="fr">Choisissez votre langue préférée.</span><br>[m
+[32m+[m[32m       <span class="sw">Chagua lugha unayopendelea.</span></p>[m
+[32m+[m[32m    <p><i class="fas fa-book-open" style="color:#0077b6;"></i> <span class="fr">Accédez aux leçons.</span><br>[m
+[32m+[m[32m       <span class="sw">Fikia masomo.</span></p>[m
+[32m+[m[32m    <p><i class="fas fa-comments" style="color:#ff9800;"></i> <span class="fr">Participez au forum.</span><br>[m
+[32m+[m[32m       <span class="sw">Shiriki kwenye jukwaa.</span></p>[m
+[32m+[m[32m    <p><i class="fas fa-user-circle" style="color:#00c853;"></i> <span class="fr">Consultez votre profil.</span><br>[m
+[32m+[m[32m       <span class="sw">Angalia wasifu wako.</span></p>[m
+[32m+[m[32m    <p><i class="fas fa-moon" style="color:#4fc3f7;"></i> <span class="fr">Activez le mode sombre.</span><br>[m
+[32m+[m[32m       <span class="sw">Weka hali ya giza.</span></p>[m
+   </div>[m
+ [m
+[31m-  <!-- FORMULAIRE -->[m
+[32m+[m[32m  <!-- LOGIN BOX -->[m
+   <div class="login-box">[m
+     <h2>Connexion / Ingia</h2>[m
+[31m-    <form id="loginForm">[m
+[31m-      <input type="email" id="loginEmail" placeholder="Email / Barua pepe" required>[m
+[31m-      <input type="password" id="loginPassword" placeholder="Mot de passe / Nenosiri" required>[m
+[32m+[m[32m    <form>[m
+[32m+[m[32m      <input type="email" placeholder="Adresse e-mail / Barua pepe" required>[m
+[32m+[m[32m      <input type="password" placeholder="Mot de passe / Nenosiri" required>[m
+       <button type="submit">Se connecter / Ingia</button>[m
+     </form>[m
+[31m-    <p id="message"></p>[m
+[31m-    <p>Pas encore de compte ? / Huna akaunti?<br>[m
+[31m-       <a href="page1.html">Créer un compte / Unda akaunti</a>[m
+[32m+[m
+[32m+[m[32m    <!-- Lien pour créer un compte -->[m
+[32m+[m[32m    <p>[m
+[32m+[m[32m      <span class="fr">Vous n'avez pas de compte ?</span><br>[m
+[32m+[m[32m      <span class="sw">Huna akaunti?</span><br>[m
+[32m+[m[32m      <a href="page1.html" style="color:#0077b6; font-weight:bold; text-decoration:none;">[m
+[32m+[m[32m        Créer un compte / Unda akaunti[m
+[32m+[m[32m      </a>[m
+     </p>[m
+   </div>[m
+ [m
+   <!-- FOOTER -->[m
+   <footer class="app-footer">[m
+     <div class="contact-info">[m
+[31m-      <p class="gmail"><i class="fas fa-envelope"></i> [m
+[31m-        <a href="mailto:swaxfran@gmail.org">swaxfran@gmail.org</a>[m
+[31m-      </p>[m
+[31m-      <p class="whatsapp"><i class="fab fa-whatsapp"></i> [m
+[31m-        <a href="https://wa.me/255621848522" target="_blank">+255 621 848 522</a>[m
+[31m-      </p>[m
+[32m+[m[32m      <p class="gmail"><i class="fas fa-envelope"></i> supportswaxfran@gmail.org</p>[m
+[32m+[m[32m      <p class="whatsapp"><i class="fab fa-whatsapp"></i> +255 621 848 522</p>[m
+     </div>[m
+     <div class="social-icons">[m
+[31m-      <a href="https://facebook.com/toncompte" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>[m
+[31m-      <a href="https://instagram.com/toncompte" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>[m
+[31m-      <a href="https://twitter.com/toncompte" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>[m
+[31m-      <a href="https://tiktok.com/@toncompte" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>[m
+[31m-      <a href="https://linkedin.com/in/toncompte" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>[m
+[31m-      <a href="https://youtube.com/toncompte" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>[m
+[32m+[m[32m      <a href="https://facebook.com/votrepage" target="_blank" class="facebook"><i class="fab fa-facebook"></i></a>[m
+[32m+[m[32m      <a href="https://twitter.com/votrecompte" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>[m
+[32m+[m[32m      <a href="https://instagram.com/votrecompte" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>[m
+[32m+[m[32m      <a href="https://linkedin.com/in/votrecompte" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>[m
+     </div>[m
+[31m-    <p class="footer-text">© 2026 Swaxfran – Apprendre en joie et en bilingue</p>[m
+[32m+[m[32m    <div class="footer-text">© 2026 Swaxfran. Tous droits réservés.</div>[m
+   </footer>[m
+[31m-[m
+[31m- <script type="module">[m
+[31m-  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";[m
+[31m-[m
+[31m-  // ⚠️ Mets tes vrais identifiants Supabase ici[m
+[31m-  const supabaseUrl = "https://jtizgclcllouqdbeifrg.supabase.co";[m
+[31m-  const supabaseKey = "sb_publishable_U-jpSc8gPeTkPNxAQYcbuA_FnikXS2H";[m
+[31m-  const supabase = createClient(supabaseUrl, supabaseKey);[m
+[31m-[m
+[31m-  const form = document.getElementById("loginForm");[m
+[31m-  const messageBox = document.getElementById("message");[m
+[31m-[m
+[31m-  form.addEventListener("submit", async (e) => {[m
+[31m-    e.preventDefault();[m
+[31m-[m
+[31m-    const email = document.getElementById("loginEmail").value.trim();[m
+[31m-    const password = document.getElementById("loginPassword").value.trim();[m
+[31m-[m
+[31m-    // Tentative de connexion avec Supabase[m
+[31m-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });[m
+[31m-[m
+[31m-    if (error) {[m
+[31m-      messageBox.textContent = "❌ Connexion impossible : vérifiez vos identifiants ou confirmez votre e‑mail.";[m
+[31m-      messageBox.style.color = "red";[m
+[31m-      return;[m
+[31m-    }[m
+[31m-[m
+[31m-    const user = data.user;[m
+[31m-    if (!user) {[m
+[31m-      messageBox.textContent = "❌ Utilisateur introuvable.";[m
+[31m-      messageBox.style.color = "red";[m
+[31m-      return;[m
+[31m-    }[m
+[31m-[m
+[31m-    // Récupérer la langue choisie lors de l'inscription[m
+[31m-    const { data: profil, error: profilError } = await supabase[m
+[31m-      .from("inscriptions")[m
+[31m-      .select("langue_apprentissage")[m
+[31m-      .eq("user_id", user.id)[m
+[31m-      .single();[m
+[31m-[m
+[31m-    let langue = "français"; // valeur par défaut[m
+[31m-[m
+[31m-    if (profilError || !profil) {[m
+[31m-      messageBox.textContent = "⚠️ Profil introuvable, redirection par défaut.";[m
+[31m-      messageBox.style.color = "orange";[m
+[31m-    } else {[m
+[31m-      langue = profil.langue_apprentissage;[m
+[31m-    }[m
+[31m-[m
+[31m-    // Stocker les infos utiles dans localStorage[m
+[31m-    localStorage.setItem("userId", user.id);[m
+[31m-    localStorage.setItem("email", email);[m
+[31m-    localStorage.setItem("langue", langue);[m
+[31m-[m
+[31m-    messageBox.textContent = "✅ Connexion réussie ! Redirection...";[m
+[31m-    messageBox.style.color = "green";[m
+[31m-[m
+[31m-    // Redirection selon la langue choisie[m
+[31m-    setTimeout(() => {[m
+[31m-      if (langue === "français") {[m
+[31m-        window.location.href = "dashboard_fr.html";[m
+[31m-      } else if (langue === "swahili") {[m
+[31m-        window.location.href = "dashboard_sw.html";[m
+[31m-      } else {[m
+[31m-        window.location.href = "dashboard_fr.html"; // valeur par défaut[m
+[31m-      }[m
+[31m-    }, 1000);[m
+[31m-  });[m
+[31m-</script>[m
+[31m-[m
+[31m-  <!-- SCRIPT MENU FLOTTANT -->[m
+[31m-  <script>[m
+[31m-    function toggleMenu() {[m
+[31m-      const menu = document.getElementById("menu");[m
+[31m-      menu.style.display = (menu.style.display === "block") ? "none" : "block";[m
+[31m-    }[m
+[31m-  </script>[m
+[31m-[m
+ </body>[m
+ </html>[m
+\ No newline at end of file[m
+[1mdiff --git a/interjection.html b/interjection.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/kiambajina.html b/kiambajina.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/kielezi.html b/kielezi.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/kifungu.html b/kifungu.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/kishazi.html b/kishazi.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/kitenzi.html b/kitenzi.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/kiunganishi.html b/kiunganishi.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/kivumishi.html b/kivumishi.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/lessons_fr.html b/lessons_fr.html[m
+[1mindex 557d49c..40209e2 100644[m
+[1m--- a/lessons_fr.html[m
+[1m+++ b/lessons_fr.html[m
+[36m@@ -2,7 +2,7 @@[m
+ <html lang="fr">[m
+ <head>[m
+   <meta charset="UTF-8">[m
+[31m-  <title>Swaxfran - Leçon 0 (Introduction au français)</title>[m
+[32m+[m[32m  <title>Swaxfran - Plan du cours</title>[m
+   <!-- Polices Google -->[m
+   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Fredoka+One&display=swap" rel="stylesheet">[m
+   <!-- Font Awesome -->[m
+[36m@@ -16,8 +16,12 @@[m
+       display: flex;[m
+       flex-direction: column;[m
+       min-height: 100vh;[m
+[32m+[m[32m      transition: background 0.3s ease, color 0.3s ease;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    body.dark {[m
+[32m+[m[32m      background: #121212;[m
+[32m+[m[32m      color: #eee;[m
+     }[m
+[31m-[m
+     .header {[m
+       background: #0077b6;[m
+       color: white;[m
+[36m@@ -27,7 +31,6 @@[m
+       font-size: 1.8em;[m
+       text-shadow: 2px 2px #333;[m
+     }[m
+[31m-[m
+     .content {[m
+       flex: 1;[m
+       padding: 30px;[m
+[36m@@ -36,22 +39,26 @@[m
+       background: #ffffff;[m
+       border-radius: 20px;[m
+       box-shadow: 0 8px 20px rgba(0,0,0,0.2);[m
+[32m+[m[32m      transition: background 0.3s ease;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    body.dark .content {[m
+[32m+[m[32m      background: #1e1e1e;[m
+[32m+[m[32m      color: #eee;[m
+     }[m
+[31m-[m
+     h2 {[m
+       color: #0077b6;[m
+       margin-bottom: 20px;[m
+       text-align: center;[m
+     }[m
+[31m-[m
+[32m+[m[32m    body.dark h2 {[m
+[32m+[m[32m      color: #4fc3f7;[m
+[32m+[m[32m    }[m
+     p {[m
+       font-size: 1.1em;[m
+[31m-      color: #444;[m
+       line-height: 1.6em;[m
+       margin-bottom: 20px;[m
+       text-align: justify;[m
+     }[m
+[31m-[m
+     /* Grille des leçons */[m
+     .grid {[m
+       display: grid;[m
+[36m@@ -59,7 +66,6 @@[m
+       gap: 20px;[m
+       margin-top: 20px;[m
+     }[m
+[31m-[m
+     .grid button {[m
+       background: linear-gradient(135deg, #00c853, #b2ff59);[m
+       border: none;[m
+[36m@@ -72,21 +78,62 @@[m
+       text-shadow: 1px 1px #333;[m
+       transition: transform 0.2s ease, background 0.3s ease;[m
+     }[m
+[31m-[m
+     .grid button:hover:enabled {[m
+       transform: scale(1.05);[m
+       background: linear-gradient(135deg, #76ff03, #00e676);[m
+     }[m
+[31m-[m
+[31m-    /* Boutons verrouillés */[m
+     .grid button:disabled {[m
+       background: #ccc;[m
+       cursor: not-allowed;[m
+       color: #666;[m
+       text-shadow: none;[m
+     }[m
+[31m-[m
+[31m-    /* Barre de navigation identique au dashboard */[m
+[32m+[m[32m    body.dark .grid button {[m
+[32m+[m[32m      background: #333;[m
+[32m+[m[32m      color: #eee;[m
+[32m+[m[32m      text-shadow: none;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    body.dark .grid button:hover:enabled {[m
+[32m+[m[32m      background: #555;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    /* Barre de progression */[m
+[32m+[m[32m    .progress {[m
+[32m+[m[32m      margin-top: 20px;[m
+[32m+[m[32m      background: #ddd;[m
+[32m+[m[32m      border-radius: 10px;[m
+[32m+[m[32m      overflow: hidden;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .progress-bar {[m
+[32m+[m[32m      height: 20px;[m
+[32m+[m[32m      width: 0%;[m
+[32m+[m[32m      background: #0077b6;[m
+[32m+[m[32m      transition: width 0.5s ease;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    body.dark .progress {[m
+[32m+[m[32m      background: #333;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    body.dark .progress-bar {[m
+[32m+[m[32m      background: #4fc3f7;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    /* Notifications */[m
+[32m+[m[32m    .toast {[m
+[32m+[m[32m      position: fixed;[m
+[32m+[m[32m      bottom: 80px;[m
+[32m+[m[32m      right: 20px;[m
+[32m+[m[32m      background: #0077b6;[m
+[32m+[m[32m      color: white;[m
+[32m+[m[32m      padding: 12px 20px;[m
+[32m+[m[32m      border-radius: 8px;[m
+[32m+[m[32m      box-shadow: 0 4px 10px rgba(0,0,0,0.3);[m
+[32m+[m[32m      opacity: 0;[m
+[32m+[m[32m      transform: translateY(20px);[m
+[32m+[m[32m      transition: opacity 0.3s ease, transform 0.3s ease;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .toast.show {[m
+[32m+[m[32m      opacity: 1;[m
+[32m+[m[32m      transform: translateY(0);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    /* Barre de navigation */[m
+     .navbar {[m
+       background: #ffffff;[m
+       display: flex;[m
+[36m@@ -95,7 +142,10 @@[m
+       border-top: 2px solid #ddd;[m
+       box-shadow: 0 -2px 8px rgba(0,0,0,0.1);[m
+     }[m
+[31m-[m
+[32m+[m[32m    body.dark .navbar {[m
+[32m+[m[32m      background: #1e1e1e;[m
+[32m+[m[32m      border-top: 2px solid #333;[m
+[32m+[m[32m    }[m
+     .navbar a {[m
+       text-decoration: none;[m
+       color: #333;[m
+[36m@@ -105,39 +155,59 @@[m
+       align-items: center;[m
+       transition: color 0.3s ease;[m
+     }[m
+[31m-[m
+[32m+[m[32m    body.dark .navbar a {[m
+[32m+[m[32m      color: #eee;[m
+[32m+[m[32m    }[m
+     .navbar a i {[m
+       font-size: 22px;[m
+       margin-bottom: 5px;[m
+     }[m
+[31m-[m
+     .navbar a.lessons i { color: #0077b6; }[m
+     .navbar a.forum i { color: #ff9800; }[m
+     .navbar a.profile i { color: #00c853; }[m
+     .navbar a.about i { color: #e63946; }[m
+[31m-[m
+     .navbar a:hover {[m
+       color: #0077b6;[m
+     }[m
+[32m+[m[32m    body.dark .navbar a:hover {[m
+[32m+[m[32m      color: #4fc3f7;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    /* Bouton mode sombre */[m
+[32m+[m[32m    .toggle-theme {[m
+[32m+[m[32m      position: fixed;[m
+[32m+[m[32m      top: 20px;[m
+[32m+[m[32m      right: 20px;[m
+[32m+[m[32m      background: #0077b6;[m
+[32m+[m[32m      color: white;[m
+[32m+[m[32m      border: none;[m
+[32m+[m[32m      padding: 10px 15px;[m
+[32m+[m[32m      border-radius: 8px;[m
+[32m+[m[32m      cursor: pointer;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    body.dark .toggle-theme {[m
+[32m+[m[32m      background: #4fc3f7;[m
+[32m+[m[32m      color: #121212;[m
+[32m+[m[32m    }[m
+   </style>[m
+ </head>[m
+ <body>[m
+   <div class="header">[m
+[31m-    Leçon 0 : Introduction au français[m
+[32m+[m[32m    Leçon 0 : Utangilizi wa Kifaransa (Introduction au français)[m
+   </div>[m
+ [m
+   <div class="content">[m
+[31m-    <h2>I. Introduction</h2>[m
+[31m-    <p>[m
+[31m-      Le français est issu du latin vulgaire parlé par les Romains après la chute de l’Empire romain.<br>[m
+[31m-      Au IXe siècle, les premiers textes en français apparaissent (*Les Serments de Strasbourg*).<br>[m
+[31m-      En 1539, le français est proclamé langue officielle de l’administration et de la justice en France.<br>[m
+[31m-      Grâce à la colonisation et au commerce, le français s’est répandu en Afrique, en Amérique et en Asie.<br>[m
+[32m+[m[32m    <h2>I. Utangulizi (Introduction)</h2>[m
+[32m+[m[32m    <p>Kifaransa kina tokana na kilatini cha kawaida kilicho zungumzwa na Warumi, baada ya kuanguka kwa dolla ya Urumi<br></br>[m
+[32m+[m[32m      Le français est issu du latin vulgaire parlé par les Romains après la chute de l’Empire romain.<br></br>[m
+[32m+[m[32m      Maandishi ya kwanza ya kifaeansa yali onekana kwa mara ya kwanza, ndani ya karne ya 9 (viapo vya Strasbourg)<br></br>[m
+[32m+[m[32m      Au IXe siècle, les premiers textes en français apparaissent (*Les Serments de Strasbourg*).<br></br>Mwaka 1539, kifaransa kili tangazwa rasmi kuwa lugha ya taifa n'chini Ufaransa.<br></br>[m
+[32m+[m[32m      En 1539, le français est proclamé langue officielle de l’administration et de la justice en France.<br></br>Kupitiya ukoloni pamoja na biashara, kifaransa kime eneya Afrika, Amerika na aziya.<br></br>[m
+[32m+[m[32m      Grâce à la colonisation et au commerce, le français s’est répandu en Afrique, en Amérique et en Asie.<br></br>Hivi sasa, ime kuwa lugha muhimu sana kwenye maswala ya kidiplomasiya, biashara na hata utalii, ina zungumzwa na zaidi ya watu milioni miya tatu (300 000 000) duniani<br></br>[m
+       Aujourd’hui, c’est une langue importante en diplomatie, commerce et tourisme, parlée par plus de 300 millions de personnes dans le monde.[m
+     </p>[m
+ [m
+[31m-    <h2>II. Plan du cours</h2>[m
+[31m-    <p>La grammaire française comprend 9 parties du discours :</p>[m
+[32m+[m[32m    <h2>II.Mpangilio wa masomo (Plan du cours)</h2>[m
+[32m+[m[32m    <p>Sarufi ya Kifaransa ina sehemu kubwa 9.<br></br>La grammaire française comprend 9 parties du discours :</p>[m
+     <div class="grid">[m
+       <button id="lesson1">1. Nom</button>[m
+       <button id="lesson2" disabled>2. Pronom</button>[m
+[36m@@ -149,9 +219,12 @@[m
+       <button id="lesson8" disabled>8. Interjection</button>[m
+       <button id="lesson9" disabled>9. Article</button>[m
+     </div>[m
+[32m+[m
+[32m+[m[32m    <div class="progress">[m
+[32m+[m[32m      <div class="progress-bar" id="progressBar"></div>[m
+[32m+[m[32m    </div>[m
+   </div>[m
+ [m
+[31m-  <!-- Barre de navigation en bas -->[m
+   <div class="navbar">[m
+     <a href="dashboard_fr.html" class="lessons">[m
+       <i class="fas fa-book-open"></i>[m
+[36m@@ -171,19 +244,76 @@[m
+     </a>[m
+   </div>[m
+ [m
+[31m-  <script>[m
+[31m-    // Simulation : débloquer la leçon suivante après avoir terminé la précédente[m
+[31m-    document.getElementById("lesson1").addEventListener("click", () => {[m
+[31m-      alert("Leçon 1 terminée ✅");[m
+[31m-      document.getElementById("lesson2").disabled = false;[m
+[31m-    });[m
+[32m+[m[32m  <button class="toggle-theme" id="toggleTheme">🌙 Mode sombre</button>[m
+[32m+[m[32m  <div class="toast" id="toast"></div>[m
+[32m+[m
+[32m+[m[32m<script>[m
+[32m+[m[32m  const lessons = document.querySelectorAll(".grid button");[m
+[32m+[m[32m  const progressBar = document.getElementById("progressBar");[m
+[32m+[m[32m  const toast = document.getElementById("toast");[m
+[32m+[m[32m  const toggleThemeBtn = document.getElementById("toggleTheme");[m
+[32m+[m
+[32m+[m[32m  // Pages correspondantes (FR)[m
+[32m+[m[32m  const pagesFr = [[m
+[32m+[m[32m    "nom.html", "pronom.html", "verbe.html", "adjectif.html",[m
+[32m+[m[32m    "adverbe.html", "préposition.html", "conjonction.html",[m
+[32m+[m[32m    "interjection.html", "article.html"[m
+[32m+[m[32m  ];[m
+[32m+[m
+[32m+[m[32m  const storageKey = "progress_fr";[m
+[32m+[m[32m  let progress = JSON.parse(localStorage.getItem(storageKey)) || { completed: [] };[m
+[32m+[m
+[32m+[m[32m  // Initialiser boutons[m
+[32m+[m[32m  lessons.forEach((btn, index) => {[m
+[32m+[m[32m    // Activer la première leçon[m
+[32m+[m[32m    if (index === 0) {[m
+[32m+[m[32m      btn.disabled = false;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    // Activer les leçons déjà terminées[m
+[32m+[m[32m    if (progress.completed.includes(index)) {[m
+[32m+[m[32m      btn.disabled = false;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    // Activer la leçon suivante à faire[m
+[32m+[m[32m    if (progress.completed.includes(index - 1)) {[m
+[32m+[m[32m      btn.disabled = false;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    btn.addEventListener("click", () => completeLesson(index));[m
+[32m+[m[32m  });[m
+[32m+[m
+[32m+[m[32m  // Fonction pour compléter une leçon[m
+[32m+[m[32m  function completeLesson(index) {[m
+[32m+[m[32m    if (!progress.completed.includes(index)) {[m
+[32m+[m[32m      progress.completed.push(index);[m
+[32m+[m[32m      localStorage.setItem(storageKey, JSON.stringify(progress));[m
+[32m+[m[32m      showToast(`Leçon ${index + 1} terminée ✅`);[m
+[32m+[m[32m      if (lessons[index + 1]) lessons[index + 1].disabled = false;[m
+[32m+[m[32m      updateProgress();[m
+[32m+[m[32m    }[m
+[32m+[m[32m    // Redirection vers la page correspondante[m
+[32m+[m[32m    window.location.href = pagesFr[index];[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  // Mise à jour barre de progression[m
+[32m+[m[32m  function updateProgress() {[m
+[32m+[m[32m    const percent = (progress.completed.length / lessons.length) * 100;[m
+[32m+[m[32m    progressBar.style.width = percent + "%";[m
+[32m+[m[32m  }[m
+[32m+[m[32m  updateProgress();[m
+ [m
+[31m-    document.getElementById("lesson2").addEventListener("click", () => {[m
+[31m-      alert("Leçon 2 terminée ✅");[m
+[31m-      document.getElementById("lesson3").disabled = false;[m
+[31m-    });[m
+[32m+[m[32m  // Notification toast[m
+[32m+[m[32m  function showToast(message) {[m
+[32m+[m[32m    toast.textContent = message;[m
+[32m+[m[32m    toast.classList.add("show");[m
+[32m+[m[32m    setTimeout(() => toast.classList.remove("show"), 3000);[m
+[32m+[m[32m  }[m
+ [m
+[31m-    // etc. tu peux répéter pour chaque leçon[m
+[31m-  </script>[m
+[32m+[m[32m  // Mode sombre / clair[m
+[32m+[m[32m  toggleThemeBtn.addEventListener("click", () => {[m
+[32m+[m[32m    document.body.classList.toggle("dark");[m
+[32m+[m[32m    toggleThemeBtn.textContent = document.body.classList.contains("dark")[m
+[32m+[m[32m      ? "☀️ Mode clair"[m
+[32m+[m[32m      : "🌙 Mode sombre";[m
+[32m+[m[32m  });[m
+[32m+[m[32m</script>[m
+ </body>[m
+ </html>[m
+\ No newline at end of file[m
+[1mdiff --git a/lessons_sw.html b/lessons_sw.html[m
+[1mindex b468189..6c1986f 100644[m
+[1m--- a/lessons_sw.html[m
+[1m+++ b/lessons_sw.html[m
+[36m@@ -3,9 +3,7 @@[m
+ <head>[m
+   <meta charset="UTF-8">[m
+   <title>Swaxfran - Somo 0 (Utangulizi wa Kiswahili)</title>[m
+[31m-  <!-- Polices Google -->[m
+   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Fredoka+One&display=swap" rel="stylesheet">[m
+[31m-  <!-- Font Awesome -->[m
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">[m
+ [m
+   <style>[m
+[36m@@ -16,125 +14,87 @@[m
+       display: flex;[m
+       flex-direction: column;[m
+       min-height: 100vh;[m
+[32m+[m[32m      transition: background 0.3s ease, color 0.3s ease;[m
+     }[m
+[31m-[m
+[32m+[m[32m    body.dark { background: #121212; color: #eee; }[m
+     .header {[m
+[31m-      background: #0077b6;[m
+[31m-      color: white;[m
+[31m-      padding: 20px;[m
+[31m-      text-align: center;[m
+[31m-      font-family: 'Fredoka One', cursive;[m
+[31m-      font-size: 1.8em;[m
+[31m-      text-shadow: 2px 2px #333;[m
+[32m+[m[32m      background: #0077b6; color: white; padding: 20px; text-align: center;[m
+[32m+[m[32m      font-family: 'Fredoka One', cursive; font-size: 1.8em; text-shadow: 2px 2px #333;[m
+     }[m
+[31m-[m
+     .content {[m
+[31m-      flex: 1;[m
+[31m-      padding: 30px;[m
+[31m-      max-width: 900px;[m
+[31m-      margin: 30px auto;[m
+[31m-      background: #ffffff;[m
+[31m-      border-radius: 20px;[m
+[31m-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);[m
+[31m-    }[m
+[31m-[m
+[31m-    h2 {[m
+[31m-      color: #0077b6;[m
+[31m-      margin-bottom: 20px;[m
+[31m-      text-align: center;[m
+[32m+[m[32m      flex: 1; padding: 30px; max-width: 900px; margin: 30px auto;[m
+[32m+[m[32m      background: #ffffff; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);[m
+[32m+[m[32m      transition: background 0.3s ease;[m
+     }[m
+[31m-[m
+[31m-    p {[m
+[31m-      font-size: 1.1em;[m
+[31m-      color: #444;[m
+[31m-      line-height: 1.6em;[m
+[31m-      margin-bottom: 20px;[m
+[31m-      text-align: justify;[m
+[31m-    }[m
+[31m-[m
+[31m-    /* Grille des leçons */[m
+[32m+[m[32m    body.dark .content { background: #1e1e1e; color: #eee; }[m
+[32m+[m[32m    h2 { color: #0077b6; text-align: center; margin-bottom: 20px; }[m
+[32m+[m[32m    body.dark h2 { color: #4fc3f7; }[m
+[32m+[m[32m    p { font-size: 1.1em; line-height: 1.6em; text-align: justify; }[m
+     .grid {[m
+[31m-      display: grid;[m
+[31m-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));[m
+[31m-      gap: 20px;[m
+[31m-      margin-top: 20px;[m
+[32m+[m[32m      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));[m
+[32m+[m[32m      gap: 20px; margin-top: 20px;[m
+     }[m
+[31m-[m
+     .grid button {[m
+[31m-      background: linear-gradient(135deg, #00c853, #b2ff59);[m
+[31m-      border: none;[m
+[31m-      padding: 20px;[m
+[31m-      border-radius: 15px;[m
+[31m-      font-weight: bold;[m
+[31m-      font-size: 1.1em;[m
+[31m-      cursor: pointer;[m
+[31m-      color: white;[m
+[31m-      text-shadow: 1px 1px #333;[m
+[32m+[m[32m      background: linear-gradient(135deg, #00c853, #b2ff59); border: none;[m
+[32m+[m[32m      padding: 20px; border-radius: 15px; font-weight: bold; font-size: 1.1em;[m
+[32m+[m[32m      cursor: pointer; color: white; text-shadow: 1px 1px #333;[m
+       transition: transform 0.2s ease, background 0.3s ease;[m
+     }[m
+[31m-[m
+[31m-    .grid button:hover:enabled {[m
+[31m-      transform: scale(1.05);[m
+[31m-      background: linear-gradient(135deg, #76ff03, #00e676);[m
+[31m-    }[m
+[31m-[m
+[31m-    /* Boutons verrouillés */[m
+[31m-    .grid button:disabled {[m
+[31m-      background: #ccc;[m
+[31m-      cursor: not-allowed;[m
+[31m-      color: #666;[m
+[31m-      text-shadow: none;[m
+[32m+[m[32m    .grid button:hover:enabled { transform: scale(1.05); background: linear-gradient(135deg, #76ff03, #00e676); }[m
+[32m+[m[32m    .grid button:disabled { background: #ccc; cursor: not-allowed; color: #666; text-shadow: none; }[m
+[32m+[m[32m    body.dark .grid button { background: #333; color: #eee; text-shadow: none; }[m
+[32m+[m[32m    body.dark .grid button:hover:enabled { background: #555; }[m
+[32m+[m[32m    .progress { margin-top: 20px; background: #ddd; border-radius: 10px; overflow: hidden; }[m
+[32m+[m[32m    .progress-bar { height: 20px; width: 0%; background: #0077b6; transition: width 0.5s ease; }[m
+[32m+[m[32m    body.dark .progress { background: #333; }[m
+[32m+[m[32m    body.dark .progress-bar { background: #4fc3f7; }[m
+[32m+[m[32m    .toast {[m
+[32m+[m[32m      position: fixed; bottom: 80px; right: 20px; background: #0077b6; color: white;[m
+[32m+[m[32m      padding: 12px 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);[m
+[32m+[m[32m      opacity: 0; transform: translateY(20px);[m
+[32m+[m[32m      transition: opacity 0.3s ease, transform 0.3s ease;[m
+     }[m
+[31m-[m
+[31m-    /* Barre de navigation identique au dashboard */[m
+[32m+[m[32m    .toast.show { opacity: 1; transform: translateY(0); }[m
+     .navbar {[m
+[31m-      background: #ffffff;[m
+[31m-      display: flex;[m
+[31m-      justify-content: space-around;[m
+[31m-      padding: 12px;[m
+[31m-      border-top: 2px solid #ddd;[m
+[31m-      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);[m
+[32m+[m[32m      background: #ffffff; display: flex; justify-content: space-around;[m
+[32m+[m[32m      padding: 12px; border-top: 2px solid #ddd; box-shadow: 0 -2px 8px rgba(0,0,0,0.1);[m
+     }[m
+[31m-[m
+[32m+[m[32m    body.dark .navbar { background: #1e1e1e; border-top: 2px solid #333; }[m
+     .navbar a {[m
+[31m-      text-decoration: none;[m
+[31m-      color: #333;[m
+[31m-      font-size: 0.9em;[m
+[31m-      display: flex;[m
+[31m-      flex-direction: column;[m
+[31m-      align-items: center;[m
+[32m+[m[32m      text-decoration: none; color: #333; font-size: 0.9em;[m
+[32m+[m[32m      display: flex; flex-direction: column; align-items: center;[m
+       transition: color 0.3s ease;[m
+     }[m
+[31m-[m
+[31m-    .navbar a i {[m
+[31m-      font-size: 22px;[m
+[31m-      margin-bottom: 5px;[m
+[31m-    }[m
+[31m-[m
+[32m+[m[32m    body.dark .navbar a { color: #eee; }[m
+[32m+[m[32m    .navbar a i { font-size: 22px; margin-bottom: 5px; }[m
+     .navbar a.lessons i { color: #0077b6; }[m
+     .navbar a.forum i { color: #ff9800; }[m
+     .navbar a.profile i { color: #00c853; }[m
+     .navbar a.about i { color: #e63946; }[m
+[31m-[m
+[31m-    .navbar a:hover {[m
+[31m-      color: #0077b6;[m
+[32m+[m[32m    .navbar a:hover { color: #0077b6; }[m
+[32m+[m[32m    body.dark .navbar a:hover { color: #4fc3f7; }[m
+[32m+[m[32m    .toggle-theme {[m
+[32m+[m[32m      position: fixed; top: 20px; right: 20px;[m
+[32m+[m[32m      background: #0077b6; color: white; border: none;[m
+[32m+[m[32m      padding: 10px 15px; border-radius: 8px; cursor: pointer;[m
+     }[m
+[32m+[m[32m    body.dark .toggle-theme { background: #4fc3f7; color: #121212; }[m
+   </style>[m
+ </head>[m
+ <body>[m
+[31m-  <div class="header">[m
+[31m-    Somo 0 : Utangulizi wa Kiswahili[m
+[31m-  </div>[m
+[32m+[m[32m  <div class="header">Somo 0 : Utangulizi wa Kiswahili</div>[m
+ [m
+   <div class="content">[m
+     <h2>I. Utangulizi</h2>[m
+     <p>[m
+[31m-      Kiswahili ni lugha ya Kibantu yenye historia ndefu ya mawasiliano na biashara katika Afrika Mashariki.[m
+[31m-      Lugha hii imeathiriwa na Kiarabu, Kiajemi, Kireno na Kifaransa kutokana na mwingiliano wa kihistoria.<br>[m
+[31m-      Leo, Kiswahili kinazungumzwa na mamilioni ya watu katika Afrika Mashariki na Kati, na kimekuwa lugha rasmi katika mashirika ya kikanda kama Umoja wa Afrika Mashariki.<br>[m
+[31m-      Ni lugha yenye nguvu katika utamaduni, elimu na diplomasia.[m
+[31m-    </p> <h2>II. Mpangilio wa Somo</h2>[m
+[31m-    <p>Sarufi ya Kiswahili ina sehemu kuu 9 za usemi:</p>[m
+[32m+[m[32m      Kiswahili ni lugha ya Kibantu inayozungumzwa sana Afrika Mashariki na Kati.<br>[m
+[32m+[m[32m      Ni lugha rasmi katika nchi kadhaa ikiwemo Tanzania na Kenya.<br>[m
+[32m+[m[32m      Kiswahili hutumika katika elimu, biashara, na diplomasia.<br>[m
+[32m+[m[32m      Leo, mamilioni ya watu duniani huzungumza Kiswahili.[m
+[32m+[m[32m    </p>[m
+[32m+[m
+[32m+[m[32m    <h2>II. Mpangilio wa masomo</h2>[m
+[32m+[m[32m    <p>Sehemu kuu za usemi katika Kiswahili ni 9:</p>[m
+     <div class="grid">[m
+       <button id="lesson1">1. Nomino</button>[m
+       <button id="lesson2" disabled>2. Kiambajina</button>[m
+[36m@@ -144,43 +104,89 @@[m
+       <button id="lesson6" disabled>6. Kiunganishi</button>[m
+       <button id="lesson7" disabled>7. Kishazi</button>[m
+       <button id="lesson8" disabled>8. Udokezi</button>[m
+[31m-      <button id="lesson9" disabled>9. Kifungu cha makala</button>[m
+[32m+[m[32m      <button id="lesson9" disabled>9. Kifungu</button>[m
+[32m+[m[32m    </div>[m
+[32m+[m
+[32m+[m[32m    <div class="progress">[m
+[32m+[m[32m      <div class="progress-bar" id="progressBar"></div>[m
+     </div>[m
+   </div>[m
+ [m
+[31m-  <!-- Barre de navigation en bas -->[m
+   <div class="navbar">[m
+[31m-    <a href="dashboard_sw.html" class="lessons">[m
+[31m-      <i class="fas fa-book-open"></i>[m
+[31m-      Dashibodi[m
+[31m-    </a>[m
+[31m-    <a href="forum.html" class="forum">[m
+[31m-      <i class="fas fa-comments"></i>[m
+[31m-      Jukwaa[m
+[31m-    </a>[m
+[31m-    <a href="profile_sw.html" class="profile">[m
+[31m-      <i class="fas fa-user-circle"></i>[m
+[31m-      Wasifu[m
+[31m-    </a>[m
+[31m-    <a href="about.html" class="about">[m
+[31m-      <i class="fas fa-info-circle"></i>[m
+[31m-      Kuhusu[m
+[31m-    </a>[m
+[32m+[m[32m    <a href="dashboard.html" class="lessons"><i class="fas fa-book-open"></i> Dashibodi</a>[m
+[32m+[m[32m    <a href="forum.html" class="forum"><i class="fas fa-comments"></i> Jukwaa</a>[m
+[32m+[m[32m    <a href="profile.html" class="profile"><i class="fas fa-user-circle"></i> Wasifu</a>[m
+[32m+[m[32m    <a href="about.html" class="about"><i class="fas fa-info-circle"></i> Kuhusu</a>[m
+   </div>[m
+ [m
+[31m-  <script>[m
+[31m-    // Kufungua somo moja baada ya jingine[m
+[31m-    document.getElementById("lesson1").addEventListener("click", () => {[m
+[31m-      alert("Somo 1 limekamilika ✅");[m
+[31m-      document.getElementById("lesson2").disabled = false;[m
+[31m-    });[m
+[31m-[m
+[31m-    document.getElementById("lesson2").addEventListener("click", () => {[m
+[31m-      alert("Somo 2 limekamilika ✅");[m
+[31m-      document.getElementById("lesson3").disabled = false;[m
+[31m-    });[m
+[31m-[m
+[31m-    // Unaweza kuendelea kwa kila somo[m
+[31m-  </script>[m
+[32m+[m[32m  <button class="toggle-theme" id="toggleTheme">🌙 Hali ya giza</button>[m
+[32m+[m[32m  <div class="toast" id="toast"></div>[m
+[32m+[m
+[32m+[m[32m<script>[m
+[32m+[m[32m  const lessons = document.querySelectorAll(".grid button");[m
+[32m+[m[32m  const progressBar = document.getElementById("progressBar");[m
+[32m+[m[32m  const toast = document.getElementById("toast");[m
+[32m+[m[32m  const toggleThemeBtn = document.getElementById("toggleTheme");[m
+[32m+[m
+[32m+[m[32m  // Pages correspondantes[m
+[32m+[m[32m  const pages = [[m
+[32m+[m[32m    "nomino.html", "kiambajina.html", "kitenzi.html", "kivumishi.html",[m
+[32m+[m[32m    "kielezi.html", "kiunganishi.html", "kishazi.html",[m
+[32m+[m[32m    "udokezi.html", "kifungu.html"[m
+[32m+[m[32m  ];[m
+[32m+[m
+[32m+[m[32m  const storageKey = "progress";[m
+[32m+[m[32m  let progress = JSON.parse(localStorage.getItem(storageKey)) || { completed: [] };[m
+[32m+[m
+[32m+[m[32m  // Initialisation des boutons[m
+[32m+[m[32m  lessons.forEach((btn, index) => {[m
+[32m+[m[32m    // Leçon 1 toujours activée[m
+[32m+[m[32m    if (index === 0) btn.disabled = false;[m
+[32m+[m
+[32m+[m[32m    // Débloquer les leçons déjà complétées[m
+[32m+[m[32m    if (progress.completed.includes(index)) btn.disabled = false;[m
+[32m+[m
+[32m+[m[32m    // Débloquer la leçon suivante si la précédente est terminée[m
+[32m+[m[32m    if (progress.completed.includes(index - 1)) btn.disabled = false;[m
+[32m+[m
+[32m+[m[32m    // Action au clic[m
+[32m+[m[32m    btn.addEventListener("click", () => completeLesson(index));[m
+[32m+[m[32m  });[m
+[32m+[m
+[32m+[m[32m  // Fonction de complétion[m
+[32m+[m[32m  function completeLesson(index) {[m
+[32m+[m[32m    if (!progress.completed.includes(index)) {[m
+[32m+[m[32m      progress.completed.push(index);[m
+[32m+[m[32m      localStorage.setItem(storageKey, JSON.stringify(progress));[m
+[32m+[m[32m      showToast(`Somo ${index + 1} limekamilika ✅`);[m
+[32m+[m[32m      if (lessons[index + 1]) lessons[index + 1].disabled = false;[m
+[32m+[m[32m      updateProgress();[m
+[32m+[m[32m    }[m
+[32m+[m[32m    // Redirection vers la page correspondante[m
+[32m+[m[32m    window.location.href = pages[index];[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  // Mise à jour de la barre de progression[m
+[32m+[m[32m  function updateProgress() {[m
+[32m+[m[32m    const percent = (progress.completed.length / lessons.length) * 100;[m
+[32m+[m[32m    progressBar.style.width = percent + "%";[m
+[32m+[m[32m  }[m
+[32m+[m[32m  updateProgress();[m
+[32m+[m
+[32m+[m[32m  // Notification (toast)[m
+[32m+[m[32m  function showToast(message) {[m
+[32m+[m[32m    toast.textContent = message;[m
+[32m+[m[32m    toast.classList.add("show");[m
+[32m+[m[32m    setTimeout(() => toast.classList.remove("show"), 3000);[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  // Mode jour/nuit[m
+[32m+[m[32m  toggleThemeBtn.addEventListener("click", () => {[m
+[32m+[m[32m    document.body.classList.toggle("dark");[m
+[32m+[m[32m    toggleThemeBtn.textContent = document.body.classList.contains("dark")[m
+[32m+[m[32m      ? "☀️ Hali ya mwanga"[m
+[32m+[m[32m      : "🌙 Hali ya giza";[m
+[32m+[m[32m  });[m
+[32m+[m[32m</script>[m
+ </body>[m
+ </html>[m
+\ No newline at end of file[m
+[1mdiff --git a/nom.html b/nom.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7d90ccd[m
+[1m--- /dev/null[m
+[1m+++ b/nom.html[m
+[36m@@ -0,0 +1,125 @@[m
+[32m+[m[32m<!DOCTYPE html>[m
+[32m+[m[32m<html lang="fr">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m  <meta charset="UTF-8">[m
+[32m+[m[32m  <title>Leçon 1 : Le Nom</title>[m
+[32m+[m[32m  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Fredoka+One&display=swap" rel="stylesheet">[m
+[32m+[m[32m  <style>[m
+[32m+[m[32m    body {[m
+[32m+[m[32m      font-family: 'Baloo 2', cursive;[m
+[32m+[m[32m      margin: 0;[m
+[32m+[m[32m      padding: 20px;[m
+[32m+[m[32m      background: #fdfdfd;[m
+[32m+[m[32m      transition: background 0.3s ease, color 0.3s ease;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    body.dark {[m
+[32m+[m[32m      background: #121212;[m
+[32m+[m[32m      color: #eee;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    h1 { color:#0077b6; text-align:center; }[m
+[32m+[m[32m    h2 { color:#0077b6; margin-top:20px; }[m
+[32m+[m[32m    p, ul { font-size:1.1em; line-height:1.6em; text-align:justify; }[m
+[32m+[m[32m    .exemple {[m
+[32m+[m[32m      background:#e3f2fd; padding:10px; border-left:4px solid #0077b6; margin:10px 0;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .exercice {[m
+[32m+[m[32m      background:#fff3e0; padding:10px; border-left:4px solid #ff9800; margin:10px 0;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .btn {[m
+[32m+[m[32m      display:inline-block; margin-top:30px; padding:12px 20px;[m
+[32m+[m[32m      background:#0077b6; color:white; border:none; border-radius:8px;[m
+[32m+[m[32m      font-weight:bold; cursor:pointer;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    .btn:hover { background:#005f87; }[m
+[32m+[m[32m    .toggle-theme {[m
+[32m+[m[32m      position: fixed; top: 20px; right: 20px;[m
+[32m+[m[32m      background: #0077b6; color: white;[m
+[32m+[m[32m      border: none; padding: 10px 15px;[m
+[32m+[m[32m      border-radius: 8px; cursor: pointer;[m
+[32m+[m[32m    }[m
+[32m+[m[32m  </style>[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body>[m
+[32m+[m[32m  <!-- Bouton jour/nuit -->[m
+[32m+[m[32m  <button class="toggle-theme" id="toggleTheme">🌙 Mode sombre</button>[m
+[32m+[m
+[32m+[m[32m  <h1>Leçon 1 : Le Nom</h1>[m
+[32m+[m
+[32m+[m[32m  <h2>Définition</h2>[m
+[32m+[m[32m  <p>[m
+[32m+[m[32m    Le <strong>nom</strong> est un mot qui sert à désigner des êtres, des objets, des lieux ou des notions abstraites.[m
+[32m+[m[32m    Il est au cœur de la phrase et peut être accompagné d’un déterminant et d’adjectifs.[m
+[32m+[m[32m  </p>[m
+[32m+[m
+[32m+[m[32m  <h2>Catégories de noms</h2>[m
+[32m+[m[32m  <ul>[m
+[32m+[m[32m    <li><strong>Nom commun</strong> : élève, ville</li>[m
+[32m+[m[32m    <li><strong>Nom propre</strong> : Marie, Paris</li>[m
+[32m+[m[32m    <li><strong>Nom concret</strong> : table, parfum</li>[m
+[32m+[m[32m    <li><strong>Nom abstrait</strong> : justice, liberté</li>[m
+[32m+[m[32m    <li><strong>Nom collectif</strong> : troupeau, foule</li>[m
+[32m+[m[32m    <li><strong>Nom composé</strong> : arc-en-ciel, pomme de terre</li>[m
+[32m+[m[32m  </ul>[m
+[32m+[m
+[32m+[m[32m  <h2>Genre et nombre</h2>[m
+[32m+[m[32m  <p>[m
+[32m+[m[32m    Les noms sont <strong>masculins</strong> ou <strong>féminins</strong>, <strong>singuliers</strong> ou <strong>pluriels</strong>.[m
+[32m+[m[32m    Le genre et le nombre influencent l’accord avec les déterminants et adjectifs.[m
+[32m+[m[32m  </p>[m
+[32m+[m[32m  <div class="exemple">[m
+[32m+[m[32m    Exemples : <br>[m
+[32m+[m[32m    - un <strong>livre</strong> / des <strong>livres</strong><br>[m
+[32m+[m[32m    - une <strong>maison</strong> / des <strong>maisons</strong>[m
+[32m+[m[32m  </div>[m
+[32m+[m
+[32m+[m[32m  <h2>Accord</h2>[m
+[32m+[m[32m  <p>[m
+[32m+[m[32m    Le nom s’accorde avec son déterminant et son adjectif.[m
+[32m+[m[32m  </p>[m
+[32m+[m[32m  <div class="exemple">[m
+[32m+[m[32m    Exemples : <br>[m
+[32m+[m[32m    - <strong>Les maisons</strong> sont grandes.<br>[m
+[32m+[m[32m    - Une <strong>belle maison</strong>.[m
+[32m+[m[32m  </div>[m
+[32m+[m
+[32m+[m[32m  <h2>Fonctions du nom dans la phrase</h2>[m
+[32m+[m[32m  <ul>[m
+[32m+[m[32m    <li>Sujet : <em>Le chat dort.</em></li>[m
+[32m+[m[32m    <li>Complément d’objet : <em>Je regarde le chat.</em></li>[m
+[32m+[m[32m    <li>Apposition : <em>Paris, capitale de la France, est magnifique.</em></li>[m
+[32m+[m[32m    <li>Complément du nom : <em>Le livre de Paul.</em></li>[m
+[32m+[m[32m  </ul>[m
+[32m+[m
+[32m+[m[32m  <h2>Exercices</h2>[m
+[32m+[m[32m  <div class="exercice">[m
+[32m+[m[32m    <strong>Exercice 1 :</strong> Soulignez les noms dans la phrase : <br>[m
+[32m+[m[32m    <em>La liberté est une valeur essentielle pour l’homme.</em><br><br>[m
+[32m+[m
+[32m+[m[32m    <strong>Exercice 2 :</strong> Classez les noms suivants : <em>fleur, Afrique, justice, troupeau, pomme de terre</em>.<br><br>[m
+[32m+[m
+[32m+[m[32m    <strong>Exercice 3 :</strong> Transformez ces noms du singulier au pluriel : <em>un enfant, une table, un animal</em>.<br><br>[m
+[32m+[m
+[32m+[m[32m    <strong>Exercice 4 :</strong> Donnez le genre des noms suivants : <em>soleil, lune, livre, voiture</em>.[m
+[32m+[m[32m  </div>[m
+[32m+[m
+[32m+[m[32m  <!-- Bouton retour -->[m
+[32m+[m[32m  <button id="retourBtn" class="btn">⬅ Retour au plan du cours</button>[m
+[32m+[m
+[32m+[m[32m  <script>[m
+[32m+[m[32m    // Bouton jour/nuit[m
+[32m+[m[32m    const toggleThemeBtn = document.getElementById("toggleTheme");[m
+[32m+[m[32m    toggleThemeBtn.addEventListener("click", () => {[m
+[32m+[m[32m      document.body.classList.toggle("dark");[m
+[32m+[m[32m      toggleThemeBtn.textContent = document.body.classList.contains("dark")[m
+[32m+[m[32m        ? "☀️ Mode clair"[m
+[32m+[m[32m        : "🌙 Mode sombre";[m
+[32m+[m[32m    });[m
+[32m+[m
+[32m+[m[32m    // Bouton retour (Option 2)[m
+[32m+[m[32m    document.getElementById("retourBtn").addEventListener("click", () => {[m
+[32m+[m[32m      // ⚠️ Vérifie que le fichier "lecon_fr.html" existe bien dans ton projet[m
+[32m+[m[32m      window.location.href = "lessons_fr.html";[m
+[32m+[m[32m    });[m
+[32m+[m[32m  </script>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+\ No newline at end of file[m
+[1mdiff --git a/nomino.html b/nomino.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/page3.html b/page3.html[m
+[1mindex fec183d..a269856 100644[m
+[1m--- a/page3.html[m
+[1m+++ b/page3.html[m
+[36m@@ -1,66 +1,66 @@[m
+ <!DOCTYPE html>[m
+[31m-<html lang="fr">[m
+[32m+[m[32m<html lang="sw">[m
+ <head>[m
+   <meta charset="UTF-8">[m
+[31m-  <title>Usajili - Page 3</title>[m
+[32m+[m[32m  <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m+[m[32m  <title>Usajili - Hatua ya 3</title>[m
+[32m+[m[32m  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">[m
+   <style>[m
+     body {[m
+[31m-      font-family: "Segoe UI", Arial, sans-serif;[m
+[31m-      max-width: 600px;[m
+[31m-      margin: auto;[m
+[31m-      padding: 30px;[m
+[31m-      background: #f4f6f9;[m
+[32m+[m[32m      font-family: 'Roboto', sans-serif;[m
+[32m+[m[32m      width: 100%;[m
+[32m+[m[32m      margin: 0;[m
+[32m+[m[32m      padding: 20px;[m
+[32m+[m[32m      background: #f9f9f9;[m
+       color: #333;[m
+     }[m
+ [m
+     h2 {[m
+       text-align: center;[m
+[31m-      color: #007BFF; /* cohérent avec les autres pages */[m
+[31m-      font-size: 26px;[m
+[32m+[m[32m      color: #007BFF;[m
+[32m+[m[32m      font-size: 2em;[m
+       margin-bottom: 25px;[m
+       font-weight: 700;[m
+     }[m
+ [m
+     label {[m
+       display: block;[m
+[31m-      margin-top: 20px;[m
+[32m+[m[32m      margin-top: 15px;[m
+       font-weight: 600;[m
+       color: #2c3e50;[m
+[31m-    }[m
+[31m-[m
+[31m-    .inline-group {[m
+[31m-      display: flex;[m
+[31m-      align-items: center;[m
+[31m-      gap: 20px; /* espace entre les champs et le bouton */[m
+[31m-      margin-top: 10px;[m
+[32m+[m[32m      font-size: 1em;[m
+     }[m
+ [m
+     select, input {[m
+[31m-      width: 105px; /* largeur réduite */[m
+[31m-      padding: 8px;[m
+[32m+[m[32m      width: 100%;[m
+[32m+[m[32m      padding: 12px;[m
+[32m+[m[32m      margin-top: 8px;[m
+       border: 1px solid #ccc;[m
+[31m-      border-radius: 3px;[m
+[31m-      font-size: 14px;[m
+[31m-      background: #fff; /* blanc par défaut */[m
+[32m+[m[32m      border-radius: 5px;[m
+[32m+[m[32m      font-size: 1em;[m
+[32m+[m[32m      box-sizing: border-box;[m
+[32m+[m[32m      background: #fff;[m
+       color: #2c3e50;[m
+       transition: background 0.3s ease, border-color 0.3s ease;[m
+     }[m
+ [m
+[31m-    select.filled, input.filled {[m
+[31m-      background: #eaf7ea;   /* vert naturel doux */[m
+[32m+[m[32m    input.filled, select.filled {[m
+[32m+[m[32m      background: #eaf7ea;[m
+       border-color: #a3c293;[m
+     }[m
+ [m
+     button {[m
+[31m-      padding: 2px 2px;[m
+[32m+[m[32m      padding: 14px;[m
+       background: #007BFF;[m
+       color: white;[m
+       border: none;[m
+[31m-      border-radius: 3px;[m
+[32m+[m[32m      border-radius: 5px;[m
+       cursor: pointer;[m
+[31m-      font-size: 26px;[m
+[32m+[m[32m      font-size: 1.2em;[m
+[32m+[m[32m      font-weight: 600;[m
+       transition: background 0.3s ease;[m
+[31m-      width: auto; /* bouton compact */[m
+[32m+[m[32m      margin-top: 25px;[m
+[32m+[m[32m      width: 100%;[m
+     }[m
+ [m
+     button:hover {[m
+[36m@@ -71,138 +71,221 @@[m
+       margin-top: 20px;[m
+       font-weight: bold;[m
+       text-align: center;[m
+[31m-      font-size: 15px;[m
+[32m+[m[32m      font-size: 1em;[m
+     }[m
+ [m
+     .error { color: #e74c3c; }[m
+     .success { color: #27ae60; }[m
+[32m+[m[32m    .info { color: #007BFF; }[m
+[32m+[m
+[32m+[m[32m    small {[m
+[32m+[m[32m      display: block;[m
+[32m+[m[32m      margin-top: 5px;[m
+[32m+[m[32m      color: #555;[m
+[32m+[m[32m      font-size: 0.9em;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @media (max-width: 600px) {[m
+[32m+[m[32m      body { padding: 15px; }[m
+[32m+[m[32m      h2 { font-size: 1.8em; }[m
+[32m+[m[32m      label, select, input, button, #message { font-size: 1.1em; }[m
+[32m+[m[32m      button { padding: 16px; font-size: 1.3em; }[m
+[32m+[m[32m    }[m
+   </style>[m
+[31m-  <!-- Import libphonenumber-js -->[m
+[31m-  <script src="https://unpkg.com/libphonenumber-js@1.11.7/bundle/libphonenumber-js.min.js"></script>[m
+ </head>[m
+ <body>[m
+   <h2>Usajili - Hatua ya 3</h2>[m
+ [m
+   <form id="form3">[m
+[31m-    <label>Numéro de téléphone</label>[m
+[31m-    <div class="inline-group">[m
+[31m-      <select id="codeTel" required>[m
+[31m-        <option value="">Indicatif</option>[m
+[31m-        <!-- Pays francophones et swahiliphones (ordre alphabétique) -->[m
+[31m-        <option value="DZ">Algérie (+213)</option>[m
+[31m-        <option value="BE">Belgique (+32)</option>[m
+[31m-        <option value="BJ">Bénin (+229)</option>[m
+[31m-        <option value="BF">Burkina Faso (+226)</option>[m
+[31m-        <option value="BI">Burundi (+257)</option>[m
+[31m-        <option value="CM">Cameroun (+237)</option>[m
+[31m-        <option value="CA">Canada (+1)</option>[m
+[31m-        <option value="KM">Comores (+269)</option>[m
+[31m-        <option value="CG">Congo (+242)</option>[m
+[31m-        <option value="CI">Côte d’Ivoire (+225)</option>[m
+[31m-        <option value="DJ">Djibouti (+253)</option>[m
+[31m-        <option value="FR">France (+33)</option>[m
+[31m-        <option value="GA">Gabon (+241)</option>[m
+[31m-        <option value="GN">Guinée (+224)</option>[m
+[31m-        <option value="GQ">Guinée équatoriale (+240)</option>[m
+[31m-        <option value="HT">Haïti (+509)</option>[m
+[31m-        <option value="KE">Kenya (+254)</option>[m
+[31m-        <option value="LU">Luxembourg (+352)</option>[m
+[31m-        <option value="MG">Madagascar (+261)</option>[m
+[31m-        <option value="ML">Mali (+223)</option>[m
+[31m-        <option value="MA">Maroc (+212)</option>[m
+[31m-        <option value="MR">Mauritanie (+222)</option>[m
+[31m-        <option value="MZ">Mozambique (+258)</option>[m
+[31m-        <option value="NE">Niger (+227)</option>[m
+[31m-        <option value="NC">Nouvelle-Calédonie (+687)</option>[m
+[31m-        <option value="UG">Ouganda (+256)</option>[m
+[31m-        <option value="CF">République centrafricaine (+236)</option>[m
+[31m-        <option value="CD">République démocratique du Congo (+243)</option>[m
+[31m-        <option value="RW">Rwanda (+250)</option>[m
+[31m-        <option value="SN">Sénégal (+221)</option>[m
+[31m-        <option value="SC">Seychelles (+248)</option>[m
+[31m-        <option value="CH">Suisse (+41)</option>[m
+[31m-        <option value="TZ">Tanzanie (+255)</option>[m
+[31m-        <option value="TD">Tchad (+235)</option>[m
+[31m-        <option value="TG">Togo (+228)</option>[m
+[31m-        <option value="TN">Tunisie (+216)</option>[m
+[31m-        <option value="ZM">Zambie (+260)</option>[m
+[32m+[m[32m    <label>Namba ya Simu (Téléphone)</label>[m
+[32m+[m[32m    <div style="display:flex; gap:10px; flex-wrap:wrap;">[m
+[32m+[m[32m      <select id="indicatif" required style="flex:1;">[m
+[32m+[m[32m        <option value="">-- Chagua Nchi --</option>[m
+[32m+[m[32m        <option value="+213">Algérie (+213)</option>[m
+[32m+[m[32m        <option value="+229">Bénin (+229)</option>[m
+[32m+[m[32m        <option value="+32">Belgique (+32)</option>[m
+[32m+[m[32m        <option value="+226">Burkina Faso (+226)</option>[m
+[32m+[m[32m        <option value="+257">Burundi (+257)</option>[m
+[32m+[m[32m        <option value="+237">Cameroun (+237)</option>[m
+[32m+[m[32m        <option value="+1">Canada (+1)</option>[m
+[32m+[m[32m        <option value="+269">Comores (+269)</option>[m
+[32m+[m[32m        <option value="+242">Congo Brazzaville (+242)</option>[m
+[32m+[m[32m        <option value="+243">Congo Kinshasa (+243)</option>[m
+[32m+[m[32m        <option value="+225">Côte d’Ivoire (+225)</option>[m
+[32m+[m[32m        <option value="+253">Djibouti (+253)</option>[m
+[32m+[m[32m        <option value="+33">France (+33)</option>[m
+[32m+[m[32m        <option value="+241">Gabon (+241)</option>[m
+[32m+[m[32m        <option value="+224">Guinée (+224)</option>[m
+[32m+[m[32m        <option value="+240">Guinée équatoriale (+240)</option>[m
+[32m+[m[32m        <option value="+245">Guinée-Bissau (+245)</option>[m
+[32m+[m[32m        <option value="+509">Haïti (+509)</option>[m
+[32m+[m[32m        <option value="+254">Kenya (+254)</option>[m
+[32m+[m[32m        <option value="+352">Luxembourg (+352)</option>[m
+[32m+[m[32m        <option value="+265">Malawi (+265)</option>[m
+[32m+[m[32m        <option value="+223">Mali (+223)</option>[m
+[32m+[m[32m        <option value="+212">Maroc (+212)</option>[m
+[32m+[m[32m        <option value="+222">Mauritanie (+222)</option>[m
+[32m+[m[32m        <option value="+377">Monaco (+377)</option>[m
+[32m+[m[32m        <option value="+258">Mozambique (+258)</option>[m
+[32m+[m[32m        <option value="+227">Niger (+227)</option>[m
+[32m+[m[32m        <option value="+256">Ouganda (+256)</option>[m
+[32m+[m[32m        <option value="+250">Rwanda (+250)</option>[m
+[32m+[m[32m        <option value="+221">Sénégal (+221)</option>[m
+[32m+[m[32m        <option value="+248">Seychelles (+248)</option>[m
+[32m+[m[32m        <option value="+252">Somalie (+252)</option>[m
+[32m+[m[32m        <option value="+41">Suisse (+41)</option>[m
+[32m+[m[32m        <option value="+255">Tanzanie (+255)</option>[m
+[32m+[m[32m        <option value="+235">Tchad (+235)</option>[m
+[32m+[m[32m        <option value="+228">Togo (+228)</option>[m
+[32m+[m[32m        <option value="+216">Tunisie (+216)</option>[m
+[32m+[m[32m        <option value="+260">Zambie (+260)</option>[m
+       </select>[m
+ [m
+[31m-      <input type="text" id="telephone" required placeholder="Votre numéro" inputmode="numeric">[m
+[31m-      <!-- Bouton discret avec icône flèche -->[m
+[31m-      <button type="submit">➡️</button>[m
+[32m+[m[32m      <input type="tel" id="telephone"[m
+[32m+[m[32m             placeholder="712345678"[m
+[32m+[m[32m             required style="flex:2;">[m
+     </div>[m
+[32m+[m[32m    <small>Format international (E.164) : +255712345678</small>[m
+[32m+[m
+[32m+[m[32m    <label>Kiwango cha Lugha ya Kiingereza (Niveau d’anglais)</label>[m
+[32m+[m[32m    <select id="anglais" required>[m
+[32m+[m[32m      <option value="">-- Tafadhali chagua --</option>[m
+[32m+[m[32m      <option value="A1">A1 (Débutant)</option>[m
+[32m+[m[32m      <option value="A2">A2 (Élémentaire)</option>[m
+[32m+[m[32m      <option value="B1">B1 (Intermédiaire)</option>[m
+[32m+[m[32m      <option value="B2">B2 (Intermédiaire avancé)</option>[m
+[32m+[m[32m      <option value="C1">C1 (Avancé)</option>[m
+[32m+[m[32m      <option value="C2">C2 (Maîtrise)</option>[m
+[32m+[m[32m    </select>[m
+[32m+[m
+[32m+[m[32m    <button type="submit">➡️ Endelea</button>[m
+   </form>[m
+ [m
+   <div id="message"></div>[m
+ [m
+   <script>[m
+[31m-  const telInput = document.getElementById("telephone");[m
+[31m-  const codeSelect = document.getElementById("codeTel");[m
+[32m+[m[32m  const form = document.getElementById("form3");[m
+   const msg = document.getElementById("message");[m
+[32m+[m[32m  const indicatifSelect = document.getElementById("indicatif");[m
+[32m+[m[32m  const telInput = document.getElementById("telephone");[m
+ [m
+[31m-  // Appliquer la couleur verte après saisie[m
+[31m-  document.querySelectorAll("input, select").forEach(el => {[m
+[31m-    el.addEventListener("blur", () => {[m
+[31m-      if (el.value.trim() !== "") {[m
+[31m-        el.classList.add("filled");[m
+[31m-      } else {[m
+[31m-        el.classList.remove("filled");[m
+[31m-      }[m
+[31m-    });[m
+[31m-  });[m
+[32m+[m[32m  // Règles de validation + formatage par pays[m
+[32m+[m[32m  const rules = {[m
+[32m+[m[32m    "+255": { regex: /^[67][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Tanzanie[m
+[32m+[m[32m    "+243": { regex: /^8[0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // RDC[m
+[32m+[m[32m    "+254": { regex: /^7[0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Kenya[m
+[32m+[m[32m    "+256": { regex: /^7[0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Ouganda[m
+[32m+[m[32m    "+250": { regex: /^7[0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Rwanda[m
+[32m+[m[32m    "+257": { regex: /^7[0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Burundi[m
+[32m+[m[32m    "+33":  { regex: /^[67][0-9]{0,8}$/, format: num => num.replace(/(\d{1})(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4 $5") }, // France[m
+[32m+[m[32m    "+1":   { regex: /^[2-9][0-9]{0,9}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,4})/, "($1) $2-$3") }, // Canada[m
+[32m+[m[32m    // ✅ Ajout francophones Afrique (règle générique : 8 chiffres, commence par 2, 6 ou 7)[m
+[32m+[m[32m    "+221": { regex: /^[267][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Sénégal[m
+[32m+[m[32m    "+225": { regex: /^[0-9]{0,8}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Côte d’Ivoire[m
+[32m+[m[32m    "+223": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Mali[m
+[32m+[m[32m    "+227": { regex: /^[9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Niger[m
+[32m+[m[32m    "+228": { regex: /^[9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Togo[m
+[32m+[m[32m    "+216": { regex: /^[2-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Tunisie[m
+[32m+[m[32m    "+212": { regex: /^[6-7][0-9]{0,8}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Maroc[m
+[32m+[m[32m    "+222": { regex: /^[2-4][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Mauritanie[m
+[32m+[m[32m    "+241": { regex: /^[0-9]{0,8}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Gabon[m
+[32m+[m[32m    "+226": { regex: /^[6-7][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Burkina Faso[m
+[32m+[m[32m    "+229": { regex: /^[9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Bénin[m
+[32m+[m[32m    "+237": { regex: /^[6][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Cameroun[m
+[32m+[m[32m    "+269": { regex: /^[3][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Comores[m
+[32m+[m[32m    "+253": { regex: /^[7][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Djibouti[m
+[32m+[m[32m    "+352": { regex: /^[0-9]{0,9}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Luxembourg[m
+[32m+[m[32m    "+41":  { regex: /^[7][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Suisse[m
+[32m+[m[32m    "+260": { regex: /^[9][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Zambie[m
+[32m+[m[32m    "+265": { regex: /^[9][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Malawi[m
+[32m+[m[32m    "+258": { regex: /^[8][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Mozambique[m
+[32m+[m[32m    "+252": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Somalie[m
+[32m+[m[32m    "+235": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Tchad[m
+[32m+[m[32m    "+240": { regex: /^[222][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Guinée équatoriale[m
+[32m+[m[32m    "+224": { regex: /^[6][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Guinée[m
+[32m+[m[32m    "+245": { regex: /^[9][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Guinée-Bissau[m
+[32m+[m[32m    "+509": { regex: /^[3-4][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Haïti[m
+[32m+[m[32m    "+241": { regex: /^[0-9]{0,8}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Gabon[m
+[32m+[m[32m    "+226": { regex: /^[6-7][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Burkina Faso[m
+[32m+[m[32m    "+229": { regex: /^[9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Bénin[m
+[32m+[m[32m    "+237": { regex: /^[6][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Cameroun[m
+[32m+[m[32m    "+269": { regex: /^[3][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Comores[m
+[32m+[m[32m    "+253": { regex: /^[7][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Djibouti[m
+[32m+[m[32m    "+352": { regex: /^[0-9]{0,9}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Luxembourg[m
+[32m+[m[32m    "+41":  { regex: /^[7][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Suisse[m
+[32m+[m[32m    "+260": { regex: /^[9][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Zambie[m
+[32m+[m[32m    "+265": { regex: /^[9][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Malawi[m
+[32m+[m[32m    "+258": { regex: /^[8][0-9]{0,8}$/, format: num => num.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Mozambique[m
+[32m+[m[32m    "+252": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Somalie[m
+[32m+[m[32m    "+235": { regex: /^[6-9][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Tchad[m
+[32m+[m[32m    "+240": { regex: /^[2][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Guinée équatoriale[m
+[32m+[m[32m    "+224": { regex: /^[6][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1 $2 $3") }, // Guinée[m
+[32m+[m[32m    "+245": { regex: /^[9][0-9]{0,6}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})/, "$1 $2 $3") }, // Guinée-Bissau[m
+[32m+[m[32m    "+509": { regex: /^[3-4][0-9]{0,7}$/, format: num => num.replace(/(\d{2})(\d{2})(\d{0,2})(\d{0,2})/, "$1 $2 $3 $4") }, // Haïti[m
+[32m+[m[32m  };[m
+[32m+[m
+[32m+[m[32m  // ✅ Formatage en direct lors de la saisie[m
+[32m+[m[32m  telInput.addEventListener("input", () => {[m
+[32m+[m[32m    let indicatif = indicatifSelect.value;[m
+[32m+[m[32m    let raw = telInput.value.replace(/\D/g, ""); // garder uniquement chiffres[m
+ [m
+[31m-  // Formatage quand on quitte le champ[m
+[31m-  telInput.addEventListener("blur", () => {[m
+[31m-    const countryCode = codeSelect.value;[m
+[31m-    const rawNumber = telInput.value.trim();[m
+[31m-    if (!countryCode || !rawNumber) return;[m
+[32m+[m[32m    if (!raw) {[m
+[32m+[m[32m      telInput.value = "";[m
+[32m+[m[32m      return;[m
+[32m+[m[32m    }[m
+ [m
+[31m-    try {[m
+[31m-      const phoneNumber = libphonenumber.parsePhoneNumberFromString(rawNumber, countryCode);[m
+[31m-      if (phoneNumber && phoneNumber.isValid()) {[m
+[31m-        telInput.value = phoneNumber.formatNational();[m
+[32m+[m[32m    if (rules[indicatif]) {[m
+[32m+[m[32m      const { regex, format } = rules[indicatif];[m
+[32m+[m[32m      // Intercepter saisie incorrecte[m
+[32m+[m[32m      if (!regex.test(raw)) {[m
+[32m+[m[32m        msg.textContent = "🚫 Numéro invalide pour " + indicatif;[m
+[32m+[m[32m        msg.className = "error";[m
+[32m+[m[32m        return;[m
+       }[m
+[31m-    } catch (err) {[m
+[31m-      // rien[m
+[32m+[m[32m      telInput.value = format(raw);[m
+[32m+[m[32m    } else {[m
+[32m+[m[32m      // format générique : regrouper par 3[m
+[32m+[m[32m      telInput.value = raw.replace(/(\d{3})(?=\d)/g, "$1 ").trim();[m
+     }[m
+   });[m
+ [m
+[31m-  // Soumission du formulaire[m
+[31m-  document.getElementById("form3").addEventListener("submit", function(e) {[m
+[32m+[m[32m  // ✅ Soumission avec validation finale[m
+[32m+[m[32m  form.addEventListener("submit", (e) => {[m
+     e.preventDefault();[m
+[31m-    const countryCode = codeSelect.value;[m
+[31m-    const rawNumber = telInput.value.trim();[m
+ [m
+[31m-    if (!countryCode || !rawNumber) {[m
+[31m-      msg.textContent = "❌ Choisis l’indicatif et entre ton numéro";[m
+[32m+[m[32m    const indicatif = indicatifSelect.value;[m
+[32m+[m[32m    let telephone = telInput.value.replace(/\D/g, ""); // numéro brut[m
+[32m+[m[32m    const anglais = document.getElementById("anglais").value;[m
+[32m+[m
+[32m+[m[32m    if (!indicatif || !telephone || !anglais) {[m
+[32m+[m[32m      msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";[m
+       msg.className = "error";[m
+       return;[m
+     }[m
+ [m
+[31m-    try {[m
+[31m-      const phoneNumber = libphonenumber.parsePhoneNumberFromString(rawNumber, countryCode);[m
+[31m-      if (!phoneNumber || !phoneNumber.isValid()) {[m
+[31m-        msg.textContent = "❌ Numéro invalide pour ce pays";[m
+[32m+[m[32m    if (rules[indicatif]) {[m
+[32m+[m[32m      const { regex } = rules[indicatif];[m
+[32m+[m[32m      if (!regex.test(telephone)) {[m
+[32m+[m[32m        msg.textContent = "🚫 Numéro invalide pour " + indicatif;[m
+         msg.className = "error";[m
+         return;[m
+       }[m
+[32m+[m[32m    } else if (telephone.length < 6) {[m
+[32m+[m[32m      msg.textContent = "🚫 Numéro trop court.";[m
+[32m+[m[32m      msg.className = "error";[m
+[32m+[m[32m      return;[m
+[32m+[m[32m    }[m
+ [m
+[31m-      const numeroFormate = phoneNumber.formatInternational();[m
+[31m-      localStorage.setItem("indicatif", phoneNumber.countryCallingCode);[m
+[31m-      localStorage.setItem("telephone", numeroFormate);[m
+[32m+[m[32m    const fullNumber = indicatif + " " + telInput.value;[m
+ [m
+[31m-      msg.textContent = `✅ Numéro enregistré : ${numeroFormate} → redirection...`;[m
+[31m-      msg.className = "success";[m
+[32m+[m[32m    localStorage.setItem("telephone", fullNumber);[m
+[32m+[m[32m    localStorage.setItem("anglais", anglais);[m
+ [m
+[31m-      setTimeout(() => {[m
+[31m-        window.location.href = "page4.html";[m
+[31m-      }, 1000);[m
+[31m-    } catch (err) {[m
+[31m-      msg.textContent = "❌ Erreur de validation du numéro";[m
+[31m-      msg.className = "error";[m
+[31m-    }[m
+[32m+[m[32m    msg.textContent = "✅ Hatua ya 3 imekamilika (Étape 3 réussie)";[m
+[32m+[m[32m    msg.className = "success";[m
+[32m+[m
+[32m+[m[32m    window.location.href = "page4.html";[m
+   });[m
+[31m-  </script>[m
+[32m+[m[32m</script>[m
+ </body>[m
+ </html>[m
+\ No newline at end of file[m
+[1mdiff --git a/page4.html b/page4.html[m
+[1mindex 5ce07e0..03154c0 100644[m
+[1m--- a/page4.html[m
+[1m+++ b/page4.html[m
+[36m@@ -14,74 +14,29 @@[m
+       background: #f9f9f9;[m
+       color: #333;[m
+     }[m
+[31m-[m
+[31m-    h2 {[m
+[31m-      text-align: center;[m
+[31m-      color: #007BFF;[m
+[31m-      font-size: 26px;[m
+[31m-      margin-bottom: 25px;[m
+[31m-      font-weight: 700;[m
+[31m-    }[m
+[31m-[m
+[31m-    label {[m
+[31m-      display: block;[m
+[31m-      margin-top: 15px;[m
+[31m-      font-weight: 600;[m
+[31m-      color: #2c3e50;[m
+[31m-    }[m
+[31m-[m
+[32m+[m[32m    h2 { text-align: center; color: #007BFF; font-size: 26px; margin-bottom: 25px; font-weight: 700; }[m
+[32m+[m[32m    label { display: block; margin-top: 15px; font-weight: 600; color: #2c3e50; }[m
+     input, select {[m
+[31m-      width: 100%;[m
+[31m-      padding: 8px;[m
+[31m-      margin-top: 8px;[m
+[31m-      border: 1px solid #ccc;[m
+[31m-      border-radius: 3px;[m
+[31m-      font-size: 16px;[m
+[31m-      box-sizing: border-box;[m
+[31m-      background: #fff;[m
+[31m-      color: #2c3e50;[m
+[31m-      transition: background 0.3s ease, border-color 0.3s ease;[m
+[32m+[m[32m      width: 100%; padding: 8px; margin-top: 8px;[m
+[32m+[m[32m      border: 1px solid #ccc; border-radius: 3px;[m
+[32m+[m[32m      font-size: 16px; box-sizing: border-box;[m
+[32m+[m[32m      background: #fff; color: #2c3e50;[m
+     }[m
+[31m-[m
+[31m-    /* Couleur après saisie */[m
+[31m-    input.filled, select.filled {[m
+[31m-      background: #eaf7ea;[m
+[31m-      border-color: #a3c293;[m
+[31m-    }[m
+[31m-[m
+[31m-    .inline-group {[m
+[31m-      display: flex;[m
+[31m-      align-items: center;[m
+[31m-      gap: 15px;[m
+[31m-      margin-top: 10px;[m
+[31m-    }[m
+[31m-[m
+[32m+[m[32m    .inline-group { display: flex; align-items: center; gap: 15px; margin-top: 10px; }[m
+     button {[m
+[31m-      padding: 2px 2px;[m
+[31m-      background: #007BFF;[m
+[31m-      color: white;[m
+[31m-      border: none;[m
+[31m-      border-radius: 3px;[m
+[31m-      cursor: pointer;[m
+[31m-      font-size: 26px; /* taille icône */[m
+[31m-      transition: background 0.3s ease;[m
+[31m-      width: auto; /* bouton compact */[m
+[31m-    }[m
+[31m-[m
+[31m-    button:hover {[m
+[31m-      background: #0056b3;[m
+[32m+[m[32m      padding: 2px 2px; background: #007BFF; color: white;[m
+[32m+[m[32m      border: none; border-radius: 3px; cursor: pointer;[m
+[32m+[m[32m      font-size: 26px; transition: background 0.3s ease; width: auto;[m
+     }[m
+[31m-[m
+[31m-    #message {[m
+[31m-      margin-top: 20px;[m
+[31m-      font-weight: bold;[m
+[31m-      text-align: center;[m
+[31m-      font-size: 15px;[m
+[32m+[m[32m    button:hover { background: #0056b3; }[m
+[32m+[m[32m    #message { margin-top: 20px; font-weight: bold; text-align: center; font-size: 15px; }[m
+[32m+[m[32m    .error { color: #e74c3c; } .success { color: #27ae60; } .info { color: #007BFF; }[m
+[32m+[m[32m    .loader {[m
+[32m+[m[32m      border: 6px solid #f3f3f3; border-top: 6px solid #007BFF;[m
+[32m+[m[32m      border-radius: 50%; width: 40px; height: 40px;[m
+[32m+[m[32m      animation: spin 1s linear infinite; margin: 20px auto; display: none;[m
+     }[m
+[31m-[m
+[31m-    .error { color: #e74c3c; }[m
+[31m-    .success { color: #27ae60; }[m
+[31m-    .info { color: #007BFF; }[m
+[32m+[m[32m    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }[m
+   </style>[m
+ </head>[m
+ <body>[m
+[36m@@ -104,35 +59,38 @@[m
+         <option value="français">🇫🇷 Français</option>[m
+         <option value="swahili">🇹🇿 Swahili</option>[m
+       </select>[m
+[31m-      <!-- Bouton icône compact -->[m
+       <button type="submit">➡️</button>[m
+     </div>[m
+   </form>[m
+ [m
+   <div id="message"></div>[m
+[32m+[m[32m  <div class="loader" id="loader"></div>[m
+ [m
+   <script type="module">[m
+     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";[m
+ [m
+[31m-    // ⚠️ Mets tes vrais identifiants Supabase (clé publique uniquement)[m
+     const supabaseUrl = "https://jtizgclcllouqdbeifrg.supabase.co";[m
+     const supabaseKey = "sb_publishable_U-jpSc8gPeTkPNxAQYcbuA_FnikXS2H";[m
+     const supabase = createClient(supabaseUrl, supabaseKey);[m
+ [m
+     const form = document.getElementById("form4");[m
+     const msg = document.getElementById("message");[m
+[31m-[m
+[31m-    // ✅ Appliquer la couleur verte après saisie[m
+[31m-    document.querySelectorAll("input, select").forEach(el => {[m
+[31m-      el.addEventListener("blur", () => {[m
+[31m-        if (el.value.trim() !== "") {[m
+[31m-          el.classList.add("filled");[m
+[31m-        } else {[m
+[31m-          el.classList.remove("filled");[m
+[31m-        }[m
+[31m-      });[m
+[32m+[m[32m    const loader = document.getElementById("loader");[m
+[32m+[m[32m    const passwordInput = document.getElementById("password");[m
+[32m+[m
+[32m+[m[32m    // ✅ Vérification en direct du mot de passe[m
+[32m+[m[32m    passwordInput.addEventListener("input", () => {[m
+[32m+[m[32m      const password = passwordInput.value.trim();[m
+[32m+[m[32m      if (password.length < 6) {[m
+[32m+[m[32m        msg.textContent = "🚫 Votre mot de passe doit contenir au moins 6 caractères.";[m
+[32m+[m[32m        msg.className = "error";[m
+[32m+[m[32m      } else {[m
+[32m+[m[32m        msg.textContent = "✅ Mot de passe valide.";[m
+[32m+[m[32m        msg.className = "success";[m
+[32m+[m[32m      }[m
+     });[m
+ [m
+[32m+[m[32m    // ✅ Soumission du formulaire[m
+     form.addEventListener("submit", async (e) => {[m
+       e.preventDefault();[m
+ [m
+[36m@@ -141,57 +99,38 @@[m
+       const langue_apprentissage = document.getElementById("langue_apprentissage").value;[m
+ [m
+       if (!email || !password || !langue_apprentissage) {[m
+[31m-        msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";[m
+[32m+[m[32m        msg.textContent = "🚫 Veuillez remplir tous les champs.";[m
+[32m+[m[32m        msg.className = "error";[m
+[32m+[m[32m        return;[m
+[32m+[m[32m      }[m
+[32m+[m[32m      if (password.length < 6) {[m
+[32m+[m[32m        msg.textContent = "🚫 Le mot de passe doit contenir au moins 6 caractères.";[m
+         msg.className = "error";[m
+         return;[m
+       }[m
+ [m
+[31m-      form.addEventListener("submit", async (e) => {[m
+[31m-  e.preventDefault();[m
+[31m-[m
+[31m-  const email = document.getElementById("email").value.trim();[m
+[31m-  const password = document.getElementById("password").value.trim();[m
+[31m-  const langue_apprentissage = document.getElementById("langue_apprentissage").value;[m
+[31m-[m
+[31m-  if (!email || !password || !langue_apprentissage) {[m
+[31m-    msg.textContent = "🚫 Tafadhali jaza sehemu zote (Veuillez remplir tous les champs)";[m
+[31m-    msg.className = "error";[m
+[31m-    return;[m
+[31m-  }[m
+[31m-[m
+[31m-  // ✅ Vérification stricte du mot de passe[m
+[31m-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;[m
+[31m-  if (!passwordRegex.test(password)) {[m
+[31m-    msg.textContent = "🚫 Le mot de passe doit contenir au moins 8 caractères, avec majuscule, minuscule, chiffre et symbole.";[m
+[31m-    msg.className = "error";[m
+[31m-    return;[m
+[31m-  }[m
+[31m-[m
+[31m-  form.querySelector("button").disabled = true;[m
+[31m-  msg.textContent = "⏳ Veuillez patienter, nous traitons votre inscription...";[m
+[31m-  msg.className = "info";[m
+[31m-[m
+[31m-  // ... reste du code (Supabase signUp etc.)[m
+[31m-});[m
+[32m+[m[32m      form.querySelector("button").disabled = true;[m
+[32m+[m[32m      msg.textContent = "⏳ Inscription en cours...";[m
+[32m+[m[32m      msg.className = "info";[m
+ [m
+[32m+[m[32m      // 1️⃣ Création du compte[m
+       const { data, error } = await supabase.auth.signUp({ email, password });[m
+[31m-[m
+       if (error) {[m
+[31m-        msg.textContent = "❌ Erreur lors de la création du compte : " + error.message;[m
+[32m+[m[32m        msg.textContent = "❌ Erreur : " + error.message;[m
+         msg.className = "error";[m
+         form.querySelector("button").disabled = false;[m
+         return;[m
+       }[m
+[31m-[m
+       if (!data.user) {[m
+[31m-        msg.textContent = "✅ Compte créé, veuillez confirmer votre email avant de continuer.";[m
+[32m+[m[32m        msg.textContent = "✅ Compte créé, confirmez votre email.";[m
+         msg.className = "info";[m
+         return;[m
+       }[m
+ [m
+       const user_id = data.user.id;[m
+ [m
+[31m-      const userData = {[m
+[32m+[m[32m      // 2️⃣ Préparer données profil[m
+[32m+[m[32m      const profilData = {[m
+         user_id,[m
+         nom: localStorage.getItem("nom"),[m
+         prenom: localStorage.getItem("prenom"),[m
+[36m@@ -201,49 +140,65 @@[m
+         etat: localStorage.getItem("etat"),[m
+         etudes: localStorage.getItem("etudes"),[m
+         anglais: localStorage.getItem("anglais"),[m
+[31m-        telephone: localStorage.getItem("telephone"),[m
+[31m-        langue_apprentissage[m
+[32m+[m[32m        telephone: localStorage.getItem("telephone")[m
+       };[m
+ [m
+[32m+[m[32m      // 3️⃣ Upload photo si présente[m
+       const photoFile = document.getElementById("photo").files[0];[m
+       if (photoFile) {[m
+         const filePath = `users/${user_id}_${crypto.randomUUID()}_${photoFile.name}`;[m
+         const { error: uploadError } = await supabase.storage.from("photos").upload(filePath, photoFile);[m
+[31m-[m
+         if (uploadError) {[m
+[31m-          msg.textContent = "❌ Erreur lors de l'upload de la photo : " + uploadError.message;[m
+[32m+[m[32m          msg.textContent = "❌ Erreur upload photo : " + uploadError.message;[m
+           msg.className = "error";[m
+           form.querySelector("button").disabled = false;[m
+           return;[m
+         }[m
+[31m-[m
+         const { data: publicUrlData } = supabase.storage.from("photos").getPublicUrl(filePath);[m
+[31m-        userData.photo_url = publicUrlData.publicUrl;[m
+[32m+[m[32m        profilData.photo_url = publicUrlData.publicUrl;[m
+       }[m
+ [m
+[31m-      const { error: insertError } = await supabase.from("inscriptions").insert([userData]);[m
+[31m-[m
+[31m-      if (insertError) {[m
+[31m-        msg.textContent = "❌ Erreur lors de l'envoi des données : " + insertError.message;[m
+[32m+[m[32m      // 4️⃣ Insérer profil[m
+[32m+[m[32m      const { error: profilError } = await supabase.from("profils").insert([profilData]);[m
+[32m+[m[32m      if (profilError) {[m
+[32m+[m[32m        msg.textContent = "❌ Erreur insertion profil : " + profilError.message;[m
+         msg.className = "error";[m
+         form.querySelector("button").disabled = false;[m
+[31m-      } else {[m
+[31m-        msg.textContent = "✅ Usajili umekamilika (Inscription réussie)";[m
+[31m-        msg.className = "success";[m
+[32m+[m[32m        return;[m
+[32m+[m[32m      }[m
+ [m
+[31m-        ["nom","prenom","naissance","nationalite","residence","etat","etudes","anglais","telephone"][m
+[31m-          .forEach(k => localStorage.removeItem(k));[m
+[31m-[m
+[31m-        setTimeout(() => {[m
+[31m-          if (langue_apprentissage === "français") {[m
+[31m-            window.location.href = "dashboard_fr.html";[m
+[31m-          } else if (langue_apprentissage === "swahili") {[m
+[31m-            window.location.href = "dashboard_sw.html";[m
+[31m-          } else {[m
+[31m-            window.location.href = "dashboard_fr.html";[m
+[31m-          }[m
+[31m-        }, 2000);[m
+[32m+[m[32m      // 5️⃣ Inscrire au cours choisi[m
+[32m+[m[32m      const cours_id = (langue_apprentissage === "français") ? 1 : 2;[m
+[32m+[m[32m      const { error: inscriptionError } = await supabase.from("inscriptions").insert([{[m
+[32m+[m[32m        user_id,[m
+[32m+[m[32m        cours_id,[m
+[32m+[m[32m        date_inscription: new Date()[m
+[32m+[m[32m      }]);[m
+[32m+[m[32m      if (inscriptionError) {[m
+[32m+[m[32m        msg.textContent = "❌ Erreur inscription cours : " + inscriptionError.message;[m
+[32m+[m[32m        msg.className = "error";[m
+[32m+[m[32m        form.querySelector("button").disabled = false;[m
+[32m+[m[32m        return;[m
+       }[m
+[32m+[m[32m// 6️⃣ Nettoyage et redirection[m
+[32m+[m[32m      msg.textContent = "⏳ Le processus continue... Préparation de votre interface d’études.";[m
+[32m+[m[32m      msg.className = "info";[m
+[32m+[m[32m      loader.style.display = "block";[m
+[32m+[m
+[32m+[m[32m      // Nettoyer le localStorage[m
+[32m+[m[32m      ["nom","prenom","naissance","nationalite","residence","etat","etudes","anglais","telephone"][m
+[32m+[m[32m        .forEach(k => localStorage.removeItem(k));[m
+[32m+[m
+[32m+[m[32m      // Redirection après 2 secondes[m
+[32m+[m[32m      setTimeout(() => {[m
+[32m+[m[32m        if (langue_apprentissage === "français") {[m
+[32m+[m[32m          window.location.href = "dashboard_fr.html";[m
+[32m+[m[32m        } else if (langue_apprentissage === "swahili") {[m
+[32m+[m[32m          window.location.href = "dashboard_sw.html";[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m          window.location.href = "dashboard_fr.html";[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }, 2000);[m
+     });[m
+   </script>[m
+ </body>[m
+[1mdiff --git a/pronom.html b/pronom.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git "a/pr\303\251position.html" "b/pr\303\251position.html"[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/udokezi.html b/udokezi.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/verbe.html b/verbe.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
