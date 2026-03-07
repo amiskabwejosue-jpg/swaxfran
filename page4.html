@@ -129,9 +129,8 @@
 
       const user_id = data.user.id;
 
-      // 2️⃣ Préparer données profil
+      // 2️⃣ Préparer données profil (sans user_id)
       const profilData = {
-        user_id,
         nom: localStorage.getItem("nom"),
         prenom: localStorage.getItem("prenom"),
         naissance: localStorage.getItem("naissance"),
@@ -158,10 +157,14 @@
         profilData.photo_url = publicUrlData.publicUrl;
       }
 
-      // 4️⃣ Insérer profil
-      const { error: profilError } = await supabase.from("profils").insert([profilData]);
+      // 4️⃣ Mettre à jour le profil existant (créé automatiquement par le trigger)
+      const { error: profilError } = await supabase
+        .from("profils")
+        .update(profilData)
+        .eq("id", user_id);
+
       if (profilError) {
-        msg.textContent = "❌ Erreur insertion profil : " + profilError.message;
+        msg.textContent = "❌ Erreur mise à jour profil : " + profilError.message;
         msg.className = "error";
         form.querySelector("button").disabled = false;
         return;
@@ -180,12 +183,12 @@
         form.querySelector("button").disabled = false;
         return;
       }
-// 6️⃣ Nettoyage et redirection
+
+    // 6️⃣ Nettoyage et redirection
       msg.textContent = "⏳ Le processus continue... Préparation de votre interface d’études.";
       msg.className = "info";
       loader.style.display = "block";
 
-      // Nettoyer le localStorage
       ["nom","prenom","naissance","nationalite","residence","etat","etudes","anglais","telephone"]
         .forEach(k => localStorage.removeItem(k));
 
