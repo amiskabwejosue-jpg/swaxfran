@@ -39,7 +39,8 @@
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   </style>
 </head>
-<body><!--test-->
+<body>
+<!--majaribio-->
   <h2>Usajili - Hatua ya 4</h2>
 <form id="form4">
     <label>Barua pepe (E-mail)</label>
@@ -157,10 +158,10 @@
       }
 
       // 4️⃣ Mettre à jour le profil existant (créé automatiquement par le trigger)
-      const { error: profilError } = await supabase
-        .from("profils")
-        .update(profilData)
-        .eq("id", user_id);
+const { error: profilError } = await supabase
+  .from("profils")
+  .update(profilData)
+  .eq("user_id", user_id);   // ✅ on compare avec la colonne user_id (UUID)
 
       if (profilError) {
         msg.textContent = "❌ Erreur mise à jour profil : " + profilError.message;
